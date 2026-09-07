@@ -32,6 +32,6 @@ pdflatex -interaction=nonstopmode -halt-on-error main.tex
 
 cd "$repo_dir"
 mkdir -p output/pdf
-cp report/main.pdf output/pdf/rare_disease_real_kid_methods_report.pdf
+cp report/main.pdf output/pdf/bonamame_track1_report.pdf
 
-echo "Built output/pdf/rare_disease_real_kid_methods_report.pdf and regenerated all verification artifacts."
+echo "Built output/pdf/bonamame_track1_report.pdf and regenerated all verification artifacts."

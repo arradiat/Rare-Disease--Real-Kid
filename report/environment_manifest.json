@@ -24,10 +24,5 @@
     "pillow": "10.4.0",
     "huggingface-hub": "0.36.0"
   },
-  "public_input_sha256": {
-    "data/open/clinvar_temporal/clinvar_20231226.vcf.gz": "510c54e3fd04b0786f0a110bab63853e9e8fc3e9dde9e07ce7bc83f10cb63786",
-    "data/open/clinvar_temporal/clinvar_20260829.vcf.gz": "e72f5619f003c80cb3051afcb0c1f11c4409741054b48bbfd0ced03046ec91f9",
-    "data/open/phenopacket_store/all_phenopackets_v0.1.27.zip": "d0c70005bb09b87035087516252b6b539fbc0415be7c664b73c9cde7eedf205a",
-    "data/open/phenopacket_store/hp_2023-10-09.obo": "d3c1280f2780628cc2adc41d43ad92eab8fa4c2bab0f421e6334c7b1e6cd4e52"
-  }
+  "public_input_sha256": {}
 }

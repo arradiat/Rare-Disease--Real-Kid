@@ -5,7 +5,7 @@
 The repository supports three distinct levels of reproduction. Keeping them separate prevents the private 85 GB genome bundle from being mistaken for a requirement of the lightweight ML checks.
 
 1. **Submission verification:** validates the committed CSV, recomputes Rank Points and F-max, and requires no external data.
-2. **Checkpoint inference:** recreates all model-specific child rankings from the retained 2 MB checkpoint and Bonaventure Dossou's compact `ranking.zip` candidate export.
+2. **Checkpoint inference:** recreates all model-specific child rankings from the retained 2 MB checkpoint and Bonaventure's compact `ranking.zip` candidate export.
 3. **Full training:** rebuilds temporal models from the archived ClinVar 2023 VCF. It does not require the child's FASTQ files.
 
 The full WGS stage is separate. It requires the gated patient data and the cluster bioinformatics environment described in the report.
@@ -39,7 +39,7 @@ source .venv/bin/activate
 python -m pip install --upgrade pip
 python -m pip install -r requirements-report.txt
 
-python audit_submission.py submission/track1_wide_rank50_sbnn.csv
+python audit_submission.py submission/model1_bonamame_wide-rank50-sbnn.csv
 python verify_track1_exact_scores.py
 python -m pytest -q
 ```
@@ -56,7 +56,7 @@ python generate_track1_submission.py \
   --checkpoint results/track1_temporal_transfer_20260906/trained_models.pkl
 ```
 
-This command regenerates strict and broad Track 1 outputs for every retained temporal model, selects only `strict_wide_rank50_sbnn.csv`, validates it, and publishes it under the stable name `submission/track1_wide_rank50_sbnn.csv`.
+This command regenerates strict and broad Track 1 outputs for every retained temporal model, selects only `strict_wide_rank50_sbnn.csv`, validates it, and publishes it under the upload-ready name `submission/model1_bonamame_wide-rank50-sbnn.csv`.
 
 ## Retrain the temporal models
 

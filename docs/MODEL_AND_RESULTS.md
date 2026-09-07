@@ -29,6 +29,8 @@ The selected model is a two-hidden-layer SBNN with widths 200 and 100 and poster
 
 At inference, 128 weight samples are drawn from the fitted posterior. Their mean produces each allele probability. Their dispersion supports uncertainty analysis, although the five-network deep ensemble remained a better detector of variants from unseen genes.
 
+The factorization is the main scalability advantage over dense Bayesian neural networks. For a weight matrix with input width `d_in`, output width `d_out`, and factor rank `r`, dense BBB needs variational parameters for all `d_in * d_out` weights, whereas the SBNN weight posterior scales with `r * (d_in + d_out)`. The selected model used 55,804 variational scalars, 8% fewer than the matched wide dense BBB model. That saving is modest because rank 50 is not very small for this compact network. For wider layers with controlled rank, the relative saving grows. A single SBNN posterior also replaces the storage and optimization of several complete ensemble members, although Monte Carlo inference still uses repeated forward passes. See Toure and Stephens, *Singular Bayesian Neural Networks*, ICML 2026.
+
 ## Model selection
 
 Rank, KL weight, posterior initialization scale, and prior scale were tuned jointly. This matters because their effects are coupled: a useful rank under one KL strength can collapse under another. The sweep screened 375 combinations, used successive-halving confirmation, retained task and uncertainty extremes, and evaluated selected settings on an untouched temporal holdout.
@@ -37,7 +39,7 @@ The wide rank-50 SBNN was selected for the final Track 1 CSV because it had the 
 
 ## Exact child result
 
-The selected SBNN ranks the accepted `BUB1B` pair first among six strict candidates. The generated CSV obtains 100 Rank Points and F-max 1.000 under the repository's implementation of the public Track 1 evaluator. The score has been verified locally. The earlier deterministic CSV received the same score on the live leaderboard; the SBNN CSV has not yet been uploaded.
+The selected SBNN ranks the accepted `BUB1B` pair first among six strict candidates. The generated CSV obtained 100 Rank Points and F-max 1.000 under the repository's implementation of the public Track 1 evaluator and on the live Hugging Face platform. The platform accepted it as Submission 2 for `PROBAND01` under team `bonamame` and account `mametoure`, reported a full match at rank 1, and selected an F-max EPCR threshold of 0.3724070924857989. The live result exactly matches the independent local score.
 
 ## External comparison
 
@@ -61,11 +63,11 @@ The strongest defensible conclusion is narrower than full clinical generalizatio
 
 ## Canonical artifacts
 
-- Upload CSV: [`../submission/track1_wide_rank50_sbnn.csv`](../submission/track1_wide_rank50_sbnn.csv)
-- Submission manifest: [`../submission/track1_wide_rank50_sbnn.manifest.json`](../submission/track1_wide_rank50_sbnn.manifest.json)
+- Upload CSV: [`../submission/model1_bonamame_wide-rank50-sbnn.csv`](../submission/model1_bonamame_wide-rank50-sbnn.csv)
+- Submission manifest: [`../submission/model1_bonamame_wide-rank50-sbnn.manifest.json`](../submission/model1_bonamame_wide-rank50-sbnn.manifest.json)
 - Exact score audit: [`../results/exact_track1_score_audit.json`](../results/exact_track1_score_audit.json)
 - Model comparison results: [`../results/wide_rank_temporal_20260906/wide_rank_results.json`](../results/wide_rank_temporal_20260906/wide_rank_results.json)
-- Full methods report: [`../output/pdf/rare_disease_real_kid_methods_report.pdf`](../output/pdf/rare_disease_real_kid_methods_report.pdf)
+- Full methods report: [`../output/pdf/bonamame_track1_report.pdf`](../output/pdf/bonamame_track1_report.pdf)
 
 ## Implementation map
 
@@ -82,4 +84,4 @@ The seven methods in the main comparison and the auxiliary dense MLP baseline al
 | Wide full-weight BBB | `models/wide_dense_bbb.py` |
 | Temporal consensus | `models/temporal_consensus.py` |
 
-The exact Track 1 generation chain is `generate_track1_submission.py` to `models/wide_rank50_sbnn.py` to `verify_temporal_models_track1.py` to `export_track1_sbnn_submission.py` to `submission/track1_wide_rank50_sbnn.csv`.
+The exact Track 1 generation chain is `generate_track1_submission.py` to `models/wide_rank50_sbnn.py` to `verify_temporal_models_track1.py` to `export_track1_sbnn_submission.py` to `submission/model1_bonamame_wide-rank50-sbnn.csv`.

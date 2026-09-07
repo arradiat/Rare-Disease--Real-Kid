@@ -17,7 +17,7 @@ TRUE_VARIANTS = frozenset(
 )
 PREDICTIONS = {
     "deterministic_genomewide": ROOT / "bonaventuredossou_genomewide-hpo-comphet.csv",
-    "selected_wide_rank50_sbnn": ROOT / "submission/track1_wide_rank50_sbnn.csv",
+    "selected_wide_rank50_sbnn": ROOT / "submission/model1_bonamame_wide-rank50-sbnn.csv",
     "linear_bayesian_strict": ROOT / "results/bayesian_run_20260905/strict_bayesian_candidates.csv",
     "linear_bayesian_broad": ROOT / "results/bayesian_run_20260905/broad_bayesian_candidates.csv",
     "sbnn_strict": ROOT / "results/sbnn_run_20260905/strict_sbnn_candidates.csv",
@@ -109,10 +109,21 @@ def main() -> None:
             "rare-disease-real-kid-mva-hackathon-2026/blob/main/evaluation.py"
         ),
         "scope_note": (
-            "Local exact re-scoring against the leaderboard-confirmed accepted pair; "
-            "the deterministic CSV is leaderboard-confirmed; the selected SBNN CSV is "
-            "verified locally with the same public scoring logic but has not yet been uploaded."
+            "Local exact re-scoring against the accepted pair. The deterministic CSV and "
+            "selected wide rank-50 SBNN CSV are both confirmed by the live Hugging Face "
+            "evaluator; the remaining model adapters are local official-equivalent scores."
         ),
+        "leaderboard_confirmation": {
+            "source": "Hugging Face submission receipt supplied by the team",
+            "team": "bonamame",
+            "account": "mametoure",
+            "submission_number": 2,
+            "proband_id": "PROBAND01",
+            "full_match_rank": 1,
+            "rank_points": 100.0,
+            "f_max": 1.0,
+            "f_max_threshold": 0.3724070924857989,
+        },
         "accepted_pair": [list(item) for item in sorted(TRUE_VARIANTS)],
         "results": results,
     }

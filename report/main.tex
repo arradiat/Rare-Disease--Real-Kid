@@ -57,9 +57,9 @@ The genome-wide pipeline identified the accepted compound-heterozygous \textit{B
 \end{tcolorbox}
 
 \begin{abstract}
-Track 1 of the Rare Disease, Real Kid Hackathon asks participants to identify the causal variant or variant pair in one child with mosaic variegated aneuploidy (MVA). We developped a genome-wide workflow and processed the gated whole-genome data, aligned more than one billion reads, normalized and phased 5.08 million variants, joined functional annotations to all but one heterozygous allele, and ranked a compound-heterozygous \textit{BUB1B} hypothesis first. The uploaded prediction received 100 Rank Points and F-max 1.0. We then asked a harder question: can a learned method reproduce the child-level result and transfer to variants and patients unavailable at training time?
+Track 1 of the Rare Disease, Real Kid Hackathon asks participants to identify the causal variant or variant pair in one child with mosaic variegated aneuploidy (MVA). We developed a genome-wide workflow and processed the gated whole-genome data, aligned more than one billion reads, normalized and phased 5.08 million variants, joined functional annotations to all but one heterozygous allele, and ranked a compound-heterozygous \textit{BUB1B} hypothesis first. The selected wide rank-50 SBNN CSV was accepted by the live Hugging Face evaluator as Submission 2, with a full match at rank 1, 100 Rank Points, F-max 1.000, and an F-max EPCR threshold of 0.3724070924857989. We then asked a harder question: can a learned method reproduce the child-level result and transfer to variants and patients unavailable at training time?
 
-We evaluated a linear Bayesian ranker, deterministic gradient boosting and neural networks, a five-network deep ensemble, low-rank singular Bayesian neural networks (SBNNs), full-weight Bayes-by-Backprop (BBB) networks, wider Bayesian architectures, and a validation-selected consensus. All challenge adapters placed the accepted pair first and achieved the same perfect Track 1 score. Perfect agreement on one proband did not distinguish the models. On an untouched temporal ClinVar holdout, the wide rank-50 SBNN achieved the best simulated top-1 ranking (84.35\%) and F-max (0.9235), while the deep ensemble remained the best detector of unseen genes (OOD AUROC 0.7485). On 719 post-2023 solved Phenopacket hypotheses, molecular-only top-1 accuracy was about 34\%; an HPO-conditioned dense BBB reached 58.9\% $\pm$ 1.0\% across five resampled candidate cohorts. The best result on 64 two-variant cases was 68.1\% top-1. These patient tests use compact ClinVar-derived candidate sets, not complete external exomes, so they support transfer of the ranking function but not a clinical diagnostic sensitivity claim.
+We evaluated a linear Bayesian ranker, deterministic gradient boosting and neural networks, a five-network deep ensemble, low-rank singular Bayesian neural networks (SBNNs), full-weight Bayes-by-Backprop (BBB) networks, wider Bayesian architectures, and a validation-selected consensus. All challenge adapters placed the accepted pair first and achieved the same perfect Track 1 score. Perfect agreement on one proband did not distinguish the models. On an untouched temporal ClinVar holdout, the wide rank-50 SBNN achieved the best simulated top-1 ranking (84.35\%) and F-max (0.9235), while the deep ensemble remained the best detector of unseen genes (OOD AUROC 0.7485). Its low-rank Bayesian factors replace the dense layer's quadratic parameter growth with rank-controlled linear growth in layer width, which makes the architecture increasingly attractive as networks become wider \citep{toure2026}. On 719 post-2023 solved Phenopacket hypotheses, molecular-only top-1 accuracy was about 34\%; an HPO-conditioned dense BBB reached 58.9\% $\pm$ 1.0\% across five resampled candidate cohorts. The best result on 64 two-variant cases was 68.1\% top-1. These patient tests use compact ClinVar-derived candidate sets, not complete external exomes, so they support transfer of the ranking function but not a clinical diagnostic sensitivity claim.
 
 The contribution is therefore a reproducible methodology with explicit separation of candidate generation from ranking, strict temporal and gene-aware evaluation, calibrated claims about uncertainty, attribution of upstream data and features, and a clear path to full patient-level validation through PhEval.
 \end{abstract}
@@ -171,7 +171,7 @@ Phenopacket Store 0.1.27 & Monarch Initiative corpus and versioned release \cite
 Phenopacket molecular annotation cache & Open benchmark adapter built from Phenopacket variants and VEP-derived annotations & Used during the first pair-model training run; only fitted model artifacts and reports are retained in this repository copy & Supplied consequence, population-frequency, CADD, and SpliceAI values for causal and benign decoy alleles. Candidate sets were constructed and are not full patient genomes. \\
 ClinVar 26 Dec 2023 & Official NCBI archived GRCh38 VCF \citep{clinvar} & Downloaded by HTTPS/FTP from the NCBI archive and stored as \code{clinvar\_20231226.vcf.gz}, 87~MB & Training-time labels and gene-history features. It contains 1,084,930 unambiguous labeled variants and 2,340,600 total Variation IDs. \\
 ClinVar 29 Aug 2026 & Official NCBI GRCh38 VCF \citep{clinvar} & Downloaded from NCBI and stored as \code{clinvar\_20260829.vcf.gz}, 184~MB & Temporal evaluation. Records with Variation IDs absent in 2023 form a 626,287-variant test set. \\
-Track 1 ground-truth behavior & Public challenge evaluator and accepted leaderboard result \citep{hackathon2026} & Evaluator logic was reproduced locally; private ground-truth file was not copied & Used only to verify that generated CSVs reproduce Rank Points 100 and F-max 1.0. The uploaded deterministic CSV is the only submission independently confirmed by the leaderboard. \\
+Track 1 ground-truth behavior & Public challenge evaluator and accepted platform results \citep{hackathon2026} & Evaluator logic was reproduced locally; private ground-truth file was not copied & The deterministic CSV and selected wide rank-50 SBNN CSV both received Rank Points 100 and F-max 1.0 on the live platform. The SBNN was accepted as Submission 2 with threshold 0.3724070924857989. \\
 \bottomrule
 \end{longtable}
 \normalsize
@@ -365,9 +365,23 @@ To test whether the original network was simply too small, widths increased from
 
 This is an important result: increasing rank and width improved the main classification task but did not create ensemble-like function-space diversity.
 
+\subsection{Why the SBNN is the scalable Bayesian component}
+
+The parameterization changes how Bayesian memory and optimization cost grow with layer width. For a dense layer $W\in\mathbb{R}^{d_{\mathrm{in}}\times d_{\mathrm{out}}}$, mean-field BBB stores a posterior mean and scale for every weight, requiring approximately
+\begin{equation}
+2d_{\mathrm{in}}d_{\mathrm{out}}
+\end{equation}
+variational scalars before biases. An SBNN factorizes $W=AB^\top$ with rank $r$ and places variational distributions on the factors. Its corresponding count is approximately
+\begin{equation}
+2r\left(d_{\mathrm{in}}+d_{\mathrm{out}}\right).
+\end{equation}
+Dense BBB therefore grows quadratically for equal-width layers, while a fixed-rank SBNN grows linearly with width \citep{toure2026,blundell2015}. The ratio is approximately $r(d_{\mathrm{in}}+d_{\mathrm{out}})/(d_{\mathrm{in}}d_{\mathrm{out}})$, or $2r/d$ for a square width-$d$ layer.
+
+The distinction matters beyond this compact experiment. The selected rank-50 SBNN used 55,804 variational scalars, only 8\% fewer than the matched wide dense BBB because rank 50 is not very small relative to widths 200 and 100. This measured saving should not be exaggerated. For substantially wider layers with rank held below the layer widths, the gap grows quickly. Training state, gradients, and optimizer memory follow the same parameter-count reduction. A single fitted SBNN posterior also avoids storing and optimizing $M$ complete networks as required by an $M$-member deep ensemble \citep{lakshminarayanan2017}. Monte Carlo inference still costs multiple forward passes, but those samples share one learned posterior and can be batched. The practical advantage is reduced model and training-state memory with a tunable rank--accuracy tradeoff, not free uncertainty estimation.
+
 \section{Track 1 comparison: every compatible model finds the pair}
 
-The official evaluator logic was reproduced locally against the leaderboard-confirmed accepted pair. The deterministic CSV is the artifact actually uploaded and independently confirmed by the leaderboard. The learned CSVs were scored locally using the same logic.
+The official evaluator logic was reproduced locally against the accepted pair. The earlier deterministic CSV and the selected wide rank-50 SBNN CSV were both uploaded and independently confirmed by the live Hugging Face evaluator. The remaining learned CSVs were scored locally using the same logic. For the SBNN submission, the live threshold of 0.3724070924857989 exactly matches the locally reproduced threshold.
 
 \begin{longtable}{p{0.27\textwidth}rrrrp{0.24\textwidth}}
 \caption{Exact child-level results.}\\
@@ -389,7 +403,7 @@ Dense MLP adapter & 6 & 1 & 100 & 1.000 & Local official-equivalent score \\
 Deep ensemble adapter & 6 & 1 & 100 & 1.000 & Local official-equivalent score \\
 Small SBNN adapter & 6 & 1 & 100 & 1.000 & Local official-equivalent score \\
 Dense BBB adapter & 6 & 1 & 100 & 1.000 & Local official-equivalent score \\
-Wide rank-50 SBNN adapter & 6 & 1 & 100 & 1.000 & Local official-equivalent score \\
+Wide rank-50 SBNN adapter & 6 & 1 & 100 & 1.000 & Uploaded as Submission 2; platform-confirmed \\
 Wide dense BBB adapter & 6 & 1 & 100 & 1.000 & Local official-equivalent score \\
 Temporal consensus adapter & 6 & 1 & 100 & 1.000 & Local official-equivalent score \\
 \bottomrule
@@ -509,7 +523,8 @@ Our design follows the same layered logic at smaller scale. The causal hypothesi
 \subsection{Established by executed artifacts}
 \begin{itemize}
 \item The uploaded deterministic pipeline found the accepted \textit{BUB1B} pair at rank 1 and achieved Rank Points 100 and F-max 1.0.
-\item Every compatible learned adapter also ranks the pair first under the locally reproduced official evaluator.
+\item The uploaded wide rank-50 SBNN reproduced the full match at rank 1, Rank Points 100, and F-max 1.000 on the live Hugging Face evaluator. Its reported F-max EPCR threshold, 0.3724070924857989, matches the local audit exactly.
+\item Every other compatible learned adapter also ranks the pair first under the locally reproduced official evaluator.
 \item The temporal training corpus contains more than one million historical labeled variants and 626,287 new-ID test variants.
 \item Wide rank-50 SBNN gives the best temporal simulated ranking and F-max among tested models.
 \item Deep-ensemble disagreement is the best tested unseen-gene detector.
@@ -598,7 +613,7 @@ From the repository root:
 \begin{lstlisting}[language=bash]
 ./build_report.sh
 \end{lstlisting}
-This one command captures the local environment, rebuilds the seven figures, runs all 24 unit tests, re-scores the stored Track 1 outputs, and compiles the cited PDF. It uses the retained model checkpoint and compact candidate archive; it neither downloads the 85~GB challenge bundle nor retrains the expensive models. The individual report commands are:
+This one command captures the local environment, rebuilds the seven figures, runs all 29 unit tests, re-scores the stored Track 1 outputs, and compiles the cited PDF. It uses the retained model checkpoint and compact candidate archive; it neither downloads the 85~GB challenge bundle nor retrains the expensive models. The individual report commands are:
 \begin{lstlisting}[language=bash]
 python report_visualizations.py --output-dir report/figures
 cd report
@@ -624,7 +639,7 @@ The child's result is stable. A pathogenic \textit{BUB1B} stop-gain and an ultra
 
 The perfect leaderboard score is the beginning of the argument, not the end. The evidence that distinguishes the submission is the genome-wide discovery without a manual disease-gene bonus, the nearly complete annotation join, conservative handling of phase and the uncertain second allele, exact attribution of upstream features, temporal training and holdout design, factorial Bayesian experiments, honest negative OOD results, and patient-level transfer across hundreds of later solved cases.
 
-No one model wins every metric. The wide rank-50 SBNN is the strongest tested temporal ranker. Dense BBB is the strongest overall HPO-conditioned external model. Wide dense BBB is strongest on the challenge-like two-variant subset. The deep ensemble is the strongest OOD detector. The correct final system is modular: deterministic biological validity, learned molecular evidence, ontology-aware phenotype matching, explicit inheritance logic, and uncertainty used to decide when evidence is insufficient.
+No one model wins every metric. The wide rank-50 SBNN is the strongest tested temporal ranker and the Bayesian architecture with the clearest path to larger networks because its parameter and optimizer-state costs are controlled by rank rather than the full weight-matrix size. Dense BBB is the strongest overall HPO-conditioned external model. Wide dense BBB is strongest on the challenge-like two-variant subset. The deep ensemble is the strongest OOD detector. The correct final system is modular: deterministic biological validity, learned molecular evidence, ontology-aware phenotype matching, explicit inheritance logic, and uncertainty used to decide when evidence is insufficient.
 
 The next empirical milestone is a full patient-specific PhEval run \citep{pheval2025}. It should measure candidate-generation recall separately from ranking, preserve complete VCF backgrounds, and test seen versus unseen genes, phenotype corruption, and inheritance modes. That experiment would convert the current strong compact-benchmark evidence into a defensible end-to-end diagnostic generalization claim.
 

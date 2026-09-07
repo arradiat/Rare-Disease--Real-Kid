@@ -30,4 +30,4 @@ def test_selected_sbnn_export_is_upload_ready() -> None:
 def test_public_entry_point_exports_the_selected_saved_prediction() -> None:
     manifest = generate_submission()
     assert manifest["model"]["name"] == "wide_rank50_sbnn"
-    assert manifest["submission"] == "submission/track1_wide_rank50_sbnn.csv"
+    assert manifest["submission"] == "submission/model1_bonamame_wide-rank50-sbnn.csv"

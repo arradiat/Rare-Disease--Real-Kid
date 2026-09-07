@@ -15,8 +15,8 @@ from verify_track1_exact_scores import score
 ROOT = Path(__file__).resolve().parent
 SOURCE = ROOT / "results/track1_temporal_transfer_20260906/strict_wide_rank50_sbnn.csv"
 RUN_AUDIT = ROOT / "results/track1_temporal_transfer_20260906/track1_temporal_model_audit.json"
-OUTPUT = ROOT / "submission/track1_wide_rank50_sbnn.csv"
-MANIFEST = ROOT / "submission/track1_wide_rank50_sbnn.manifest.json"
+OUTPUT = ROOT / "submission/model1_bonamame_wide-rank50-sbnn.csv"
+MANIFEST = ROOT / "submission/model1_bonamame_wide-rank50-sbnn.manifest.json"
 
 
 def file_sha256(path: Path) -> str:
@@ -102,7 +102,19 @@ def export_submission() -> dict[str, object]:
             "submission_export": "export_track1_sbnn_submission.py",
         },
         "local_official_equivalent_score": score_check,
-        "upload_status": "Not yet uploaded to the Hugging Face leaderboard",
+        "huggingface_submission": {
+            "source": "Hugging Face submission receipt supplied by the team",
+            "status": "Submission received; full match at rank 1",
+            "team": "bonamame",
+            "account": "mametoure",
+            "submission_number": 2,
+            "proband_id": "PROBAND01",
+            "rank_points": 100.0,
+            "rank_points_maximum": 100.0,
+            "f_max": 1.0,
+            "f_max_threshold": 0.3724070924857989,
+        },
+        "upload_status": "Uploaded and confirmed by the Hugging Face evaluator as Submission 2",
     }
     MANIFEST.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
     return manifest

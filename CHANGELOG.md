@@ -2,10 +2,11 @@
 
 ## 2026-09-07: public repository release
 
+- Recorded the live Hugging Face result for the selected wide rank-50 SBNN: Submission 2, full match at rank 1, 100 Rank Points, F-max 1.000, and EPCR threshold 0.3724070924857989.
 - Added a repository-level overview of the complete genome-to-submission pipeline.
 - Exposed seven fitted models and the temporal consensus as separate modules under `models/`.
 - Added a model registry and tests tying report names to importable implementations.
-- Added one canonical SBNN submission at `submission/track1_wide_rank50_sbnn.csv`.
+- Added one canonical SBNN submission at `submission/model1_bonamame_wide-rank50-sbnn.csv`.
 - Added a guarded exporter and machine-readable provenance manifest for the submission.
 - Added public model, results, data, and reproducibility documentation.
 - Removed private coordination notes and duplicate cluster-package files from the public release.
