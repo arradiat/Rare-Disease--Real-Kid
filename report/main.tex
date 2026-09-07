@@ -26,7 +26,7 @@
 \definecolor{rust}{HTML}{B85C38}
 \definecolor{green}{HTML}{4F8A5B}
 \definecolor{light}{HTML}{F4F7F8}
-\hypersetup{colorlinks=true,linkcolor=navy,citecolor=green,urlcolor=rust,pdftitle={Beyond a Perfect Score},pdfauthor={Mame Diarra Toure}}
+\hypersetup{colorlinks=true,linkcolor=navy,citecolor=green,urlcolor=rust,pdftitle={Beyond a Perfect Score},pdfauthor={Mame Diarra Toure and Bonaventure F. P. Dossou}}
 \pagestyle{fancy}
 \fancyhf{}
 \lhead{Rare Disease, Real Kid: MVA Hackathon 2026}
@@ -46,7 +46,7 @@
 
 \title{\textbf{Beyond a Perfect Score}\\[0.35em]
 \large Genome-wide diagnosis, Bayesian variant ranking, uncertainty, and temporal generalization for the Rare Disease, Real Kid MVA Hackathon 2026}
-\author{Mame Diarra Toure \& Bonaventure F. P. Dossou\\[0.3em]\small Research lead, Bayesian modeling and generalization analysis}
+\author{\href{https://arradiat.github.io}{Mame Diarra Toure} \& \href{https://bonaventuredossou.github.io}{Bonaventure F. P. Dossou}\\[0.3em]\small Research lead, Bayesian modeling and generalization analysis}
 \date{7 September 2026}
 
 \begin{document}
@@ -166,7 +166,7 @@ Hackathon WGS and phenotype, about 85~GB & Gated SageBio Hugging Face dataset \c
 GRCh38 reference and exclusion mask & NCBI/GIAB public reference resources named by the VCF header & Downloaded by the pipeline with resumable HTTP to cluster storage; reconstructed representation validated against all 2,580 VCF contigs & Alignment and normalization only. The reference representation matched the challenge VCF exactly in contig names and lengths. \\
 HPO and gene-phenotype annotations & Official HPO releases \citep{hpo2021} & The genome-wide pipeline downloaded the then-current \code{hp.obo} and \code{genes\_to\_phenotype.txt}. The strict external benchmark separately downloaded \code{v2023-10-09/hp.obo} (9.2~MB) by HTTPS. & Ontology-aware phenotype scoring. The 2023 ontology was used in the temporal patient benchmark to avoid a post-cutoff knowledge dependency. \\
 OpenCRAVAT annotations & Locally installed ClinVar, gnomAD v2/v3, CADD, REVEL, and SpliceAI modules \citep{clinvar,gnomad2020,cadd2014,revel2016,spliceai2019} & Installed and run on the cluster. Patient variants were not sent to public annotation APIs. The pipeline generated consequence, population, clinical, and predictor fields. These fields form part of the later pair-model input. \\
-Compact ranking export & Derived from Bonaventure's cluster run and repository \citep{dossourepo2026} & The file \code{ranking.zip} was copied to the project workspace; it contains candidate tables, not FASTQ/BAM/VCF data & Allowed the Bayesian rankers to consume exactly the same strict and broad candidate pairs without moving the 85~GB dataset. \\
+Compact ranking export & Derived from Bonaventure's cluster run and upstream repository \citep{dossourepo2026}, then imported by the integrated Bayesian repository \citep{tourerepo2026} & The file \code{ranking.zip} was copied to the project workspace; it contains candidate tables, not FASTQ/BAM/VCF data & Allowed the Bayesian rankers to consume exactly the same strict and broad candidate pairs without moving the 85~GB dataset. \\
 Phenopacket Store 0.1.27 & Monarch Initiative corpus and versioned release \citep{phenopacketstore2025,phenopacketrelease2026} & Release archive downloaded by HTTPS, 19~MB & Solved patients, causal GRCh38 variants, genes, source groups, and HPO terms. Used for the first 425/44/89 pair benchmark and the later 719-case temporal patient benchmark. \\
 Phenopacket molecular annotation cache & Open benchmark adapter built from Phenopacket variants and VEP-derived annotations & Used during the first pair-model training run; only fitted model artifacts and reports are retained in this repository copy & Supplied consequence, population-frequency, CADD, and SpliceAI values for causal and benign decoy alleles. Candidate sets were constructed and are not full patient genomes. \\
 ClinVar 26 Dec 2023 & Official NCBI archived GRCh38 VCF \citep{clinvar} & Downloaded by HTTPS/FTP from the NCBI archive and stored as \code{clinvar\_20231226.vcf.gz}, 87~MB & Training-time labels and gene-history features. It contains 1,084,930 unambiguous labeled variants and 2,340,600 total Variation IDs. \\
@@ -189,11 +189,11 @@ The full hashes are recorded in the repository README. No access token is stored
 \section{Team contributions and model boundaries}
 
 \textbf{This is joint work by Mame Diarra Toure and Bonaventure Dossou.} The diagnosis, modeling results, challenge submission, scientific interpretation, and final outcome belong to the team. The division below records how the system was built; it is not a division of ownership.
-Mame developed the Bayesian ranking and generalization extension: formulation of the learned ranking problem; construction of the shared feature contract; implementation and evaluation of the linear Bayesian, SBNN, dense BBB, ensemble, gradient-boosting, and consensus models; SBNN hyperparameter studies; temporal ClinVar and Phenopacket/HPO experiments; Track 1 score verification; uncertainty and calibration analysis; visualization, reproducibility work, interpretation, and preparation of this report.
+Mame developed the Bayesian ranking and generalization extension: formulation of the learned ranking problem; construction of the shared feature contract; implementation and evaluation of the linear Bayesian, SBNN, dense BBB, ensemble, gradient-boosting, and consensus models; SBNN hyperparameter studies; temporal ClinVar and Phenopacket/HPO experiments; Track 1 score verification; uncertainty and calibration analysis; visualization, reproducibility work, interpretation, and preparation of this report \citep{tourerepo2026}.
 
 Bonaventure developed the original genome-wide workflow, ran it on the cluster, produced the feature and candidate tables, and prepared the submitted CSV \citep{dossourepo2026}. This includes input discovery, reference preparation, alignment, normalization, phasing, local annotation, HPO gene scoring, variant scoring, pair construction, QC, and submission export.
 
-The two parts are interdependent. The Bayesian models could not have been trained and transferred to the child without the valid candidate universe and biological features produced by Bonaventure's pipeline. The upstream pipeline, in turn, is extended by Mame's comparative models, external generalization tests, and uncertainty analysis. In particular, the first pair models consume these exported features:
+The two parts are interdependent. The Bayesian models could not have been trained and transferred to the child without the valid candidate universe and biological features produced by Bonaventure's pipeline. The upstream pipeline, in turn, is extended by Mame's comparative models, external generalization tests, and uncertainty analysis. The complete implementation is therefore documented across the upstream genome repository and the integrated Bayesian repository \citep{dossourepo2026,tourerepo2026}. In particular, the first pair models consume these exported features:
 \begin{itemize}
 \item phenotype score;
 \item minimum and maximum consequence severity across the two alleles;
@@ -203,7 +203,7 @@ The two parts are interdependent. The Bayesian models could not have been traine
 \item the same pair identity, phase exclusion, and strict/broad candidate definitions.
 \end{itemize}
 
-The temporal ClinVar models are a separate molecular layer. Their 50 features come directly from ClinVar records and training-only gene summaries. When transferred back to Track 1, they score the alleles in Bonaventure's candidate tables, combine the two allele probabilities geometrically, and multiply by Bonaventure's phenotype score. They do not replace his annotation, filtering, phase logic, or pair construction.
+The temporal ClinVar models are a separate molecular layer. Their 50 features come directly from ClinVar records and training-only gene summaries. When transferred back to Track 1, they score the alleles in Bonaventure's candidate tables, combine the two allele probabilities geometrically, and multiply by Bonaventure's phenotype score \citep{dossourepo2026,tourerepo2026}. They do not replace his annotation, filtering, phase logic, or pair construction.
 
 \begin{tcolorbox}[colback=light,colframe=rust,title=Important attribution rule]
 The challenge result is a property of the team's full system. It would be incorrect to attribute it to either component in isolation: every learned model receives a candidate universe and biological features from the genome-wide pipeline, while the extended evidence about transfer, calibration, and uncertainty comes from the comparative modeling work.
@@ -540,11 +540,11 @@ The NAD+/SIRT2/BUBR1 stabilization axis is a mechanistic lead because SIRT2-medi
 
 The WGS pipeline and the later Bayesian experiments ran in different environments because they solve very different computational problems.
 
-\textbf{Cluster WGS environment.} Bonaventure's pipeline ran in an existing pip environment, using CPU execution and six alignment threads. The memory-safe alignment settings were 2,000 read pairs per Python batch, 2,000,000 read pairs per process-isolated shard, and a 10,000,000-base BWA chunk. Sharding bounds worker memory; it does not downsample reads. The repository pins \code{pysam==0.24.0}; it also requires pybwa, WhatsHap, OpenCRAVAT, python-docx, openpyxl, certifi, pandas, NumPy, SciPy, and tqdm. The locally installed OpenCRAVAT resources observed during analysis were ClinVar 2026.07.01, gnomAD v2.1, gnomAD3 v3, REVEL v4.3a, SpliceAI v4.0, and CADD v1.6. Their combined storage requirement was about 160~GB.
+\textbf{Cluster WGS environment.} Bonaventure's pipeline \citep{dossourepo2026} ran in an existing pip environment, using CPU execution and six alignment threads. The memory-safe alignment settings were 2,000 read pairs per Python batch, 2,000,000 read pairs per process-isolated shard, and a 10,000,000-base BWA chunk. Sharding bounds worker memory; it does not downsample reads. The repository pins \code{pysam==0.24.0}; it also requires pybwa, WhatsHap, OpenCRAVAT, python-docx, openpyxl, certifi, pandas, NumPy, SciPy, and tqdm. The locally installed OpenCRAVAT resources observed during analysis were ClinVar 2026.07.01, gnomAD v2.1, gnomAD3 v3, REVEL v4.3a, SpliceAI v4.0, and CADD v1.6. Their combined storage requirement was about 160~GB.
 
 
 
-\textbf{Bayesian ML and reporting environment.} Every temporal model evaluation, HPO generalization run, statistical aggregation, unit test, and report-specific plot in this repository was executed on CPU on a MacBook Pro with an Apple M2 chip, 8 CPU cores (4 performance and 4 efficiency), 8~GB RAM, and macOS 15.2 arm64. No GPU, PyTorch, TensorFlow, or accelerator backend was used. Python was 3.12.7 from Anaconda, compiled with Clang 14.0.6. NumPy used OpenBLAS 0.3.21.
+\textbf{Bayesian ML and reporting environment.} Every temporal model evaluation, HPO generalization run, statistical aggregation, unit test, and report-specific plot in the integrated repository \citep{tourerepo2026} was executed on CPU on a MacBook Pro with an Apple M2 chip, 8 CPU cores (4 performance and 4 efficiency), 8~GB RAM, and macOS 15.2 arm64. No GPU, PyTorch, TensorFlow, or accelerator backend was used. Python was 3.12.7 from Anaconda, compiled with Clang 14.0.6. NumPy used OpenBLAS 0.3.21.
 
 \begin{table}[H]
 \centering
@@ -571,6 +571,7 @@ All temporal experiments use seed 20260905 unless an output records a different 
 The implementations clip probabilities before logarithms, standardize features using training-only statistics, replace near-zero feature scales with one, and keep pair scoring symmetric through a geometric mean. These details avoid seed-dependent NaNs, division by zero, and allele-order artifacts.
 
 \subsection{Code map}
+The code map combines the imported genome-wide workflow with the Bayesian modeling, evaluation, and reporting modules maintained in the integrated repository \citep{dossourepo2026,tourerepo2026}.
 \small
 \begin{longtable}{p{0.38\textwidth}p{0.54\textwidth}}
 \toprule
