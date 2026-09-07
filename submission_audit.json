@@ -1,0 +1,26 @@
+{
+  "path": "/Users/princessemame/rare disease real kid/hf_rare_disease-main/bonaventuredossou_genomewide-hpo-comphet.csv",
+  "rows": 6,
+  "unique_proband_ids": [
+    "PROBAND01"
+  ],
+  "genes": [
+    "BUB1B",
+    "LRP4",
+    "DNAH10",
+    "FCGBP",
+    "PKD1",
+    "TXNDC11"
+  ],
+  "epcr": [
+    0.950624,
+    0.827678,
+    0.811,
+    0.730034,
+    0.721057,
+    0.664048
+  ],
+  "errors": [],
+  "warnings": [],
+  "ok": true
+}
