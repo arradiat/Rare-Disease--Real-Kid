@@ -88,7 +88,9 @@ The challenge answer, submitted rank, previous pair score, ClinVar significance,
 
 The wide rank-50 SBNN was selected because it produced the strongest temporal variant-ranking result among the learned models tested. It was not the best unseen-gene detector; the five-network ensemble had the stronger OOD AUROC. The distinction between ranking quality and OOD detection is important and is preserved throughout the report.
 
-The SBNN is also the most scalable Bayesian architecture tested. A dense Bayes-by-Backprop layer requires a posterior mean and scale for every weight, so its variational parameter count grows with the full weight matrix. The SBNN stores Bayesian low-rank factors instead. For a layer with input width `d_in`, output width `d_out`, and rank `r`, the weight-posterior storage grows as `O(r * (d_in + d_out))` rather than `O(d_in * d_out)`. The current rank-50 network is small enough that the measured saving over its matched dense BBB model is only 8%, but the advantage grows for wider layers when rank remains well below layer width. Unlike a deep ensemble, one trained posterior also avoids storing and optimizing several complete networks, although Monte Carlo prediction still requires repeated forward passes.
+The SBNN is also the most scalable Bayesian architecture tested. A dense Bayes-by-Backprop layer requires a posterior mean and scale for every weight, so its variational parameter count grows with the full weight matrix. The SBNN stores Bayesian low-rank factors instead. For a layer with input width `d_in`, output width `d_out`, and rank `r`, the weight-posterior storage grows as `O(r * (d_in + d_out))` rather than `O(d_in * d_out)`. The post-submission 54-200-100-1 rank-50 model contains 56,204 variational scalars, versus 62,402 for a width-matched dense BBB and 156,005 stored weights across a width-matched five-network ensemble. That is a 9.9% reduction relative to dense BBB and a 64.0% reduction relative to the ensemble. The dense-BBB saving is modest because rank 50 is not very small for these widths; it grows for wider layers when rank remains controlled. Monte Carlo prediction still requires repeated forward passes.
+
+REVEL and AlphaMissense output deterministic pathogenicity scores. Their standard outputs do not include posterior draws, predictive standard deviation, or epistemic mutual information. The SBNN produces all of these from one fitted posterior. This is a built-in uncertainty mechanism, not proof that its uncertainty is automatically calibrated: calibration, OOD detection, and selective referral must still be evaluated. Because the augmented SBNN consumes REVEL and AlphaMissense scores, its 56,204-scalar count describes the added Bayesian ranker, not the storage or compute of the complete upstream annotation stack.
 
 ## Results beyond the child
 
@@ -106,11 +108,56 @@ Perfect performance on one solved child does not establish generalization. The m
 
 On 719 post-2023 solved Phenopacket cases, the HPO-conditioned dense BBB reached 58.9% +/- 1.0% top-1 across repeated candidate draws. On the 64 two-variant cases, the wide dense BBB reached 68.1% top-1. These experiments use constructed ten-candidate sets and test ranking, not complete genome-wide diagnostic sensitivity.
 
+### Generalization beyond the challenge child
+
+After obtaining the maximum Track 1 score, we tested whether the learned
+ranking methods could transfer to independent causal variants in realistic
+genome-scale candidate backgrounds. The complete experiment is documented in
+[`docs/POST_SUBMISSION_GENERALIZATION_2026-09-08.md`](docs/POST_SUBMISSION_GENERALIZATION_2026-09-08.md).
+
+The eight saved models were first evaluated without retraining on all 275,739
+VarPB v3 spike-in trials. The best of them, the original small SBNN, had median
+causal rank 522 and Top-100 0.20%; this showed that compact shortlist performance
+did not transfer to whole-background ranking. REVEL and AlphaMissense established
+stronger external targets.
+
+A new SBNN was then trained only on the verified 26 December 2023 ClinVar
+snapshot. It adds REVEL and AlphaMissense values plus explicit missingness flags,
+uses a Bayesian pairwise ranking loss, and was selected by a complete 24-cell
+rank/KL/posterior-scale/prior-scale screen on a gene-disjoint validation split.
+VarPB was not used for training or selection.
+
+| Locked VarPB result | Median rank | Top-1 | Top-20 | Top-100 | MRR |
+|---|---:|---:|---:|---:|---:|
+| Predictor-augmented pairwise SBNN | 14 | 7.26% | 65.70% | **86.63%** | 0.1596 |
+| REVEL | **8.5** | **12.48%** | **65.90%** | 84.82% | **0.2516** |
+| AlphaMissense | 29 | 8.84% | 44.24% | 69.72% | 0.1632 |
+
+The new SBNN is competitive for shortlist recall: it essentially matches REVEL
+at Top-20 and exceeds it at Top-100, while remaining weaker at Top-1 and MRR.
+Because REVEL and AlphaMissense are inputs, this is a learned evidence-integration
+claim, not a claim that the SBNN independently replaces either predictor.
+
+The same frozen augmented checkpoint was then evaluated on the Track 1
+compound-heterozygous candidates. It retained the accepted BUB1B pair at rank 1
+in both the strict and broad sets. The strict CSV achieved the local
+official-equivalent maximum of 100 Rank Points and F-max 1.000; this augmented
+result has not been submitted to the live evaluator. The exact command is:
+
+```bash
+python evaluate_augmented_sbnn_track1.py \
+  --ranking-zip ../ranking.zip \
+  --checkpoint results/varpb_augmentation_20260908/augmented_sbnn.pkl \
+  --revel-database data/open/opencravat_modules/annotators/revel/data/revel.sqlite \
+  --alphamissense-database data/open/opencravat_modules/annotators/alphamissense/data/alphamissense.sqlite \
+  --output-dir results/track1_augmented_sbnn_20260908
+```
+
 Detailed interpretation, figures, limitations, and citations are in the [methods report](output/pdf/bonamame_track1_report.pdf). A shorter model summary is available in [`docs/MODEL_AND_RESULTS.md`](docs/MODEL_AND_RESULTS.md).
 
 ## Code for every reported model
 
-The complete model index is [`models/README.md`](models/README.md), and the machine-readable registry is [`models/registry.py`](models/registry.py). All seven methods in the comparison table are exposed separately. The auxiliary dense MLP baseline is included as well, so the registry contains eight executable entries:
+The complete model index is [`models/README.md`](models/README.md), and the machine-readable registry is [`models/registry.py`](models/registry.py). The registry contains the eight submission-era methods plus the predictor-augmented SBNN developed for the full-background generalization study:
 
 | Model | Exact implementation |
 |---|---|
@@ -121,6 +168,7 @@ The complete model index is [`models/README.md`](models/README.md), and the mach
 | Dense/full-rank BBB | [`models/full_rank_bbb.py`](models/full_rank_bbb.py) |
 | Selected wide rank-50 SBNN | [`models/wide_rank50_sbnn.py`](models/wide_rank50_sbnn.py) |
 | Width-matched full-weight BBB | [`models/wide_dense_bbb.py`](models/wide_dense_bbb.py) |
+| Predictor-augmented pairwise SBNN | [`models/augmented_pairwise_sbnn.py`](models/augmented_pairwise_sbnn.py) |
 | Gradient boost + deep ensemble + SBNN consensus | [`models/temporal_consensus.py`](models/temporal_consensus.py) |
 
 The shared low-level Bayesian layer code is in [`sbnn_pair_ranker.py`](sbnn_pair_ranker.py). The binary Bayesian training loop is in [`clinvar_temporal_experiment.py`](clinvar_temporal_experiment.py). The model-specific files are not placeholders: each fixes the constructor, training function, prediction function, and exact hyperparameters used in the report.
@@ -164,6 +212,13 @@ Dataset sources, checksums, CPU environment, and the complete build procedure ar
 | `audit_submission.py` | Validates the Hugging Face schema and values |
 | `verify_track1_exact_scores.py` | Recomputes Track 1 Rank Points and F-max |
 | `phenopacket_hpo_generalization.py` | Patient-level HPO-conditioned generalization experiment |
+| `patient_generalization_benchmark.py` | Candidate recall, Top-k, MRR, calibration, OOD and stratified patient metrics |
+| `score_varpb_models.py` | Chunked export of all eight fitted models in the official VarPB new-tool format |
+| `prepare_varpb_opencravat.py` | Disk-backed VarPB union construction and lossless OpenCRAVAT export |
+| `prepare_clinvar_predictor_training.py` | Leakage-controlled pre-2023 labeled-missense training subset |
+| `augmented_sbnn_varpb_experiment.py` | Joint hyperparameter screen, Bayesian pairwise training, and locked VarPB inference |
+| `evaluate_varpb_2023.py` | Exact 2023 causal-by-background rank evaluation |
+| `evaluate_varpb_suite.py` | Multi-model VarPB summaries and comparison plots |
 | `report_visualizations.py` | Rebuilds all report figures from saved results |
 | `report/` | LaTeX source, bibliography, citation audit and generated figures |
 | `results/` | Executed metrics, checkpoints, predictions and score audits |
@@ -186,3 +241,5 @@ No patient FASTQ or full VCF is present in this repository. See [`data/README.md
 The project is joint work by Mame Diarra Toure and Bonaventure Dossou. The public repository and Bonaventure's upstream feature pipeline are both cited in the LaTeX report. Citation metadata for this repository is provided in [`CITATION.cff`](CITATION.cff), and the bibliography audit is in [`report/CITATION_AUDIT.md`](report/CITATION_AUDIT.md).
 
 Scientific limitations remain explicit: the current experiments do not establish direct trans phase for the two `BUB1B` alleles, functional pathogenicity of p.Asn1002Lys, calibrated clinical risk across hospitals, or full-genome diagnostic sensitivity on a multi-patient cohort.
+
+The generalization protocol, fixed failure criteria, executed public VarPB benchmark, and post-submission chronology are documented in [`docs/GENERALIZATION_BENCHMARK.md`](docs/GENERALIZATION_BENCHMARK.md) and [`docs/POST_SUBMISSION_GENERALIZATION_2026-09-08.md`](docs/POST_SUBMISSION_GENERALIZATION_2026-09-08.md). These experiments strengthen the evidence for transferable candidate ranking, but they still do not constitute a clinical sensitivity estimate from native HPO, pedigree, and full VCF data across an independent hospital cohort.
