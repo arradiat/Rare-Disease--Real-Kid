@@ -61,6 +61,17 @@ The Track 1 result shows that the Bayesian ranker preserves the correct diagnosi
 
 The strongest defensible conclusion is narrower than full clinical generalization. The current evidence supports candidate ranking after successful variant discovery and filtering. It does not measure the probability that a complete end-to-end workflow will recover the causal allele from every new raw genome, and it does not make the model a clinical diagnostic device.
 
+The case-level rerun now tests fixed phenotype corruption as well. Temporal-consensus Top-1 is 59.81% with the original HPO terms, 58.83% after removing 20%, 58.55% after removing 40%, and 59.39% after adding 20% unrelated terms. Its Top-1 is only 33.77% for unseen genes and 34.36% for unseen diseases, so novelty rather than moderate phenotype noise is the dominant remaining weakness. Full metric definitions and the VarPB follow-up are in [`GENERALIZATION_BENCHMARK.md`](GENERALIZATION_BENCHMARK.md).
+
+The full-background VarPB run is now complete. Across 275,739 spike-in trials,
+the best saved SBNN has median causal rank 522 and Top-100 0.20%, whereas the
+external REVEL comparator has median rank 8.5, Top-20 65.90%, and Top-100
+84.82%. AlphaMissense has median rank 29 and Top-20 44.24%. This result rules
+out an overly broad claim: the existing SBNN is effective after candidate
+filtering, but it is not yet a competitive whole-exome pathogenicity ranker.
+It also gives the next model a clear target: retain the scalable SBNN posterior,
+add modern predictor features, and train with a within-genome ranking objective.
+
 ## Canonical artifacts
 
 - Upload CSV: [`../submission/model1_bonamame_wide-rank50-sbnn.csv`](../submission/model1_bonamame_wide-rank50-sbnn.csv)
@@ -68,6 +79,10 @@ The strongest defensible conclusion is narrower than full clinical generalizatio
 - Exact score audit: [`../results/exact_track1_score_audit.json`](../results/exact_track1_score_audit.json)
 - Model comparison results: [`../results/wide_rank_temporal_20260906/wide_rank_results.json`](../results/wide_rank_temporal_20260906/wide_rank_results.json)
 - Full methods report: [`../output/pdf/bonamame_track1_report.pdf`](../output/pdf/bonamame_track1_report.pdf)
+- Patient-level case manifest: [`../results/patient_generalization_protocol_20260907/patient_cases.csv`](../results/patient_generalization_protocol_20260907/patient_cases.csv)
+- Generalization metrics: [`../results/patient_generalization_protocol_20260907/evaluation/patient_generalization_results.json`](../results/patient_generalization_protocol_20260907/evaluation/patient_generalization_results.json)
+- VarPB learned-model results: [`../results/varpb_2023_opencravat_gnomad/evaluation/summary.json`](../results/varpb_2023_opencravat_gnomad/evaluation/summary.json)
+- VarPB external-predictor results: [`../results/varpb_2023_external_predictors/evaluation/summary.json`](../results/varpb_2023_external_predictors/evaluation/summary.json)
 
 ## Implementation map
 

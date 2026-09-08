@@ -44,7 +44,7 @@ python verify_track1_exact_scores.py
 python -m pytest -q
 ```
 
-Expected test result: 29 passed. The exact score audit must report `full_match_rank: 1`, `rank_points: 100.0`, `f_max: 1.0`, and `exact_perfect_score: true` for `selected_wide_rank50_sbnn`.
+Expected test result: 34 passed. The exact score audit must report `full_match_rank: 1`, `rank_points: 100.0`, `f_max: 1.0`, and `exact_perfect_score: true` for `selected_wide_rank50_sbnn`.
 
 ## Recreate the CSV from the fitted checkpoint
 
@@ -79,6 +79,43 @@ When the checkpoint path does not exist, the script trains gradient boosting, a 
 | ClinVar GRCh38 | 2026-08-29 | [NCBI current archive](https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/) | Temporal holdout |
 | Phenopacket Store | 0.1.27 | [Monarch release](https://github.com/monarch-initiative/phenopacket-store/releases/tag/0.1.27) | Solved patients, variants, genes, and HPO terms |
 | Human Phenotype Ontology | 2023-10-09 | [HPO releases](https://github.com/obophenotype/human-phenotype-ontology/releases) | Leakage-controlled phenotype matching |
+| Variant Prioritization Benchmark | v3 | [Zenodo](https://doi.org/10.5281/zenodo.10291114) | Executed 107-genome full-background spike-in evaluation |
+
+## Recompute patient-level generalization
+
+The executed case-level outputs are evaluated independently of the model code:
+
+```bash
+python patient_generalization_benchmark.py \
+  --cases results/patient_generalization_protocol_20260907/patient_cases.csv \
+  --predictions results/patient_generalization_protocol_20260907/patient_predictions.csv.gz \
+  --output-dir results/patient_generalization_protocol_20260907/evaluation
+```
+
+See [`GENERALIZATION_BENCHMARK.md`](GENERALIZATION_BENCHMARK.md) for the complete Phenopacket reconstruction and VarPB scoring commands.
+
+## Reproduce the OpenCRAVAT VarPB annotation
+
+The separate `.venv-opencravat` environment uses OpenCRAVAT 3.1.1. Its module
+directory is `data/open/opencravat_modules/`; installed versions are hg38 mapper
+1.47.2, gnomAD 2.2.0 with data v2.1, REVEL 2024.07.30 with data v4.3a, and
+AlphaMissense 1.1.1. The environment and modules use about 28 GB. CADD is not a
+dependency of this run.
+
+The complete preparation, annotation, export, scoring, and evaluation commands
+are recorded in [`GENERALIZATION_BENCHMARK.md`](GENERALIZATION_BENCHMARK.md).
+The resulting summary is
+[`../results/varpb_2023_opencravat_gnomad/evaluation/summary.json`](../results/varpb_2023_opencravat_gnomad/evaluation/summary.json),
+and the independent predictor comparison is
+[`../results/varpb_2023_external_predictors/evaluation/summary.json`](../results/varpb_2023_external_predictors/evaluation/summary.json).
+
+The predictor-augmented follow-up, including the exact 24-cell factorial grid,
+training-only selection rule, pairwise loss, and locked test result, is recorded
+step by step in
+[`POST_SUBMISSION_GENERALIZATION_2026-09-08.md`](POST_SUBMISSION_GENERALIZATION_2026-09-08.md).
+The executable entry point is `augmented_sbnn_varpb_experiment.py`; its `train`
+subcommand does not accept a VarPB causal-table argument, preventing those test
+labels from entering training or model selection.
 
 Recorded SHA-256 hashes:
 
@@ -87,6 +124,9 @@ Recorded SHA-256 hashes:
 e72f5619f003c80cb3051afcb0c1f11c4409741054b48bbfd0ced03046ec91f9  clinvar_20260829.vcf.gz
 d0c70005bb09b87035087516252b6b539fbc0415be7c664b73c9cde7eedf205a  all_phenopackets_v0.1.27.zip
 d3c1280f2780628cc2adc41d43ad92eab8fa4c2bab0f421e6334c7b1e6cd4e52  hp_2023-10-09.obo
+4606c256319d42819934d225ff30a78b40256eeda31c57ccc960375c12bd42ba  allSamplesExonicVariants.txt.gz
+84f1b31adc45e7fda118d9b2b670a0ce5a6cb96ea2d12888a78165be161b6158  2023_autosomalDominant_notInClinvarAtAllBefore.txt
+914e8fced43c31554701336382e62cef67b296781e74e4b854e5a78b58e22d4d  2023_autosomalRecessive_notInClinvarAtAllBefore.txt
 ```
 
 ## Full report build
