@@ -75,6 +75,13 @@ MODEL_REGISTRY = {
             "0.3 gradient boost + 0.2 deep ensemble + 0.5 small SBNN",
             "combined ranking model",
         ),
+        ModelSpec(
+            "augmented_pairwise_sbnn",
+            "models.augmented_pairwise_sbnn",
+            "predictor-augmented low-rank Bayesian neural network",
+            "54-200-100-1 with ranks 50-50-1 and shared-draw RankNet loss",
+            "full-background generalization and posterior uncertainty",
+        ),
     )
 }
 
