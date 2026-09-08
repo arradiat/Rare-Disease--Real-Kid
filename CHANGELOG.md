@@ -1,5 +1,27 @@
 # Change log
 
+## 2026-09-08: post-submission full-background extension
+
+- Froze the 7 September report and maximum-score Track 1 submission as the baseline before beginning the extension.
+- Downloaded only the 96.7 MB VarPB v3 background and two small 2023 causal tables; verified all checksums.
+- Installed OpenCRAVAT 3.1.1 with hg38 1.47.2, gnomAD 2.2.0/data v2.1, REVEL 2024.07.30/data v4.3a, and AlphaMissense 1.1.1. CADD was excluded because its module alone is about 86.6 GB.
+- Deduplicated 17,872,513 sample rows into 894,327 variants and retained 100% of the 2,577 causal keys, with explicit fallback values for two mapper failures.
+- Ran all eight saved models on 275,739 VarPB spike-in trials. The original small SBNN was best of those models but remained weak at median rank 522 and Top-100 0.20%.
+- Added coverage-preserving REVEL and AlphaMissense comparators. REVEL reached median rank 8.5 and Top-20 65.90%; AlphaMissense reached median rank 29 and Top-20 44.24%.
+- Downloaded and checksum-verified the exact ClinVar 26 December 2023 archive used by the original temporal experiment.
+- Deterministically selected 146,810 unambiguous labeled missense SNVs (54,548 pathogenic, 92,262 benign) and annotated 146,786 with the same predictor versions; 24 mapper failures remain explicit missing values.
+- Added a Bayesian pairwise RankNet objective that scores each positive-negative pair under one shared posterior draw.
+- Screened the full 24-cell factorial grid over ranks, KL weight, posterior initialization scale, and prior scale on training-only data, then retrained the selected rank `(50, 50, 1)` configuration on 117,700 variants.
+- Kept VarPB completely out of training and selection. On its locked test, the augmented SBNN reached median rank 14, Top-20 65.70%, and Top-100 86.63%, making it competitive with REVEL for shortlist recall while remaining weaker at Top-1 and MRR.
+
+## 2026-09-07: patient-level generalization contract
+
+- Added an evaluator that separates candidate-generation recall from conditional reranking and counts missing causal hypotheses as end-to-end failures.
+- Added Top-1/5/10, MRR, patient-bootstrap intervals, calibration, selective prediction, runtime, inheritance, unseen-gene and unseen-disease metrics.
+- Exported all 719 post-2023 Phenopacket cases and every model prediction in a compressed, auditable table.
+- Added fixed 20%/40% phenotype deletion and 20% phenotype-noise tests without retuning HPO weights.
+- Added a bounded-memory VarPB scorer for all eight model families and documented the public 107-genome follow-up.
+
 ## 2026-09-07: public repository release
 
 - Recorded the live Hugging Face result for the selected wide rank-50 SBNN: Submission 2, full match at rank 1, 100 Rank Points, F-max 1.000, and EPCR threshold 0.3724070924857989.

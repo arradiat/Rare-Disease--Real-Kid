@@ -112,6 +112,17 @@ def track1_scores(output: Path) -> None:
         (labels[name], item["rank_points"], item["f_max"], item["f_max_threshold"])
         for name, item in transferred.items()
     )
+    augmented = read_json(
+        "results/track1_augmented_sbnn_20260908/track1_augmented_sbnn_audit.json"
+    )["results"]["strict"]
+    rows.append(
+        (
+            "Augmented pairwise SBNN",
+            augmented["rank_points"],
+            augmented["f_max"],
+            augmented["f_max_threshold"],
+        )
+    )
     names = [row[0] for row in rows]
     fig, (left, right) = plt.subplots(1, 2, figsize=(13.5, 6), gridspec_kw={"width_ratios": [1.2, 1]})
     y = np.arange(len(rows))
@@ -250,6 +261,192 @@ def phenotype_coverage(output: Path) -> None:
     save(fig, output, "phenotype_coverage.png")
 
 
+def phenotype_robustness(output: Path) -> None:
+    report = read_json(
+        "results/patient_generalization_protocol_20260907/evaluation/patient_generalization_results.json"
+    )["results"]
+    conditions = ["hpo_original", "hpo_drop20", "hpo_drop40", "hpo_noise20"]
+    labels = ["Original", "Drop 20%", "Drop 40%", "Add 20% noise"]
+    models = {
+        "Wide rank-50 SBNN": "wide_rank50_sbnn",
+        "Dense BBB": "dense_bbb",
+        "Deep ensemble": "deep_ensemble",
+        "Temporal consensus": "temporal_consensus",
+    }
+    colors = ["#B85C38", "#8B5E83", "#477998", "#4F8A5B"]
+    fig, axis = plt.subplots(figsize=(10.5, 5.8))
+    x = np.arange(len(conditions))
+    for (label, model), color in zip(models.items(), colors):
+        values = [report[condition][model]["top1_end_to_end"] for condition in conditions]
+        axis.plot(x, values, marker="o", linewidth=2.2, label=label, color=color)
+    axis.set_xticks(x, labels)
+    axis.set_ylim(0.45, 0.63)
+    axis.set_ylabel("Top-1 causal-hypothesis accuracy")
+    axis.set_title("Moderate phenotype corruption causes limited degradation")
+    axis.grid(alpha=0.22)
+    axis.legend(ncol=2)
+    axis.text(
+        0.01, 0.02,
+        "Single fixed candidate cohort; HPO mixing weights were not retuned.",
+        transform=axis.transAxes,
+        fontsize=9,
+        color="#555555",
+    )
+    save(fig, output, "phenotype_robustness.png")
+
+
+def varpb_full_background(output: Path) -> None:
+    learned = read_json("results/varpb_2023_opencravat_gnomad/evaluation/summary.json")
+    external = read_json("results/varpb_2023_external_predictors/evaluation/summary.json")
+    augmented = read_json("results/varpb_augmentation_20260908/evaluation/summary.json")
+    rows = learned + external + augmented
+    preferred_order = [
+        "bonamame_small_sbnn_score",
+        "bonamame_wide_rank50_sbnn_score",
+        "bonamame_augmented_pairwise_sbnn_score",
+        "bonamame_temporal_consensus_score",
+        "bonamame_dense_bbb_score",
+        "bonamame_deep_ensemble_score",
+        "bonamame_gradient_boost_score",
+        "bonamame_revel_score",
+        "bonamame_alphamissense_score",
+    ]
+    by_name = {row["model"]: row for row in rows}
+    selected = [by_name[name] for name in preferred_order]
+    labels = [
+        "Small SBNN",
+        "Wide rank-50 SBNN",
+        "Augmented pairwise SBNN",
+        "Temporal consensus",
+        "Dense BBB",
+        "Deep ensemble",
+        "Gradient boost",
+        "REVEL",
+        "AlphaMissense",
+    ]
+    colors = ["#8B5E83", "#B85C38", "#A13D2D", "#4F8A5B", "#8B5E83", "#477998", "#477998", "#D49A3A", "#D49A3A"]
+    y = np.arange(len(selected))
+    fig, axes = plt.subplots(1, 2, figsize=(14.5, 6.2))
+    median_ranks = [row["overall"]["median_rank"] for row in selected]
+    top20 = [row["overall"]["top20"] for row in selected]
+    axes[0].barh(y, median_ranks, color=colors)
+    axes[0].set_xscale("log")
+    axes[0].set_yticks(y, labels)
+    axes[0].invert_yaxis()
+    axes[0].set_xlabel("Median causal-variant rank (log scale; lower is better)")
+    axes[0].set_title("Rank in 107 real genome backgrounds")
+    for index, value in enumerate(median_ranks):
+        axes[0].text(value * 1.08, index, f"{value:g}", va="center", fontsize=9)
+    axes[1].barh(y, top20, color=colors)
+    axes[1].set_yticks(y, [""] * len(y))
+    axes[1].invert_yaxis()
+    axes[1].set_xlim(0, 0.72)
+    axes[1].set_xlabel("Fraction of 275,739 spike-in trials ranked in Top 20")
+    axes[1].set_title("Coverage-preserving Top-20 performance")
+    for index, value in enumerate(top20):
+        axes[1].text(value + 0.012, index, f"{100 * value:.1f}%", va="center", fontsize=9)
+    for axis in axes:
+        axis.grid(axis="x", alpha=0.2)
+    fig.suptitle("VarPB v3 reveals the gap between compact candidate reranking and full-background prioritization", fontsize=13.5)
+    save(fig, output, "varpb_full_background.png")
+
+
+def augmented_scalability(output: Path) -> None:
+    report = read_json("results/varpb_augmentation_20260908/training_report.json")
+    counts = report["parameter_counts"]
+    methods = ["Rank-50 SBNN", "Dense BBB", "Five-network ensemble"]
+    values = [
+        counts["augmented_sbnn_variational_scalars"],
+        counts["matched_dense_bbb_variational_scalars"],
+        counts["matched_five_network_ensemble_scalars"],
+    ]
+    fig, axes = plt.subplots(1, 2, figsize=(14.5, 5.8), gridspec_kw={"width_ratios": [1.0, 1.35]})
+    y = np.arange(len(methods))
+    axes[0].barh(y, values, color=["#A13D2D", "#8B5E83", "#477998"])
+    axes[0].set_yticks(y, methods)
+    axes[0].invert_yaxis()
+    axes[0].set_xlabel("Stored fitted scalars")
+    axes[0].set_title("Matched 54-200-100-1 architectures")
+    axes[0].grid(axis="x", alpha=0.2)
+    for index, value in enumerate(values):
+        axes[0].text(value + 3000, index, f"{value:,}", va="center", fontsize=9)
+    axes[0].set_xlim(0, 175000)
+
+    capability_methods = ["Rank-50 SBNN", "Dense BBB", "Deep ensemble", "REVEL", "AlphaMissense"]
+    capabilities = ["Posterior\nweight draws", "Predictive\ndistribution", "Epistemic\nuncertainty proxy"]
+    matrix = np.asarray([
+        [1, 1, 1],
+        [1, 1, 1],
+        [0, 1, 1],
+        [0, 0, 0],
+        [0, 0, 0],
+    ])
+    axes[1].imshow(matrix, cmap=plt.matplotlib.colors.ListedColormap(["#ECECEC", "#4F8A5B"]), vmin=0, vmax=1, aspect="auto")
+    axes[1].set_xticks(np.arange(len(capabilities)), capabilities)
+    axes[1].set_yticks(np.arange(len(capability_methods)), capability_methods)
+    axes[1].set_title("Uncertainty available from the standard model output")
+    for row in range(matrix.shape[0]):
+        for column in range(matrix.shape[1]):
+            axes[1].text(column, row, "yes" if matrix[row, column] else "no", ha="center", va="center", color="white" if matrix[row, column] else "#555555", fontweight="bold")
+    fig.suptitle("The SBNN adds a compact posterior; external pathogenicity scores remain deterministic", fontsize=13.5)
+    save(fig, output, "augmented_scalability_uncertainty.png")
+
+
+def augmented_generalization_pipeline(output: Path) -> None:
+    fig, axis = plt.subplots(figsize=(15.5, 8.2))
+    axis.set_xlim(0, 15.5)
+    axis.set_ylim(0, 8.2)
+    axis.axis("off")
+
+    def box(x, y, width, height, title, body, color):
+        patch = FancyBboxPatch(
+            (x, y), width, height,
+            boxstyle="round,pad=0.03,rounding_size=0.08",
+            linewidth=1.5, edgecolor=color, facecolor=color + "18",
+        )
+        axis.add_patch(patch)
+        axis.text(x + width / 2, y + height * 0.72, title, ha="center", va="center", fontsize=10.5, fontweight="bold", color=color)
+        axis.text(x + width / 2, y + height * 0.36, body, ha="center", va="center", fontsize=9)
+
+    def arrow(x1, y1, x2, y2):
+        axis.annotate("", xy=(x2, y2), xytext=(x1, y1), arrowprops={"arrowstyle": "->", "lw": 1.7, "color": "#555555"})
+
+    axis.text(7.75, 7.85, "Predictor-augmented SBNN: training, frozen transfer, and evaluation", ha="center", fontsize=15, fontweight="bold")
+    axis.text(0.25, 6.95, "TRAINING AND MODEL SELECTION", fontsize=10, fontweight="bold", color="#555555")
+    box(0.25, 5.45, 2.55, 1.15, "ClinVar 2023", "146,810 labeled\nmissense SNVs", "#284B63")
+    box(3.15, 5.45, 2.75, 1.15, "54 features", "50 molecular features +\nREVEL/AlphaMissense + missingness", "#356B83")
+    box(6.25, 5.45, 2.55, 1.15, "Leakage control", "80/20 gene-disjoint split;\nno VarPB or challenge labels", "#4F8A5B")
+    box(9.15, 5.45, 2.65, 1.15, "Factorial selection", "24 rank, KL, posterior-scale,\nand prior-scale settings", "#8B5E83")
+    box(12.15, 5.35, 3.05, 1.35, "Frozen SBNN", "54-200-100-1; ranks 50,50,1\nKL 0.001; shared-draw RankNet", "#A13D2D")
+    for left, right in [(2.8, 3.15), (5.9, 6.25), (8.8, 9.15), (11.8, 12.15)]:
+        arrow(left, 6.02, right, 6.02)
+
+    axis.text(0.25, 4.45, "FROZEN EVALUATION", fontsize=10, fontweight="bold", color="#555555")
+    box(0.25, 2.85, 2.7, 1.15, "VarPB background test", "2,577 causal variants x\n107 real genome backgrounds", "#D49A3A")
+    box(3.35, 2.85, 2.55, 1.15, "Allele ranking", "posterior mean score and\nposterior uncertainty", "#A13D2D")
+    box(6.30, 2.85, 2.75, 1.15, "Generalization result", "Top-20 65.70%; Top-100 86.63%\nmedian rank 14", "#4F8A5B")
+    arrow(2.95, 3.42, 3.35, 3.42)
+    arrow(5.90, 3.42, 6.30, 3.42)
+    arrow(13.68, 5.35, 5.2, 4.0)
+
+    box(0.25, 0.75, 2.7, 1.15, "Track 1 transfer", "two alleles per retained\ncompound-het hypothesis", "#477998")
+    box(3.35, 0.75, 2.55, 1.15, "Pair integration", "mean over shared draws of\nHPO x sqrt(p1 p2)", "#8B5E83")
+    box(6.30, 0.75, 2.75, 1.15, "Challenge result", "BUB1B pair at rank 1\nRank Points 100; F-max 1.000", "#4F8A5B")
+    arrow(2.95, 1.32, 3.35, 1.32)
+    arrow(5.90, 1.32, 6.30, 1.32)
+    arrow(13.68, 5.35, 5.2, 1.90)
+
+    axis.text(
+        11.9, 2.45,
+        "One frozen posterior, two complementary tests:\n"
+        "genome-background transfer measures shortlist recall;\n"
+        "Track 1 verifies that the revision preserves the child-level solution.",
+        ha="center", va="center", fontsize=10.5,
+        bbox={"boxstyle": "round,pad=0.5", "facecolor": "#F4F1EA", "edgecolor": "#777777"},
+    )
+    save(fig, output, "augmented_generalization_pipeline.png")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output-dir", type=Path, default=ROOT / "report" / "figures")
@@ -262,7 +459,11 @@ def main() -> None:
     parameter_tradeoff(args.output_dir)
     external_generalization(args.output_dir)
     phenotype_coverage(args.output_dir)
-    print(f"Wrote seven figures to {args.output_dir}")
+    phenotype_robustness(args.output_dir)
+    varpb_full_background(args.output_dir)
+    augmented_generalization_pipeline(args.output_dir)
+    augmented_scalability(args.output_dir)
+    print(f"Wrote eleven figures to {args.output_dir}")
 
 
 if __name__ == "__main__":

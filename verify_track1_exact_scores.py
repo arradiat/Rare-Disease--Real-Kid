@@ -30,6 +30,7 @@ PREDICTIONS = {
     "temporal_wide_rank50_sbnn": ROOT / "results/track1_temporal_transfer_20260906/strict_wide_rank50_sbnn.csv",
     "temporal_wide_dense_bbb": ROOT / "results/track1_temporal_transfer_20260906/strict_wide_dense_bbb.csv",
     "temporal_consensus": ROOT / "results/track1_temporal_transfer_20260906/strict_temporal_consensus.csv",
+    "augmented_pairwise_sbnn": ROOT / "results/track1_augmented_sbnn_20260908/strict_augmented_pairwise_sbnn.csv",
 }
 
 

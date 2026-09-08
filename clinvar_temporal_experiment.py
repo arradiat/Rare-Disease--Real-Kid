@@ -305,6 +305,43 @@ class BinarySBNN:
                 gradients[f"layer{i}.{name}"] = data_gradient[name] + kl_scale * layer_gradient[name]
         return data_loss + kl_scale * kl, gradients
 
+    def pairwise_loss_and_gradients(self, positive_x, negative_x, rng, kl_scale):
+        """Bayesian RankNet loss using one shared weight draw for both items."""
+        if len(positive_x) != len(negative_x):
+            raise ValueError("positive and negative batches must have equal length")
+        joined = np.concatenate([positive_x, negative_x], axis=0)
+        logits, cache = self.forward(joined, rng)
+        size = len(positive_x)
+        margin = logits[:size] - logits[size:]
+        data_loss = float(np.mean(np.logaddexp(0.0, -margin)))
+        margin_gradient = (_sigmoid(margin) - 1.0) / size
+        gradient = np.concatenate([margin_gradient, -margin_gradient])[:, None]
+        layer_data = []
+        for i in range(len(self.layers) - 1, -1, -1):
+            h, _, sampled = cache[i]
+            grad_weight = h.T @ gradient
+            grad_bias = gradient.sum(axis=0)
+            layer_data.append({
+                "A.mu": grad_weight @ sampled["B"],
+                "B.mu": grad_weight.T @ sampled["A"],
+                "bias.mu": grad_bias,
+                "A.rho": (grad_weight @ sampled["B"]) * sampled["A_epsilon"] * _sigmoid(self.layers[i].A.rho),
+                "B.rho": (grad_weight.T @ sampled["A"]) * sampled["B_epsilon"] * _sigmoid(self.layers[i].B.rho),
+                "bias.rho": grad_bias * sampled["bias_epsilon"] * _sigmoid(self.layers[i].bias.rho),
+            })
+            gradient = gradient @ sampled["weight"].T
+            if i:
+                gradient *= cache[i - 1][1] > 0
+        layer_data.reverse()
+        gradients = {}
+        kl = 0.0
+        for i, (layer, (_, _, sampled), data_gradient) in enumerate(zip(self.layers, cache, layer_data)):
+            layer_kl, layer_gradient = layer.kl_and_gradients(sampled)
+            kl += layer_kl
+            for name in data_gradient:
+                gradients[f"layer{i}.{name}"] = data_gradient[name] + kl_scale * layer_gradient[name]
+        return data_loss + kl_scale * kl, data_loss, kl, gradients
+
     def predict_samples(self, x, draws=64, seed=0):
         rng = np.random.default_rng(seed)
         samples = np.stack([_sigmoid(self.forward(x, rng)[0]) for _ in range(draws)])
