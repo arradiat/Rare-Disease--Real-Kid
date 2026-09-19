@@ -1,0 +1,716 @@
+{
+  "claim": "Molecular causal-hypothesis ranking transfers to post-2023 solved rare-disease cases.",
+  "scope": "Patient-level molecular ranking only; HPO terms identify real cases but are not yet model inputs.",
+  "data": {
+    "phenopacket_store_release": "all_phenopackets_v0.1.27.zip",
+    "training_snapshot": "clinvar_20231226.vcf.gz",
+    "evaluation_snapshot": "clinvar_20260829.vcf.gz",
+    "unique_cases": 719,
+    "single_variant_cases": 655,
+    "two_variant_cases": 64,
+    "unique_disease_genes": 265,
+    "median_observed_hpo_terms": 9.0,
+    "new_benign_decoy_pool": 509135,
+    "candidate_hypotheses_per_case": 10,
+    "exclusions": {
+      "present_in_2023_snapshot": 4978,
+      "not_cleanly_annotated_in_current_clinvar": 3439,
+      "duplicate_causal_hypothesis": 681,
+      "no_grch38_causal_variant": 526,
+      "not_pathogenic_in_current_clinvar": 34,
+      "retained_unique_cases": 719
+    }
+  },
+  "design": {
+    "causal_variants": "Exact GRCh38 variants absent from the raw 2023 ClinVar snapshot and pathogenic in 2026 ClinVar.",
+    "decoys": "Nine benign hypotheses absent from the 2023 snapshot; single-variant decoys matched on variant type and consequence group; two-variant decoys contain two alleles in one gene.",
+    "pair_score": "Geometric mean of allele pathogenicity probabilities.",
+    "primary_condition": "All gene-history inputs set to unseen/neutral to prevent gene-label memorization.",
+    "seed": 20260905,
+    "posterior_draws": 32
+  },
+  "results": {
+    "gene_history_neutralized": {
+      "gradient_boost": {
+        "cases": 719,
+        "top1": 0.30598052851182195,
+        "top1_wilson_95": [
+          0.27340199102888096,
+          0.3406212548773726
+        ],
+        "top3": 0.5326842837273992,
+        "top5": 0.7510431154381085,
+        "mrr": 0.49171967130238214,
+        "mean_rank": 3.5813630041724616,
+        "single_variant_cases": 655,
+        "two_variant_cases": 64,
+        "single_variant_ranking": {
+          "cases": 655,
+          "top1": 0.27022900763358776,
+          "top1_wilson_95": [
+            0.23763311108261914,
+            0.3055043221038401
+          ],
+          "top3": 0.49923664122137407,
+          "top5": 0.7267175572519083,
+          "mrr": 0.4614328353564522,
+          "mean_rank": 3.7709923664122136
+        },
+        "two_variant_ranking": {
+          "cases": 64,
+          "top1": 0.671875,
+          "top1_wilson_95": [
+            0.549991058490915,
+            0.7742944209553081
+          ],
+          "top3": 0.875,
+          "top5": 1.0,
+          "mrr": 0.8016865079365079,
+          "mean_rank": 1.640625
+        },
+        "f_max": 0.2833562585969739,
+        "f_max_threshold": 0.9915205182326043,
+        "brier": 0.42975558063125624,
+        "nll": 1.6735719836043748
+      },
+      "dense_mlp": {
+        "cases": 719,
+        "top1": 0.2851182197496523,
+        "top1_wilson_95": [
+          0.2533282357440794,
+          0.31919213337790037
+        ],
+        "top3": 0.5368567454798331,
+        "top5": 0.7190542420027817,
+        "mrr": 0.47565641004218834,
+        "mean_rank": 3.7573018080667593,
+        "single_variant_cases": 655,
+        "two_variant_cases": 64,
+        "single_variant_ranking": {
+          "cases": 655,
+          "top1": 0.24885496183206107,
+          "top1_wilson_95": [
+            0.21727325048480928,
+            0.2833653392771346
+          ],
+          "top3": 0.5068702290076336,
+          "top5": 0.6977099236641221,
+          "mrr": 0.44681568677503736,
+          "mean_rank": 3.9381679389312976
+        },
+        "two_variant_ranking": {
+          "cases": 64,
+          "top1": 0.65625,
+          "top1_wilson_95": [
+            0.5340364020991819,
+            0.7607685792155665
+          ],
+          "top3": 0.84375,
+          "top5": 0.9375,
+          "mrr": 0.7708231872294373,
+          "mean_rank": 1.90625
+        },
+        "f_max": 0.25882352941176473,
+        "f_max_threshold": 0.8319618105888367,
+        "brier": 0.32264301520192784,
+        "nll": 1.169965937765455
+      },
+      "deep_ensemble": {
+        "cases": 719,
+        "top1": 0.30737134909596664,
+        "top1_wilson_95": [
+          0.274743157358433,
+          0.34204694700010563
+        ],
+        "top3": 0.5479833101529903,
+        "top5": 0.721835883171071,
+        "mrr": 0.4951361005838759,
+        "mean_rank": 3.6543810848400557,
+        "single_variant_cases": 655,
+        "two_variant_cases": 64,
+        "single_variant_ranking": {
+          "cases": 655,
+          "top1": 0.27022900763358776,
+          "top1_wilson_95": [
+            0.23763311108261914,
+            0.3055043221038401
+          ],
+          "top3": 0.516030534351145,
+          "top5": 0.6977099236641221,
+          "mrr": 0.46542894469146445,
+          "mean_rank": 3.8419847328244274
+        },
+        "two_variant_ranking": {
+          "cases": 64,
+          "top1": 0.6875,
+          "top1_wilson_95": [
+            0.5660766429725185,
+            0.7876893346051795
+          ],
+          "top3": 0.875,
+          "top5": 0.96875,
+          "mrr": 0.7991702741702742,
+          "mean_rank": 1.734375
+        },
+        "f_max": 0.2783661119515885,
+        "f_max_threshold": 0.9210804104804993,
+        "brier": 0.31338373282316306,
+        "nll": 1.0591863687961287
+      },
+      "small_sbnn": {
+        "cases": 719,
+        "top1": 0.30737134909596664,
+        "top1_wilson_95": [
+          0.274743157358433,
+          0.34204694700010563
+        ],
+        "top3": 0.5744089012517385,
+        "top5": 0.7649513212795549,
+        "mrr": 0.5038485497067678,
+        "mean_rank": 3.4513212795549375,
+        "single_variant_cases": 655,
+        "two_variant_cases": 64,
+        "single_variant_ranking": {
+          "cases": 655,
+          "top1": 0.2732824427480916,
+          "top1_wilson_95": [
+            0.24054990652112648,
+            0.3086587900116922
+          ],
+          "top3": 0.5526717557251909,
+          "top5": 0.7419847328244275,
+          "mrr": 0.47847032003071527,
+          "mean_rank": 3.6038167938931296
+        },
+        "two_variant_ranking": {
+          "cases": 64,
+          "top1": 0.65625,
+          "top1_wilson_95": [
+            0.5340364020991819,
+            0.7607685792155665
+          ],
+          "top3": 0.796875,
+          "top5": 1.0,
+          "mrr": 0.7635788690476191,
+          "mean_rank": 1.890625
+        },
+        "f_max": 0.27015963978714697,
+        "f_max_threshold": 0.9928761343444047,
+        "brier": 0.4768579905481901,
+        "nll": 2.215544391269136
+      },
+      "dense_bbb": {
+        "cases": 719,
+        "top1": 0.30737134909596664,
+        "top1_wilson_95": [
+          0.274743157358433,
+          0.34204694700010563
+        ],
+        "top3": 0.6036161335187761,
+        "top5": 0.8219749652294854,
+        "mrr": 0.5167872977174467,
+        "mean_rank": 3.2399165507649514,
+        "single_variant_cases": 655,
+        "two_variant_cases": 64,
+        "single_variant_ranking": {
+          "cases": 655,
+          "top1": 0.27022900763358776,
+          "top1_wilson_95": [
+            0.23763311108261914,
+            0.3055043221038401
+          ],
+          "top3": 0.5725190839694656,
+          "top5": 0.8045801526717558,
+          "mrr": 0.48783870652386235,
+          "mean_rank": 3.40381679389313
+        },
+        "two_variant_ranking": {
+          "cases": 64,
+          "top1": 0.6875,
+          "top1_wilson_95": [
+            0.5660766429725185,
+            0.7876893346051795
+          ],
+          "top3": 0.921875,
+          "top5": 1.0,
+          "mrr": 0.8130580357142857,
+          "mean_rank": 1.5625
+        },
+        "f_max": 0.28415758591785417,
+        "f_max_threshold": 0.9929859488785214,
+        "brier": 0.46072705392293384,
+        "nll": 2.167375146683729
+      },
+      "wide_rank50_sbnn": {
+        "cases": 719,
+        "top1": 0.3198887343532684,
+        "top1_wilson_95": [
+          0.2868295406323674,
+          0.35486228979673545
+        ],
+        "top3": 0.5465924895688457,
+        "top5": 0.7885952712100139,
+        "mrr": 0.5004817972252102,
+        "mean_rank": 3.468011126564673,
+        "single_variant_cases": 655,
+        "two_variant_cases": 64,
+        "single_variant_ranking": {
+          "cases": 655,
+          "top1": 0.2870229007633588,
+          "top1_wilson_95": [
+            0.2536998826529555,
+            0.32282949893848023
+          ],
+          "top3": 0.5145038167938931,
+          "top5": 0.7694656488549618,
+          "mrr": 0.4726649563420769,
+          "mean_rank": 3.6419847328244277
+        },
+        "two_variant_ranking": {
+          "cases": 64,
+          "top1": 0.65625,
+          "top1_wilson_95": [
+            0.5340364020991819,
+            0.7607685792155665
+          ],
+          "top3": 0.875,
+          "top5": 0.984375,
+          "mrr": 0.7851697781385282,
+          "mean_rank": 1.6875
+        },
+        "f_max": 0.2758893280632411,
+        "f_max_threshold": 0.9888366908759492,
+        "brier": 0.4661774514002126,
+        "nll": 2.0459828241052276
+      },
+      "wide_dense_bbb": {
+        "cases": 719,
+        "top1": 0.33101529902642557,
+        "top1_wilson_95": [
+          0.29759649624778645,
+          0.3662302017995957
+        ],
+        "top3": 0.5479833101529903,
+        "top5": 0.7593880389429764,
+        "mrr": 0.504479170159811,
+        "mean_rank": 3.5570236439499303,
+        "single_variant_cases": 655,
+        "two_variant_cases": 64,
+        "single_variant_ranking": {
+          "cases": 655,
+          "top1": 0.2916030534351145,
+          "top1_wilson_95": [
+            0.25809187716418924,
+            0.3275443994467855
+          ],
+          "top3": 0.517557251908397,
+          "top5": 0.7374045801526717,
+          "mrr": 0.4731088919247405,
+          "mean_rank": 3.7473282442748093
+        },
+        "two_variant_ranking": {
+          "cases": 64,
+          "top1": 0.734375,
+          "top1_wilson_95": [
+            0.6151712627143486,
+            0.8270362092577739
+          ],
+          "top3": 0.859375,
+          "top5": 0.984375,
+          "mrr": 0.8255343614718614,
+          "mean_rank": 1.609375
+        },
+        "f_max": 0.26393337604099937,
+        "f_max_threshold": 0.9475077014546434,
+        "brier": 0.4347973014876362,
+        "nll": 1.830510211392147
+      },
+      "temporal_consensus": {
+        "cases": 719,
+        "top1": 0.33101529902642557,
+        "top1_wilson_95": [
+          0.29759649624778645,
+          0.3662302017995957
+        ],
+        "top3": 0.5924895688456189,
+        "top5": 0.7941585535465925,
+        "mrr": 0.5223813596463088,
+        "mean_rank": 3.310848400556328,
+        "single_variant_cases": 655,
+        "two_variant_cases": 64,
+        "single_variant_ranking": {
+          "cases": 655,
+          "top1": 0.29770992366412213,
+          "top1_wilson_95": [
+            0.263954444451865,
+            0.3338243588518284
+          ],
+          "top3": 0.5648854961832062,
+          "top5": 0.7740458015267175,
+          "mrr": 0.4959083593335478,
+          "mean_rank": 3.46793893129771
+        },
+        "two_variant_ranking": {
+          "cases": 64,
+          "top1": 0.671875,
+          "top1_wilson_95": [
+            0.549991058490915,
+            0.7742944209553081
+          ],
+          "top3": 0.875,
+          "top5": 1.0,
+          "mrr": 0.7933159722222223,
+          "mean_rank": 1.703125
+        },
+        "f_max": 0.2811791383219954,
+        "f_max_threshold": 0.9443948498054403,
+        "brier": 0.4104036654501655,
+        "nll": 1.4733484709665154
+      }
+    },
+    "gene_history_operational": {
+      "gradient_boost": {
+        "cases": 719,
+        "top1": 0.3518776077885953,
+        "top1_wilson_95": [
+          0.3178421321010406,
+          0.3874874427306154
+        ],
+        "top3": 0.5549374130737135,
+        "top5": 0.7315716272600834,
+        "mrr": 0.5165636299032356,
+        "mean_rank": 3.6974965229485397,
+        "single_variant_cases": 655,
+        "two_variant_cases": 64,
+        "single_variant_ranking": {
+          "cases": 655,
+          "top1": 0.3297709923664122,
+          "top1_wilson_95": [
+            0.2948513847031806,
+            0.3666756837372859
+          ],
+          "top3": 0.5374045801526718,
+          "top5": 0.7175572519083969,
+          "mrr": 0.4989120984787801,
+          "mean_rank": 3.8076335877862597
+        },
+        "two_variant_ranking": {
+          "cases": 64,
+          "top1": 0.578125,
+          "top1_wilson_95": [
+            0.456100315400829,
+            0.6913021752565451
+          ],
+          "top3": 0.734375,
+          "top5": 0.875,
+          "mrr": 0.6972160218253969,
+          "mean_rank": 2.5703125
+        },
+        "f_max": 0.2804347826086957,
+        "f_max_threshold": 0.9650874848668254,
+        "brier": 0.39351111378736253,
+        "nll": 1.6680460964442243
+      },
+      "dense_mlp": {
+        "cases": 719,
+        "top1": 0.35048678720445064,
+        "top1_wilson_95": [
+          0.3164901368379317,
+          0.3860725795414395
+        ],
+        "top3": 0.521557719054242,
+        "top5": 0.7023643949930459,
+        "mrr": 0.5063949024551772,
+        "mean_rank": 3.787204450625869,
+        "single_variant_cases": 655,
+        "two_variant_cases": 64,
+        "single_variant_ranking": {
+          "cases": 655,
+          "top1": 0.32213740458015266,
+          "top1_wilson_95": [
+            0.2874773998901404,
+            0.3588715101844278
+          ],
+          "top3": 0.4946564885496183,
+          "top5": 0.683969465648855,
+          "mrr": 0.48256368232297614,
+          "mean_rank": 3.950381679389313
+        },
+        "two_variant_ranking": {
+          "cases": 64,
+          "top1": 0.640625,
+          "top1_wilson_95": [
+            0.518208506097791,
+            0.7471159770854825
+          ],
+          "top3": 0.796875,
+          "top5": 0.890625,
+          "mrr": 0.750292545995671,
+          "mean_rank": 2.1171875
+        },
+        "f_max": 0.2478540772532189,
+        "f_max_threshold": 0.9879348278045654,
+        "brier": 0.37614306904543787,
+        "nll": 1.6495254367069956
+      },
+      "deep_ensemble": {
+        "cases": 719,
+        "top1": 0.34214186369958277,
+        "top1_wilson_95": [
+          0.3083849713042138,
+          0.3775765943614478
+        ],
+        "top3": 0.5493741307371349,
+        "top5": 0.7093184979137691,
+        "mrr": 0.5053061585066606,
+        "mean_rank": 3.755215577190542,
+        "single_variant_cases": 655,
+        "two_variant_cases": 64,
+        "single_variant_ranking": {
+          "cases": 655,
+          "top1": 0.3145038167938931,
+          "top1_wilson_95": [
+            0.28011424039475863,
+            0.35105651131391113
+          ],
+          "top3": 0.5190839694656488,
+          "top5": 0.6854961832061068,
+          "mrr": 0.4808014907650954,
+          "mean_rank": 3.933587786259542
+        },
+        "two_variant_ranking": {
+          "cases": 64,
+          "top1": 0.625,
+          "top1_wilson_95": [
+            0.502503786840045,
+            0.7333401982117536
+          ],
+          "top3": 0.859375,
+          "top5": 0.953125,
+          "mrr": 0.7560961174242424,
+          "mean_rank": 1.9296875
+        },
+        "f_max": 0.25749167591564925,
+        "f_max_threshold": 0.9198493957519531,
+        "brier": 0.3710669532297308,
+        "nll": 1.519372406419593
+      },
+      "small_sbnn": {
+        "cases": 719,
+        "top1": 0.3463143254520167,
+        "top1_wilson_95": [
+          0.31243609021120194,
+          0.38182605081131443
+        ],
+        "top3": 0.6342141863699583,
+        "top5": 0.8219749652294854,
+        "mrr": 0.5374933751150719,
+        "mean_rank": 3.1724617524339362,
+        "single_variant_cases": 655,
+        "two_variant_cases": 64,
+        "single_variant_ranking": {
+          "cases": 655,
+          "top1": 0.3251908396946565,
+          "top1_wilson_95": [
+            0.29042570592894745,
+            0.36199446749198005
+          ],
+          "top3": 0.6229007633587786,
+          "top5": 0.8061068702290076,
+          "mrr": 0.5223091581870208,
+          "mean_rank": 3.269465648854962
+        },
+        "two_variant_ranking": {
+          "cases": 64,
+          "top1": 0.5625,
+          "top1_wilson_95": [
+            0.4408620895699301,
+            0.6770599029559693
+          ],
+          "top3": 0.75,
+          "top5": 0.984375,
+          "mrr": 0.6928943452380952,
+          "mean_rank": 2.1796875
+        },
+        "f_max": 0.29604950023798193,
+        "f_max_threshold": 0.9928761343444047,
+        "brier": 0.449400436635266,
+        "nll": 1.9828105409887515
+      },
+      "dense_bbb": {
+        "cases": 719,
+        "top1": 0.3657858136300417,
+        "top1_wilson_95": [
+          0.33137964165277484,
+          0.40161851770173035
+        ],
+        "top3": 0.655076495132128,
+        "top5": 0.8317107093184979,
+        "mrr": 0.5555373076930796,
+        "mean_rank": 3.066759388038943,
+        "single_variant_cases": 655,
+        "two_variant_cases": 64,
+        "single_variant_ranking": {
+          "cases": 655,
+          "top1": 0.33587786259541985,
+          "top1_wilson_95": [
+            0.3007582363373498,
+            0.3729113587958354
+          ],
+          "top3": 0.6290076335877862,
+          "top5": 0.815267175572519,
+          "mrr": 0.5319016945734504,
+          "mean_rank": 3.2076335877862596
+        },
+        "two_variant_ranking": {
+          "cases": 64,
+          "top1": 0.671875,
+          "top1_wilson_95": [
+            0.549991058490915,
+            0.7742944209553081
+          ],
+          "top3": 0.921875,
+          "top5": 1.0,
+          "mrr": 0.7974330357142857,
+          "mean_rank": 1.625
+        },
+        "f_max": 0.3194374686087393,
+        "f_max_threshold": 0.9948731164430505,
+        "brier": 0.4417167185663705,
+        "nll": 2.0087678487396596
+      },
+      "wide_rank50_sbnn": {
+        "cases": 719,
+        "top1": 0.34492350486787204,
+        "top1_wilson_95": [
+          0.31108539071435665,
+          0.38040989185587476
+        ],
+        "top3": 0.6244784422809457,
+        "top5": 0.8164116828929068,
+        "mrr": 0.5353047554225661,
+        "mean_rank": 3.212795549374131,
+        "single_variant_cases": 655,
+        "two_variant_cases": 64,
+        "single_variant_ranking": {
+          "cases": 655,
+          "top1": 0.3145038167938931,
+          "top1_wilson_95": [
+            0.28011424039475863,
+            0.35105651131391113
+          ],
+          "top3": 0.6,
+          "top5": 0.8015267175572519,
+          "mrr": 0.5109413537118971,
+          "mean_rank": 3.3603053435114503
+        },
+        "two_variant_ranking": {
+          "cases": 64,
+          "top1": 0.65625,
+          "top1_wilson_95": [
+            0.5340364020991819,
+            0.7607685792155665
+          ],
+          "top3": 0.875,
+          "top5": 0.96875,
+          "mrr": 0.7846489448051948,
+          "mean_rank": 1.703125
+        },
+        "f_max": 0.30384271671134944,
+        "f_max_threshold": 0.9907140236484572,
+        "brier": 0.45557695435465834,
+        "nll": 1.9708805077541982
+      },
+      "wide_dense_bbb": {
+        "cases": 719,
+        "top1": 0.35465924895688455,
+        "top1_wilson_95": [
+          0.32054708695302964,
+          0.39031620478319623
+        ],
+        "top3": 0.6050069541029207,
+        "top5": 0.7760778859527121,
+        "mrr": 0.5319490863788284,
+        "mean_rank": 3.357440890125174,
+        "single_variant_cases": 655,
+        "two_variant_cases": 64,
+        "single_variant_ranking": {
+          "cases": 655,
+          "top1": 0.32061068702290074,
+          "top1_wilson_95": [
+            0.2860038955223842,
+            0.3573093828790042
+          ],
+          "top3": 0.5786259541984733,
+          "top5": 0.7557251908396947,
+          "mrr": 0.5045048641765963,
+          "mean_rank": 3.5267175572519083
+        },
+        "two_variant_ranking": {
+          "cases": 64,
+          "top1": 0.703125,
+          "top1_wilson_95": [
+            0.5822979889645707,
+            0.8009484867446022
+          ],
+          "top3": 0.875,
+          "top5": 0.984375,
+          "mrr": 0.812823547979798,
+          "mean_rank": 1.625
+        },
+        "f_max": 0.2866836301950806,
+        "f_max_threshold": 0.9806002517539336,
+        "brier": 0.43032076710547795,
+        "nll": 1.8095141250781623
+      },
+      "temporal_consensus": {
+        "cases": 719,
+        "top1": 0.3463143254520167,
+        "top1_wilson_95": [
+          0.31243609021120194,
+          0.38182605081131443
+        ],
+        "top3": 0.5799721835883171,
+        "top5": 0.7538247566063978,
+        "mrr": 0.5197459239879267,
+        "mean_rank": 3.5382475660639776,
+        "single_variant_cases": 655,
+        "two_variant_cases": 64,
+        "single_variant_ranking": {
+          "cases": 655,
+          "top1": 0.32061068702290074,
+          "top1_wilson_95": [
+            0.2860038955223842,
+            0.3573093828790042
+          ],
+          "top3": 0.5618320610687023,
+          "top5": 0.7358778625954199,
+          "mrr": 0.4996530017904064,
+          "mean_rank": 3.6725190839694655
+        },
+        "two_variant_ranking": {
+          "cases": 64,
+          "top1": 0.609375,
+          "top1_wilson_95": [
+            0.4869191788027247,
+            0.7194443081175993
+          ],
+          "top3": 0.765625,
+          "top5": 0.9375,
+          "mrr": 0.7253844246031745,
+          "mean_rank": 2.1640625
+        },
+        "f_max": 0.27508243052284503,
+        "f_max_threshold": 0.9745673954341589,
+        "brier": 0.3999651603878798,
+        "nll": 1.5537591907910315
+      }
+    }
+  },
+  "limitations": [
+    "The benchmark does not yet use each patient's HPO terms for phenotype matching.",
+    "Benign candidates come from ClinVar rather than each patient's complete exome or genome.",
+    "The causal case variants and decoys are temporally clean by exact genomic coordinate, but ClinVar curation practices can still introduce dataset shift.",
+    "Repeated reports of the same causal hypothesis were deduplicated."
+  ]
+}

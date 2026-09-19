@@ -1,0 +1,50 @@
+{
+  "experiment": "frozen predictor-augmented SBNN transferred to Track 1",
+  "checkpoint": "artifacts/checkpoints/augmented_pairwise_sbnn/augmented_sbnn.pkl",
+  "challenge_used_for_training_or_model_selection": false,
+  "architecture": "54-200-100-1 SBNN",
+  "ranks": [
+    50,
+    50,
+    1
+  ],
+  "pair_rule": "posterior mean of phenotype_score * sqrt(p_allele_1 * p_allele_2), with a shared weight draw",
+  "draws": 128,
+  "seed": 20260908,
+  "results": {
+    "strict": {
+      "path": "artifacts/results/track1_augmented_sbnn_20260908/strict_augmented_pairwise_sbnn.csv",
+      "rows": 6,
+      "full_match_rank": 1,
+      "rank_points": 100.0,
+      "f_max": 1.0,
+      "f_max_threshold": 0.43322835398975396,
+      "rows_at_f_max": 1,
+      "exact_perfect_score": true,
+      "top_gene": "BUB1B",
+      "top_pair_score": 0.43322835398975396,
+      "top_pair_posterior_std": 0.00787587634567793,
+      "candidate_pairs": 6,
+      "unique_alleles": 12,
+      "revel_alleles": 9,
+      "alphamissense_alleles": 9
+    },
+    "broad": {
+      "path": "artifacts/results/track1_augmented_sbnn_20260908/broad_augmented_pairwise_sbnn.csv",
+      "rows": 10,
+      "full_match_rank": 1,
+      "rank_points": 100.0,
+      "f_max": 1.0,
+      "f_max_threshold": 0.43322835398975396,
+      "rows_at_f_max": 1,
+      "exact_perfect_score": true,
+      "top_gene": "BUB1B",
+      "top_pair_score": 0.43322835398975396,
+      "top_pair_posterior_std": 0.007875876345677931,
+      "candidate_pairs": 26,
+      "unique_alleles": 28,
+      "revel_alleles": 23,
+      "alphamissense_alleles": 18
+    }
+  }
+}

@@ -1,0 +1,208 @@
+{
+  "adapter": {
+    "allele_target": "ClinVar pathogenic versus benign",
+    "pair_rule": "sqrt(p_allele_1 * p_allele_2) * phenotype_score",
+    "available_features": "sequence, variant type, consequence, population AF, training-only gene history",
+    "forced_missing": "dbSNP identifier and ClinVar review status",
+    "excluded_to_prevent_answer_leakage": "submitted rank, pair_score, variant_score, clin_sig, CADD, REVEL, SpliceAI"
+  },
+  "seed": 20260905,
+  "results": {
+    "strict": {
+      "gradient_boost": {
+        "path": "artifacts/results/track1_temporal_transfer_20260906/strict_gradient_boost.csv",
+        "rows": 6,
+        "full_match_rank": 1,
+        "rank_points": 100.0,
+        "f_max": 1.0,
+        "f_max_threshold": 0.4595381634742914,
+        "rows_at_f_max": 1,
+        "exact_perfect_score": true,
+        "top_gene": "BUB1B",
+        "top_pair_score": 0.4595381634742914
+      },
+      "dense_mlp": {
+        "path": "artifacts/results/track1_temporal_transfer_20260906/strict_dense_mlp.csv",
+        "rows": 6,
+        "full_match_rank": 1,
+        "rank_points": 100.0,
+        "f_max": 1.0,
+        "f_max_threshold": 0.4356833835518995,
+        "rows_at_f_max": 1,
+        "exact_perfect_score": true,
+        "top_gene": "BUB1B",
+        "top_pair_score": 0.4356833835518995
+      },
+      "deep_ensemble": {
+        "path": "artifacts/results/track1_temporal_transfer_20260906/strict_deep_ensemble.csv",
+        "rows": 6,
+        "full_match_rank": 1,
+        "rank_points": 100.0,
+        "f_max": 1.0,
+        "f_max_threshold": 0.3920750168951636,
+        "rows_at_f_max": 1,
+        "exact_perfect_score": true,
+        "top_gene": "BUB1B",
+        "top_pair_score": 0.3920750168951636
+      },
+      "small_sbnn": {
+        "path": "artifacts/results/track1_temporal_transfer_20260906/strict_small_sbnn.csv",
+        "rows": 6,
+        "full_match_rank": 1,
+        "rank_points": 100.0,
+        "f_max": 1.0,
+        "f_max_threshold": 0.3480718064626136,
+        "rows_at_f_max": 1,
+        "exact_perfect_score": true,
+        "top_gene": "BUB1B",
+        "top_pair_score": 0.3480718064626136
+      },
+      "dense_bbb": {
+        "path": "artifacts/results/track1_temporal_transfer_20260906/strict_dense_bbb.csv",
+        "rows": 6,
+        "full_match_rank": 1,
+        "rank_points": 100.0,
+        "f_max": 1.0,
+        "f_max_threshold": 0.5000342600559343,
+        "rows_at_f_max": 1,
+        "exact_perfect_score": true,
+        "top_gene": "BUB1B",
+        "top_pair_score": 0.5000342600559343
+      },
+      "wide_rank50_sbnn": {
+        "path": "artifacts/results/track1_temporal_transfer_20260906/strict_wide_rank50_sbnn.csv",
+        "rows": 6,
+        "full_match_rank": 1,
+        "rank_points": 100.0,
+        "f_max": 1.0,
+        "f_max_threshold": 0.3724070924857989,
+        "rows_at_f_max": 1,
+        "exact_perfect_score": true,
+        "top_gene": "BUB1B",
+        "top_pair_score": 0.3724070924857989
+      },
+      "wide_dense_bbb": {
+        "path": "artifacts/results/track1_temporal_transfer_20260906/strict_wide_dense_bbb.csv",
+        "rows": 6,
+        "full_match_rank": 1,
+        "rank_points": 100.0,
+        "f_max": 1.0,
+        "f_max_threshold": 0.4655097179388454,
+        "rows_at_f_max": 1,
+        "exact_perfect_score": true,
+        "top_gene": "BUB1B",
+        "top_pair_score": 0.4655097179388454
+      },
+      "temporal_consensus": {
+        "path": "artifacts/results/track1_temporal_transfer_20260906/strict_temporal_consensus.csv",
+        "rows": 6,
+        "full_match_rank": 1,
+        "rank_points": 100.0,
+        "f_max": 1.0,
+        "f_max_threshold": 0.39032284042234583,
+        "rows_at_f_max": 1,
+        "exact_perfect_score": true,
+        "top_gene": "BUB1B",
+        "top_pair_score": 0.39032284042234583
+      }
+    },
+    "broad": {
+      "gradient_boost": {
+        "path": "artifacts/results/track1_temporal_transfer_20260906/broad_gradient_boost.csv",
+        "rows": 10,
+        "full_match_rank": 1,
+        "rank_points": 100.0,
+        "f_max": 1.0,
+        "f_max_threshold": 0.4595381634742914,
+        "rows_at_f_max": 1,
+        "exact_perfect_score": true,
+        "top_gene": "BUB1B",
+        "top_pair_score": 0.4595381634742914
+      },
+      "dense_mlp": {
+        "path": "artifacts/results/track1_temporal_transfer_20260906/broad_dense_mlp.csv",
+        "rows": 10,
+        "full_match_rank": 1,
+        "rank_points": 100.0,
+        "f_max": 1.0,
+        "f_max_threshold": 0.4356833835518995,
+        "rows_at_f_max": 1,
+        "exact_perfect_score": true,
+        "top_gene": "BUB1B",
+        "top_pair_score": 0.4356833835518995
+      },
+      "deep_ensemble": {
+        "path": "artifacts/results/track1_temporal_transfer_20260906/broad_deep_ensemble.csv",
+        "rows": 10,
+        "full_match_rank": 1,
+        "rank_points": 100.0,
+        "f_max": 1.0,
+        "f_max_threshold": 0.3920750168951636,
+        "rows_at_f_max": 1,
+        "exact_perfect_score": true,
+        "top_gene": "BUB1B",
+        "top_pair_score": 0.3920750168951636
+      },
+      "small_sbnn": {
+        "path": "artifacts/results/track1_temporal_transfer_20260906/broad_small_sbnn.csv",
+        "rows": 10,
+        "full_match_rank": 1,
+        "rank_points": 100.0,
+        "f_max": 1.0,
+        "f_max_threshold": 0.3480718064626136,
+        "rows_at_f_max": 1,
+        "exact_perfect_score": true,
+        "top_gene": "BUB1B",
+        "top_pair_score": 0.3480718064626136
+      },
+      "dense_bbb": {
+        "path": "artifacts/results/track1_temporal_transfer_20260906/broad_dense_bbb.csv",
+        "rows": 10,
+        "full_match_rank": 1,
+        "rank_points": 100.0,
+        "f_max": 1.0,
+        "f_max_threshold": 0.5000342600559343,
+        "rows_at_f_max": 1,
+        "exact_perfect_score": true,
+        "top_gene": "BUB1B",
+        "top_pair_score": 0.5000342600559343
+      },
+      "wide_rank50_sbnn": {
+        "path": "artifacts/results/track1_temporal_transfer_20260906/broad_wide_rank50_sbnn.csv",
+        "rows": 10,
+        "full_match_rank": 1,
+        "rank_points": 100.0,
+        "f_max": 1.0,
+        "f_max_threshold": 0.3724070924857989,
+        "rows_at_f_max": 1,
+        "exact_perfect_score": true,
+        "top_gene": "BUB1B",
+        "top_pair_score": 0.3724070924857989
+      },
+      "wide_dense_bbb": {
+        "path": "artifacts/results/track1_temporal_transfer_20260906/broad_wide_dense_bbb.csv",
+        "rows": 10,
+        "full_match_rank": 1,
+        "rank_points": 100.0,
+        "f_max": 1.0,
+        "f_max_threshold": 0.4655097179388454,
+        "rows_at_f_max": 1,
+        "exact_perfect_score": true,
+        "top_gene": "BUB1B",
+        "top_pair_score": 0.4655097179388454
+      },
+      "temporal_consensus": {
+        "path": "artifacts/results/track1_temporal_transfer_20260906/broad_temporal_consensus.csv",
+        "rows": 10,
+        "full_match_rank": 1,
+        "rank_points": 100.0,
+        "f_max": 1.0,
+        "f_max_threshold": 0.39032284042234583,
+        "rows_at_f_max": 1,
+        "exact_perfect_score": true,
+        "top_gene": "BUB1B",
+        "top_pair_score": 0.39032284042234583
+      }
+    }
+  }
+}

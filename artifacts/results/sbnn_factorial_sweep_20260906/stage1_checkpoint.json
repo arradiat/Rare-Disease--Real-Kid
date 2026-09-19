@@ -1,0 +1,220 @@
+{
+  "stage1": [
+    {
+      "config": {
+        "name": "grid_r8_4_1_k0.001_q0.1_p0.3",
+        "posterior_scale_multiplier": 0.1,
+        "prior_sigma1": 0.3,
+        "kl_weight": 0.001,
+        "ranks": [
+          8,
+          4,
+          1
+        ],
+        "prior_sigma2": 0.0024787521766663585
+      },
+      "metrics": {
+        "n": 60000,
+        "positive_fraction": 0.1873,
+        "pr_auc": 0.9589129717499607,
+        "f_max": 0.9056983925364637,
+        "nll": 0.13907461435549862,
+        "brier": 0.036650685535369994,
+        "ece_15": 0.05709195977754128,
+        "balanced_accuracy_at_80pct_coverage": 0.9866679706084097,
+        "uncertainty_unseen_gene_auroc": 0.5907214583344491,
+        "score": 0.3213389826973152,
+        "epochs_completed": 12
+      }
+    },
+    {
+      "config": {
+        "name": "grid_r8_4_1_k0.001_q0.1_p1",
+        "posterior_scale_multiplier": 0.1,
+        "prior_sigma1": 1.0,
+        "kl_weight": 0.001,
+        "ranks": [
+          8,
+          4,
+          1
+        ],
+        "prior_sigma2": 0.0024787521766663585
+      },
+      "metrics": {
+        "n": 60000,
+        "positive_fraction": 0.1873,
+        "pr_auc": 0.958561916090337,
+        "f_max": 0.9047347904165389,
+        "nll": 0.13438021355743007,
+        "brier": 0.03500162991067096,
+        "ece_15": 0.052328929835684906,
+        "balanced_accuracy_at_80pct_coverage": 0.985752539348203,
+        "uncertainty_unseen_gene_auroc": 0.5645529714747378,
+        "score": 0.3159239093347369,
+        "epochs_completed": 12
+      }
+    },
+    {
+      "config": {
+        "name": "grid_r8_4_1_k0.001_q0.1_p3",
+        "posterior_scale_multiplier": 0.1,
+        "prior_sigma1": 3.0,
+        "kl_weight": 0.001,
+        "ranks": [
+          8,
+          4,
+          1
+        ],
+        "prior_sigma2": 0.0024787521766663585
+      },
+      "metrics": {
+        "n": 60000,
+        "positive_fraction": 0.1873,
+        "pr_auc": 0.9580975989783139,
+        "f_max": 0.9044882200675646,
+        "nll": 0.13249633263055866,
+        "brier": 0.034416232251859656,
+        "ece_15": 0.049889253086350095,
+        "balanced_accuracy_at_80pct_coverage": 0.9858468692877296,
+        "uncertainty_unseen_gene_auroc": 0.549766703744529,
+        "score": 0.31392504257599785,
+        "epochs_completed": 12
+      }
+    },
+    {
+      "config": {
+        "name": "grid_r8_4_1_k0.001_q0.3_p0.3",
+        "posterior_scale_multiplier": 0.3,
+        "prior_sigma1": 0.3,
+        "kl_weight": 0.001,
+        "ranks": [
+          8,
+          4,
+          1
+        ],
+        "prior_sigma2": 0.0024787521766663585
+      },
+      "metrics": {
+        "n": 60000,
+        "positive_fraction": 0.1873,
+        "pr_auc": 0.9582498696423564,
+        "f_max": 0.9048095756256801,
+        "nll": 0.13484696631973522,
+        "brier": 0.036331992934159035,
+        "ece_15": 0.051991313233968654,
+        "balanced_accuracy_at_80pct_coverage": 0.9870483475629444,
+        "uncertainty_unseen_gene_auroc": 0.5850941451690252,
+        "score": 0.3126272696725857,
+        "epochs_completed": 12
+      }
+    },
+    {
+      "config": {
+        "name": "grid_r8_4_1_k0.001_q0.3_p1",
+        "posterior_scale_multiplier": 0.3,
+        "prior_sigma1": 1.0,
+        "kl_weight": 0.001,
+        "ranks": [
+          8,
+          4,
+          1
+        ],
+        "prior_sigma2": 0.0024787521766663585
+      },
+      "metrics": {
+        "n": 60000,
+        "positive_fraction": 0.1873,
+        "pr_auc": 0.9580088413867796,
+        "f_max": 0.9038216280399314,
+        "nll": 0.13027446242710888,
+        "brier": 0.03466719490807768,
+        "ece_15": 0.0474192969477551,
+        "balanced_accuracy_at_80pct_coverage": 0.986709699858159,
+        "uncertainty_unseen_gene_auroc": 0.5673268700112291,
+        "score": 0.30554073035161633,
+        "epochs_completed": 12
+      }
+    },
+    {
+      "config": {
+        "name": "grid_r8_4_1_k0.001_q0.3_p3",
+        "posterior_scale_multiplier": 0.3,
+        "prior_sigma1": 3.0,
+        "kl_weight": 0.001,
+        "ranks": [
+          8,
+          4,
+          1
+        ],
+        "prior_sigma2": 0.0024787521766663585
+      },
+      "metrics": {
+        "n": 60000,
+        "positive_fraction": 0.1873,
+        "pr_auc": 0.9575364803398192,
+        "f_max": 0.9037192430400769,
+        "nll": 0.12815990690372642,
+        "brier": 0.03398837950633316,
+        "ece_15": 0.04470790222863662,
+        "balanced_accuracy_at_80pct_coverage": 0.9856093528410866,
+        "uncertainty_unseen_gene_auroc": 0.5497281908941105,
+        "score": 0.3041058740393308,
+        "epochs_completed": 12
+      }
+    },
+    {
+      "config": {
+        "name": "grid_r8_4_1_k0.001_q1_p0.3",
+        "posterior_scale_multiplier": 1.0,
+        "prior_sigma1": 0.3,
+        "kl_weight": 0.001,
+        "ranks": [
+          8,
+          4,
+          1
+        ],
+        "prior_sigma2": 0.0024787521766663585
+      },
+      "metrics": {
+        "n": 60000,
+        "positive_fraction": 0.1873,
+        "pr_auc": 0.9560993217015552,
+        "f_max": 0.9008811538292929,
+        "nll": 0.13576874198866135,
+        "brier": 0.037538367539091164,
+        "ece_15": 0.05076090700193023,
+        "balanced_accuracy_at_80pct_coverage": 0.9857144838191826,
+        "uncertainty_unseen_gene_auroc": 0.6002456385176715,
+        "score": 0.3111616469165572,
+        "epochs_completed": 12
+      }
+    },
+    {
+      "config": {
+        "name": "grid_r8_4_1_k0.001_q1_p1",
+        "posterior_scale_multiplier": 1.0,
+        "prior_sigma1": 1.0,
+        "kl_weight": 0.001,
+        "ranks": [
+          8,
+          4,
+          1
+        ],
+        "prior_sigma2": 0.0024787521766663585
+      },
+      "metrics": {
+        "n": 60000,
+        "positive_fraction": 0.1873,
+        "pr_auc": 0.9558245806738769,
+        "f_max": 0.8999296517762927,
+        "nll": 0.13121406540258487,
+        "brier": 0.03574069660467098,
+        "ece_15": 0.04636383947497913,
+        "balanced_accuracy_at_80pct_coverage": 0.9854470109461497,
+        "uncertainty_unseen_gene_auroc": 0.5821159607637443,
+        "score": 0.30417190385641124,
+        "epochs_completed": 12
+      }
+    }
+  ]
+}

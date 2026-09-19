@@ -1,0 +1,11 @@
+proband_id,chrom_1,pos_1,ref_1,alt_1,chrom_2,pos_2,ref_2,alt_2,epcr,finding_type,notes
+PROBAND01,chr15,40209701,T,G,chr15,40220612,T,G,0.9999522496943675,primary,gene=BUB1B;SBNN conditional candidate probability;phase=unknown
+PROBAND01,chr11,46874935,C,T,chr11,46878979,T,C,1.2769406120714919e-05,primary,gene=LRP4;SBNN conditional candidate probability;phase=unknown
+PROBAND01,chr16,2118216,C,T,chr16,2118412,C,T,2.7617935251348134e-06,primary,gene=PKD1;SBNN conditional candidate probability;phase=trans_readbacked
+PROBAND01,chr15,74722722,C,T,chr15,74720638,G,T,2.5519600371760876e-06,primary,gene=CYP1A1;SBNN conditional candidate probability;phase=unknown
+PROBAND01,chr17,18130805,A,T,chr17,18161408,C,T,2.2962070041389186e-06,primary,gene=MYO15A;SBNN conditional candidate probability;phase=unknown
+PROBAND01,chr12,123845786,C,A,chr12,123929713,G,A,2.1729444643509595e-06,primary,gene=DNAH10;SBNN conditional candidate probability;phase=unknown
+PROBAND01,chr3,195786889,C,T,chr3,195779986,G,A,1.7828754366832891e-06,primary,gene=MUC4;SBNN conditional candidate probability;phase=unknown
+PROBAND01,chr3,195786889,C,T,chr3,195785362,G,A,1.5906765670939259e-06,primary,gene=MUC4;SBNN conditional candidate probability;phase=unknown
+PROBAND01,chr3,195786854,A,C,chr3,195779986,G,A,1.551510098616133e-06,primary,gene=MUC4;SBNN conditional candidate probability;phase=unknown
+PROBAND01,chr3,195786889,C,T,chr3,195785375,T,C,1.5277503240973368e-06,primary,gene=MUC4;SBNN conditional candidate probability;phase=unknown

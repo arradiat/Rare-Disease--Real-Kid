@@ -1,0 +1,7 @@
+proband_id,chrom_1,pos_1,ref_1,alt_1,chrom_2,pos_2,ref_2,alt_2,epcr,finding_type,notes
+PROBAND01,chr15,40209701,T,G,chr15,40220612,T,G,0.9999800583470656,primary,gene=BUB1B;SBNN conditional candidate probability;phase=unknown
+PROBAND01,chr11,46874935,C,T,chr11,46878979,T,C,1.2773954883073177e-05,primary,gene=LRP4;SBNN conditional candidate probability;phase=unknown
+PROBAND01,chr16,2118216,C,T,chr16,2118412,C,T,2.7630507950250694e-06,primary,gene=PKD1;SBNN conditional candidate probability;phase=trans_readbacked
+PROBAND01,chr12,123845786,C,A,chr12,123929713,G,A,2.173948354425555e-06,primary,gene=DNAH10;SBNN conditional candidate probability;phase=unknown
+PROBAND01,chr19,39893494,A,C,chr19,39894237,C,T,1.4617686435399526e-06,primary,gene=FCGBP;SBNN conditional candidate probability;phase=trans_readbacked
+PROBAND01,chr16,11679276,C,G,chr16,11691599,T,G,7.689302584213772e-07,primary,gene=TXNDC11;SBNN conditional candidate probability;phase=unknown

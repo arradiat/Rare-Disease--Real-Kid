@@ -1,0 +1,27 @@
+{
+  "model_sha256": "1f0d9dea55cd1aec83b66ef849b40f6d929706ce4881d502b2374b87fd3fb5ad",
+  "source": "../ranking.zip",
+  "draws": 2048,
+  "seed": 20260905,
+  "tiers": {
+    "strict": {
+      "input_pairs": 7,
+      "eligible_pairs": 6,
+      "excluded_cis": 1,
+      "top_gene": "BUB1B",
+      "top_pair": "15:40209701:T:G|15:40220612:T:G",
+      "top_conditional_probability": 0.9999800583470656,
+      "mutual_information": 2.84050239005055e-05
+    },
+    "broad": {
+      "input_pairs": 131,
+      "eligible_pairs": 26,
+      "excluded_cis": 105,
+      "top_gene": "BUB1B",
+      "top_pair": "15:40209701:T:G|15:40220612:T:G",
+      "top_conditional_probability": 0.9999522496943675,
+      "mutual_information": 7.64616851046592e-05
+    }
+  },
+  "caveat": "Probabilities are conditional on the supplied shortlist and are not clinically calibrated."
+}
