@@ -1,9 +1,5 @@
 # Citation audit
 
-Audit date: 7 September 2026
-
-Every cited work in `main.tex` was checked against a publisher page, DOI record, official proceedings page, or the cited data/repository page. A DOI is used for scholarly papers wherever one exists. Repository and dataset records are explicitly typed as web resources rather than papers. `and others` is retained only for long author lists after the first author was verified.
-
 ## Scholarly references
 
 | Key | Authoritative record | Claim checked |
@@ -41,14 +37,5 @@ Every cited work in `main.tex` was checked against a publisher page, DOI record,
 | `phenopacketrelease2026` | [Release 0.1.27](https://github.com/monarch-initiative/phenopacket-store/releases/tag/0.1.27) | Exact Phenopacket Store version used |
 | `clinvar` | [NCBI ClinVar downloads](https://www.ncbi.nlm.nih.gov/clinvar/docs/downloads/) | Current and archived GRCh38 VCF releases |
 
-## Material corrections made
-
-- `toure2026` is an `@inproceedings` record with the full authors Mame Diarra Toure and David A. Stephens and the 43rd ICML. No PMLR volume or page range is invented while final proceedings metadata remains unavailable.
-- MAVERICK's first author was corrected from Max Schubach to Matt C. Danzi.
-- AI-MARRVEL's title, journal, author list, article identifier, and DOI were corrected. The unsupported claim that it used exactly 103 features was removed.
-- aiDIVA's first author and full title were corrected.
-- PhEval's first author, full title, journal details, and DOI were corrected.
-- The repository-only Exomiser record was replaced by the peer-reviewed Nature Protocols paper.
-- The previous `bub1bmechanism2010` record was replaced by the Cancer Research paper that directly supports the report's MVA mechanism statement.
-- The previous `aurorab2013` record was replaced by the 2020 Cell Reports study, and the report sentence was narrowed to the mechanism that study demonstrates.
+tudy demonstrates.
 - Missing volume, issue, page or article number, and DOI fields were added from authoritative metadata.
