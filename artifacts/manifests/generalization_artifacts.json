@@ -1,0 +1,800 @@
+{
+  "schema_version": 1,
+  "description": "Integrity inventory for the committed Phenopacket/HPO, VarPB, predictor-augmented SBNN, and frozen Track 1 transfer artifacts.",
+  "file_count": 132,
+  "total_size_bytes": 819980989,
+  "files": [
+    {
+      "path": "artifacts/checkpoints/augmented_pairwise_sbnn/augmented_sbnn.pkl",
+      "group": "augmented_pairwise_sbnn_checkpoint",
+      "size_bytes": 670999,
+      "sha256": "797167b75c4b9375360cb2e45b361694edf1890d9cea5c37f49bf2b5d417e213"
+    },
+    {
+      "path": "artifacts/results/full_bbb_temporal_20260906/bbb_grid_prior_0.3.png",
+      "group": "full_bbb_temporal_20260906",
+      "size_bytes": 75189,
+      "sha256": "42f0cb3b946afd0537dd7de7d74d21b959f3fa74af0d5aab7d27d6da11e2b39b"
+    },
+    {
+      "path": "artifacts/results/full_bbb_temporal_20260906/bbb_grid_prior_1.png",
+      "group": "full_bbb_temporal_20260906",
+      "size_bytes": 70849,
+      "sha256": "31e15f408d6691005776637fc3986e1f63e6fc581ae2700813937e1ca54f6964"
+    },
+    {
+      "path": "artifacts/results/full_bbb_temporal_20260906/bbb_grid_prior_3.png",
+      "group": "full_bbb_temporal_20260906",
+      "size_bytes": 77963,
+      "sha256": "f372fc66b1e7bb45906aaf2494ed112d122576a503926a246859e772fe4577b6"
+    },
+    {
+      "path": "artifacts/results/full_bbb_temporal_20260906/bbb_pareto.png",
+      "group": "full_bbb_temporal_20260906",
+      "size_bytes": 82423,
+      "sha256": "92b8f8959c35f390f6a0d88943217912ca7126833e589b279db719884bf76d28"
+    },
+    {
+      "path": "artifacts/results/full_bbb_temporal_20260906/bbb_stage1_checkpoint.json",
+      "group": "full_bbb_temporal_20260906",
+      "size_bytes": 56620,
+      "sha256": "d0f456b6dcf7c89581e0b7e0d093447c298ff2b6655e01a226b9b1e40fe8c87d"
+    },
+    {
+      "path": "artifacts/results/full_bbb_temporal_20260906/full_bbb_results.json",
+      "group": "full_bbb_temporal_20260906",
+      "size_bytes": 64668,
+      "sha256": "e506a9ace5dedfcd8440ad89f0c364087ac8e2b91379fc1bc4c8ea8f10eeac0c"
+    },
+    {
+      "path": "artifacts/results/patient_generalization_protocol_20260907/evaluation/patient_generalization_results.json",
+      "group": "patient_generalization_protocol_20260907",
+      "size_bytes": 112673,
+      "sha256": "534f554c442a50396229e8aa2f4a5cf05301d00924e9dc6c421fa9a543b46b80"
+    },
+    {
+      "path": "artifacts/results/patient_generalization_protocol_20260907/evaluation/patient_generalization_summary.csv",
+      "group": "patient_generalization_protocol_20260907",
+      "size_bytes": 8562,
+      "sha256": "44f38cd2c3f6badb226a44216445542180f7be0c24cf239abc2502907ece0d82"
+    },
+    {
+      "path": "artifacts/results/patient_generalization_protocol_20260907/evaluation/patient_generalization_summary.png",
+      "group": "patient_generalization_protocol_20260907",
+      "size_bytes": 115194,
+      "sha256": "6a2ae3a3f8ffe06558ec03395368cd085663619335edc74f751a7838fceb384a"
+    },
+    {
+      "path": "artifacts/results/patient_generalization_protocol_20260907/hpo_conditioned_top1.png",
+      "group": "patient_generalization_protocol_20260907",
+      "size_bytes": 85805,
+      "sha256": "47c5ea0bbbd38bf365634405d8ca55511aafbdcd55bccdd55c5adff88afd93f5"
+    },
+    {
+      "path": "artifacts/results/patient_generalization_protocol_20260907/hpo_generalization_results.json",
+      "group": "patient_generalization_protocol_20260907",
+      "size_bytes": 131663,
+      "sha256": "4d98807fb1913730e99ea39488cf6594fac5f13d0d0ab0d01f974b3ebbb616b4"
+    },
+    {
+      "path": "artifacts/results/patient_generalization_protocol_20260907/patient_cases.csv",
+      "group": "patient_generalization_protocol_20260907",
+      "size_bytes": 409634,
+      "sha256": "14597a4556b49d9d2488391d389a9edd7655376d07fd3bb180a0da11d709ebbb"
+    },
+    {
+      "path": "artifacts/results/patient_generalization_protocol_20260907/patient_predictions.csv.gz",
+      "group": "patient_generalization_protocol_20260907",
+      "size_bytes": 3353192,
+      "sha256": "2b871cb0e10aeb4dcf19195569c6db385ed9b0af0c8cb8dc5b0745b36b214430"
+    },
+    {
+      "path": "artifacts/results/phenopacket_hpo2023_generalization_repeated_20260906/repeated_seed_summary.json",
+      "group": "phenopacket_hpo2023_generalization_repeated_20260906",
+      "size_bytes": 18363,
+      "sha256": "473bcc413f6f8eeda96c1b50f2fc7e15f8f3b17754735351dfbe019c2e74874f"
+    },
+    {
+      "path": "artifacts/results/phenopacket_hpo2023_generalization_repeated_20260906/repeated_seed_top1.png",
+      "group": "phenopacket_hpo2023_generalization_repeated_20260906",
+      "size_bytes": 90324,
+      "sha256": "ba2a160e70cda47d9161299c6461b885cdb3c9499e8cb05dd53f0a04004493d4"
+    },
+    {
+      "path": "artifacts/results/phenopacket_hpo2023_generalization_seed_20260905/hpo_conditioned_top1.png",
+      "group": "phenopacket_hpo2023_generalization_seed_20260905",
+      "size_bytes": 85805,
+      "sha256": "47c5ea0bbbd38bf365634405d8ca55511aafbdcd55bccdd55c5adff88afd93f5"
+    },
+    {
+      "path": "artifacts/results/phenopacket_hpo2023_generalization_seed_20260905/hpo_generalization_results.json",
+      "group": "phenopacket_hpo2023_generalization_seed_20260905",
+      "size_bytes": 91500,
+      "sha256": "72ebd32c60a9bade5e58e84a7781d5e0aadebc68d6d00a1f7d910b54b9481b5e"
+    },
+    {
+      "path": "artifacts/results/phenopacket_hpo2023_generalization_seed_20260906/hpo_conditioned_top1.png",
+      "group": "phenopacket_hpo2023_generalization_seed_20260906",
+      "size_bytes": 85807,
+      "sha256": "f37207acc31f78958b9a8df6469496d2dd0adccbb656557a362b905c33ff6608"
+    },
+    {
+      "path": "artifacts/results/phenopacket_hpo2023_generalization_seed_20260906/hpo_generalization_results.json",
+      "group": "phenopacket_hpo2023_generalization_seed_20260906",
+      "size_bytes": 91525,
+      "sha256": "daf0f3ed25d0519b31958e94a3b2c096ff0a98bcb9fc288d2f3ed57abee1a082"
+    },
+    {
+      "path": "artifacts/results/phenopacket_hpo2023_generalization_seed_20260907/hpo_conditioned_top1.png",
+      "group": "phenopacket_hpo2023_generalization_seed_20260907",
+      "size_bytes": 85822,
+      "sha256": "2e77233b639c1029f669f52b648818f65913d3ba5047a7e711fb17329b624f46"
+    },
+    {
+      "path": "artifacts/results/phenopacket_hpo2023_generalization_seed_20260907/hpo_generalization_results.json",
+      "group": "phenopacket_hpo2023_generalization_seed_20260907",
+      "size_bytes": 91479,
+      "sha256": "8c4c32e5cb6344e81ab338440bc29331ddbc083a95c27b2aacfab53fa8bcd451"
+    },
+    {
+      "path": "artifacts/results/phenopacket_hpo2023_generalization_seed_20260908/hpo_conditioned_top1.png",
+      "group": "phenopacket_hpo2023_generalization_seed_20260908",
+      "size_bytes": 85813,
+      "sha256": "025338c4b6b3e023cbaa1da279a5cf093182017ef0b4294e72a902255a103063"
+    },
+    {
+      "path": "artifacts/results/phenopacket_hpo2023_generalization_seed_20260908/hpo_generalization_results.json",
+      "group": "phenopacket_hpo2023_generalization_seed_20260908",
+      "size_bytes": 91407,
+      "sha256": "ad40c60bc22b3e3f72c841d6ff7bbf08c5f1ce55a330563e7f2ed6ee2d7601bb"
+    },
+    {
+      "path": "artifacts/results/phenopacket_hpo2023_generalization_seed_20260909/hpo_conditioned_top1.png",
+      "group": "phenopacket_hpo2023_generalization_seed_20260909",
+      "size_bytes": 85831,
+      "sha256": "d2a8c1ef80182233d38a61ee879fd740a90c5491836a05030c18da8dd8eb796f"
+    },
+    {
+      "path": "artifacts/results/phenopacket_hpo2023_generalization_seed_20260909/hpo_generalization_results.json",
+      "group": "phenopacket_hpo2023_generalization_seed_20260909",
+      "size_bytes": 91457,
+      "sha256": "6409fc0ce44f279640f3adbb5ec8e26978e1df639e05859cee7b2e17789a701e"
+    },
+    {
+      "path": "artifacts/results/phenopacket_hpo_generalization_20260906/hpo_conditioned_top1.png",
+      "group": "phenopacket_hpo_generalization_20260906",
+      "size_bytes": 85811,
+      "sha256": "b443c0c4c2ef9edbeeca2b1c5d4c9cb5d24c5995fc400a039134bacc8f5ff0c5"
+    },
+    {
+      "path": "artifacts/results/phenopacket_hpo_generalization_20260906/hpo_generalization_results.json",
+      "group": "phenopacket_hpo_generalization_20260906",
+      "size_bytes": 89074,
+      "sha256": "f76c688492da6ce706f82445e02e8825cc4c70152f124b0c19ad779d7f31376b"
+    },
+    {
+      "path": "artifacts/results/phenopacket_hpo_generalization_repeated_20260906/repeated_seed_summary.json",
+      "group": "phenopacket_hpo_generalization_repeated_20260906",
+      "size_bytes": 14094,
+      "sha256": "cebf9e5daf4728bde58540960c10db15e7516358be2e608d66dc1484b4d7cfc1"
+    },
+    {
+      "path": "artifacts/results/phenopacket_hpo_generalization_repeated_20260906/repeated_seed_top1.png",
+      "group": "phenopacket_hpo_generalization_repeated_20260906",
+      "size_bytes": 90494,
+      "sha256": "6667fe21bbc7dda308dd485cc49746bfc6593f2312cd5cf39fe62d7502c2ee1e"
+    },
+    {
+      "path": "artifacts/results/phenopacket_hpo_generalization_seed_20260905/hpo_conditioned_top1.png",
+      "group": "phenopacket_hpo_generalization_seed_20260905",
+      "size_bytes": 85811,
+      "sha256": "82a4540859ff3e79722736ce576c40fde1198e65fef7462d2c7047da55511c66"
+    },
+    {
+      "path": "artifacts/results/phenopacket_hpo_generalization_seed_20260905/hpo_generalization_results.json",
+      "group": "phenopacket_hpo_generalization_seed_20260905",
+      "size_bytes": 91511,
+      "sha256": "c8fbebcb428cab844967d70ddaf2c4cfc83a80a16dd50f8e987d778abc7f280f"
+    },
+    {
+      "path": "artifacts/results/phenopacket_hpo_generalization_seed_20260906/hpo_conditioned_top1.png",
+      "group": "phenopacket_hpo_generalization_seed_20260906",
+      "size_bytes": 85805,
+      "sha256": "ccfba9d3d6e52948d28201277d4ab8b3df90ab6a9f3e0c04da870267bd7554cc"
+    },
+    {
+      "path": "artifacts/results/phenopacket_hpo_generalization_seed_20260906/hpo_generalization_results.json",
+      "group": "phenopacket_hpo_generalization_seed_20260906",
+      "size_bytes": 91522,
+      "sha256": "31e8fc5c3f86c7768b92b2b9d231895a9c51f0c88d2f865748243f4c3b614f0e"
+    },
+    {
+      "path": "artifacts/results/phenopacket_hpo_generalization_seed_20260907/hpo_conditioned_top1.png",
+      "group": "phenopacket_hpo_generalization_seed_20260907",
+      "size_bytes": 85879,
+      "sha256": "27cb180d7f00086aadf6805c92ab689a155b6529098439c358152e2ec2a6b162"
+    },
+    {
+      "path": "artifacts/results/phenopacket_hpo_generalization_seed_20260907/hpo_generalization_results.json",
+      "group": "phenopacket_hpo_generalization_seed_20260907",
+      "size_bytes": 91479,
+      "sha256": "601c22020b524c26bdd83f02c7752c27c91e40f26136fe6c4164008751572d49"
+    },
+    {
+      "path": "artifacts/results/phenopacket_hpo_generalization_seed_20260908/hpo_conditioned_top1.png",
+      "group": "phenopacket_hpo_generalization_seed_20260908",
+      "size_bytes": 85812,
+      "sha256": "a04adbd30ba2239a70be80041d95a715816e28e5176357bd5a84a254190ff71a"
+    },
+    {
+      "path": "artifacts/results/phenopacket_hpo_generalization_seed_20260908/hpo_generalization_results.json",
+      "group": "phenopacket_hpo_generalization_seed_20260908",
+      "size_bytes": 91419,
+      "sha256": "1cdbb9051b145cea1f6ae1693fbad6a266d6d17fadf68f12f8aaa99b6b57b2cd"
+    },
+    {
+      "path": "artifacts/results/phenopacket_hpo_generalization_seed_20260909/hpo_conditioned_top1.png",
+      "group": "phenopacket_hpo_generalization_seed_20260909",
+      "size_bytes": 85913,
+      "sha256": "0a192a8f0226f4b888472eae16d0eeeeb73e5d50e1b5d0e6750498f538bce14f"
+    },
+    {
+      "path": "artifacts/results/phenopacket_hpo_generalization_seed_20260909/hpo_generalization_results.json",
+      "group": "phenopacket_hpo_generalization_seed_20260909",
+      "size_bytes": 91442,
+      "sha256": "daf159c0aba44def71e0c51fca57d225866fcf4b13705d7663afa573e7489804"
+    },
+    {
+      "path": "artifacts/results/phenopacket_temporal_generalization_20260906/patient_generalization_results.json",
+      "group": "phenopacket_temporal_generalization_20260906",
+      "size_bytes": 22112,
+      "sha256": "b30e84e81b8ed35a79316b6e74da9b7c028dea6ef6de3a7d8f9ea539b67fe146"
+    },
+    {
+      "path": "artifacts/results/phenopacket_temporal_generalization_20260906/patient_generalization_top1.png",
+      "group": "phenopacket_temporal_generalization_20260906",
+      "size_bytes": 78825,
+      "sha256": "2838f1a8002eeb13f37cf92363826d9f6157f91ec28d3d8820819da061b81660"
+    },
+    {
+      "path": "artifacts/results/sbnn_broad_uncertainty_sweep_20260906/stage1_checkpoint.json",
+      "group": "sbnn_broad_uncertainty_sweep_20260906",
+      "size_bytes": 25593,
+      "sha256": "0e8fd6261acac322fa5c246f6f94783d3c9e2e2b35dafff8d6d148a889d3a2ae"
+    },
+    {
+      "path": "artifacts/results/sbnn_factorial_fast_sweep_20260906/factorial_heatmaps_prior_0.3.png",
+      "group": "sbnn_factorial_fast_sweep_20260906",
+      "size_bytes": 159451,
+      "sha256": "e10118d459cc4f131e7ea97e9261776c0ba6469107f8b0920ef70bb152965bd8"
+    },
+    {
+      "path": "artifacts/results/sbnn_factorial_fast_sweep_20260906/factorial_heatmaps_prior_1.png",
+      "group": "sbnn_factorial_fast_sweep_20260906",
+      "size_bytes": 161798,
+      "sha256": "fcd6d225d8f1967a6890ae2069c241d140e9334f95229a31b3b0ec8e5746e479"
+    },
+    {
+      "path": "artifacts/results/sbnn_factorial_fast_sweep_20260906/factorial_heatmaps_prior_3.png",
+      "group": "sbnn_factorial_fast_sweep_20260906",
+      "size_bytes": 162262,
+      "sha256": "2886855a28f41ce9e28a044b05eb994472ae8e3ae19dc837623535fcb0731273"
+    },
+    {
+      "path": "artifacts/results/sbnn_factorial_fast_sweep_20260906/factorial_pareto_scatter.png",
+      "group": "sbnn_factorial_fast_sweep_20260906",
+      "size_bytes": 163716,
+      "sha256": "5da23cceda4c8dd6005ab7407ff1f742f80c05fab30e655747d3e8fce7686e4e"
+    },
+    {
+      "path": "artifacts/results/sbnn_factorial_fast_sweep_20260906/stage1_checkpoint.json",
+      "group": "sbnn_factorial_fast_sweep_20260906",
+      "size_bytes": 286800,
+      "sha256": "0dd52c013576ff498364c7e7e235d3d8fba8fbd08a457d9537f4819ba211c256"
+    },
+    {
+      "path": "artifacts/results/sbnn_factorial_fast_sweep_20260906/sweep_results.json",
+      "group": "sbnn_factorial_fast_sweep_20260906",
+      "size_bytes": 298716,
+      "sha256": "c4c999d08e831764ec27abd2eeaa97009854fc24a622457a72afa6afc9b8b159"
+    },
+    {
+      "path": "artifacts/results/sbnn_factorial_fast_sweep_20260906/sweep_stage2.png",
+      "group": "sbnn_factorial_fast_sweep_20260906",
+      "size_bytes": 151489,
+      "sha256": "944e9573152b9607706b700e350a2e43b863e6d5bfc0cb16f7b5dde2487a9811"
+    },
+    {
+      "path": "artifacts/results/sbnn_factorial_fast_sweep_20260906/tuned_vs_original_holdout.png",
+      "group": "sbnn_factorial_fast_sweep_20260906",
+      "size_bytes": 59526,
+      "sha256": "d2818a9d53baa0530425a27ea89d6047d6333c2fb85e8499bdf0e6ace2945790"
+    },
+    {
+      "path": "artifacts/results/sbnn_factorial_pareto_complete_20260906/factorial_heatmaps_prior_0.3.png",
+      "group": "sbnn_factorial_pareto_complete_20260906",
+      "size_bytes": 159451,
+      "sha256": "e10118d459cc4f131e7ea97e9261776c0ba6469107f8b0920ef70bb152965bd8"
+    },
+    {
+      "path": "artifacts/results/sbnn_factorial_pareto_complete_20260906/factorial_heatmaps_prior_1.png",
+      "group": "sbnn_factorial_pareto_complete_20260906",
+      "size_bytes": 161798,
+      "sha256": "fcd6d225d8f1967a6890ae2069c241d140e9334f95229a31b3b0ec8e5746e479"
+    },
+    {
+      "path": "artifacts/results/sbnn_factorial_pareto_complete_20260906/factorial_heatmaps_prior_3.png",
+      "group": "sbnn_factorial_pareto_complete_20260906",
+      "size_bytes": 162262,
+      "sha256": "2886855a28f41ce9e28a044b05eb994472ae8e3ae19dc837623535fcb0731273"
+    },
+    {
+      "path": "artifacts/results/sbnn_factorial_pareto_complete_20260906/factorial_pareto_scatter.png",
+      "group": "sbnn_factorial_pareto_complete_20260906",
+      "size_bytes": 149385,
+      "sha256": "9a17b01d158ad5c4fba201e710b9bede39ef0742956b4906517400b239217862"
+    },
+    {
+      "path": "artifacts/results/sbnn_factorial_pareto_complete_20260906/sweep_results.json",
+      "group": "sbnn_factorial_pareto_complete_20260906",
+      "size_bytes": 298807,
+      "sha256": "3adbff3e080e650392f8ee4626ca11c6debf9965f24ab39de8f937a130b182ff"
+    },
+    {
+      "path": "artifacts/results/sbnn_factorial_pareto_complete_20260906/sweep_stage2.png",
+      "group": "sbnn_factorial_pareto_complete_20260906",
+      "size_bytes": 153816,
+      "sha256": "fdf997f073b0481ee38b63ca24c532cfa38c4fe8eb1e03d1baef3892721f2046"
+    },
+    {
+      "path": "artifacts/results/sbnn_factorial_pareto_complete_20260906/tuned_vs_original_holdout.png",
+      "group": "sbnn_factorial_pareto_complete_20260906",
+      "size_bytes": 59526,
+      "sha256": "d2818a9d53baa0530425a27ea89d6047d6333c2fb85e8499bdf0e6ace2945790"
+    },
+    {
+      "path": "artifacts/results/sbnn_factorial_sweep_20260906/stage1_checkpoint.json",
+      "group": "sbnn_factorial_sweep_20260906",
+      "size_bytes": 6172,
+      "sha256": "39921783f2b38f49061b056d155edebe324a63c0558ad5cf6745d0f55af013d7"
+    },
+    {
+      "path": "artifacts/results/sbnn_hyperparameter_sweep_20260905/sweep_results.json",
+      "group": "sbnn_hyperparameter_sweep_20260905",
+      "size_bytes": 18014,
+      "sha256": "e7582ab8c5fba37e4a01f30d8ff237d3c3dbe1319a289dde8740a0ae177bea44"
+    },
+    {
+      "path": "artifacts/results/sbnn_hyperparameter_sweep_20260905/sweep_stage2.png",
+      "group": "sbnn_hyperparameter_sweep_20260905",
+      "size_bytes": 71502,
+      "sha256": "932c267c1496e345adbad6d341203a7d55158de953bdfe94a5f749644a4d593c"
+    },
+    {
+      "path": "artifacts/results/sbnn_hyperparameter_sweep_20260905/tuned_vs_original_holdout.png",
+      "group": "sbnn_hyperparameter_sweep_20260905",
+      "size_bytes": 59559,
+      "sha256": "8668777e3e64f565b98f1a67a680ead6e40bdfe051a5a3eb0919339ec8e1db15"
+    },
+    {
+      "path": "artifacts/results/sbnn_hyperparameter_sweep_pareto_20260906/sweep_results.json",
+      "group": "sbnn_hyperparameter_sweep_pareto_20260906",
+      "size_bytes": 18013,
+      "sha256": "04e17c5fe6fb5a50d185b273efa58158cca5188dbc966db95cb8e67f98c82188"
+    },
+    {
+      "path": "artifacts/results/sbnn_hyperparameter_sweep_pareto_20260906/sweep_stage2.png",
+      "group": "sbnn_hyperparameter_sweep_pareto_20260906",
+      "size_bytes": 71683,
+      "sha256": "e0167bf3967434d0017403e2874310555bef0211db3aa3cae8d6d434f7f095a5"
+    },
+    {
+      "path": "artifacts/results/sbnn_hyperparameter_sweep_pareto_20260906/tuned_vs_original_holdout.png",
+      "group": "sbnn_hyperparameter_sweep_pareto_20260906",
+      "size_bytes": 59559,
+      "sha256": "8668777e3e64f565b98f1a67a680ead6e40bdfe051a5a3eb0919339ec8e1db15"
+    },
+    {
+      "path": "artifacts/results/sbnn_hyperparameter_sweep_uncertainty_20260906/sweep_results.json",
+      "group": "sbnn_hyperparameter_sweep_uncertainty_20260906",
+      "size_bytes": 17452,
+      "sha256": "214a62c6c8c86e899c3673227395d56b6b03597fe838dedd6960f2c5f4f77006"
+    },
+    {
+      "path": "artifacts/results/sbnn_hyperparameter_sweep_uncertainty_20260906/sweep_stage2.png",
+      "group": "sbnn_hyperparameter_sweep_uncertainty_20260906",
+      "size_bytes": 71683,
+      "sha256": "e0167bf3967434d0017403e2874310555bef0211db3aa3cae8d6d434f7f095a5"
+    },
+    {
+      "path": "artifacts/results/sbnn_hyperparameter_sweep_uncertainty_20260906/tuned_vs_original_holdout.png",
+      "group": "sbnn_hyperparameter_sweep_uncertainty_20260906",
+      "size_bytes": 59413,
+      "sha256": "ee6f30ff36214727148fa571c574aa3aa8f16f34f694bdc2d83a41948c16f42f"
+    },
+    {
+      "path": "artifacts/results/sbnn_run_20260905/broad_comparison.tsv",
+      "group": "sbnn_run_20260905",
+      "size_bytes": 12381,
+      "sha256": "5c3bc8a7c33dfe3daa2bdbebc5a3f4f03a650deb5dbd7acd025d191bf32a53cb"
+    },
+    {
+      "path": "artifacts/results/sbnn_run_20260905/broad_sbnn_candidates.csv",
+      "group": "sbnn_run_20260905",
+      "size_bytes": 1529,
+      "sha256": "902b3736716a2f541ef6350228700d5b4523925a982fefcd6e10b06be14d8f20"
+    },
+    {
+      "path": "artifacts/results/sbnn_run_20260905/run_summary.json",
+      "group": "sbnn_run_20260905",
+      "size_bytes": 853,
+      "sha256": "ae29ba3e89e864f7b2591cca38844fb8137773e50deca019198cad81114cab93"
+    },
+    {
+      "path": "artifacts/results/sbnn_run_20260905/strict_comparison.tsv",
+      "group": "sbnn_run_20260905",
+      "size_bytes": 3354,
+      "sha256": "fcda0ea679892c7aee6e3c07681469e8e9f37d7d2fcda813373d2f036495ef92"
+    },
+    {
+      "path": "artifacts/results/sbnn_run_20260905/strict_sbnn_candidates.csv",
+      "group": "sbnn_run_20260905",
+      "size_bytes": 965,
+      "sha256": "3e71a36bf414c02847c192f651965f5978cbbcd7518f0fdb1f049c5016604d31"
+    },
+    {
+      "path": "artifacts/results/track1_augmented_sbnn_20260908/broad_augmented_pairwise_sbnn.csv",
+      "group": "track1_augmented_sbnn_20260908",
+      "size_bytes": 1300,
+      "sha256": "7b8e651104954a5a44acf342c4b1710a7bad10de697bed42bf0203857e903292"
+    },
+    {
+      "path": "artifacts/results/track1_augmented_sbnn_20260908/model_strict_augmented_pairwise_sbnn-bonamame.csv",
+      "group": "track1_augmented_sbnn_20260908",
+      "size_bytes": 841,
+      "sha256": "a4ae9a2a0ceec9381a128d142a19038cd282985e05f20ad608ee41790d98690a"
+    },
+    {
+      "path": "artifacts/results/track1_augmented_sbnn_20260908/strict_augmented_pairwise_sbnn.csv",
+      "group": "track1_augmented_sbnn_20260908",
+      "size_bytes": 841,
+      "sha256": "a4ae9a2a0ceec9381a128d142a19038cd282985e05f20ad608ee41790d98690a"
+    },
+    {
+      "path": "artifacts/results/track1_augmented_sbnn_20260908/track1_augmented_sbnn_audit.json",
+      "group": "track1_augmented_sbnn_20260908",
+      "size_bytes": 1596,
+      "sha256": "6f21a2bf0af036dc1f83360657134b091b95c9f7a2ee75dae8020554e494dcca"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_declared_missense/bonamame_deep_ensemble_varpb.tsv",
+      "group": "varpb_2023_declared_missense",
+      "size_bytes": 36155393,
+      "sha256": "fb5f6faf4a5c93d3fd6e9762e03a3f9eac8397fa218b80688a93bcea64bfb2d3"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_declared_missense/bonamame_dense_bbb_varpb.tsv",
+      "group": "varpb_2023_declared_missense",
+      "size_bytes": 35646720,
+      "sha256": "ef2f238db0821af34188d51231b72d64644870cd004b6ea607ccb3c73cb269eb"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_declared_missense/bonamame_dense_mlp_varpb.tsv",
+      "group": "varpb_2023_declared_missense",
+      "size_bytes": 35830714,
+      "sha256": "8c8d2af11bee484174d98c9195c78a605cc3dbe1a7a01dada0a2bc75546fc8f1"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_declared_missense/bonamame_gradient_boost_varpb.tsv",
+      "group": "varpb_2023_declared_missense",
+      "size_bytes": 35203087,
+      "sha256": "9530f13776bd7a0aa928c1d354187302ed0924aa5af8c5d352c05d4522914235"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_declared_missense/bonamame_small_sbnn_varpb.tsv",
+      "group": "varpb_2023_declared_missense",
+      "size_bytes": 35071845,
+      "sha256": "0cf1b8c9eef625b93687b9a758c8503b41a02ee073fa0541c63294a08a85c07e"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_declared_missense/bonamame_temporal_consensus_varpb.tsv",
+      "group": "varpb_2023_declared_missense",
+      "size_bytes": 35231520,
+      "sha256": "5ab560af57e53c2f157db301c2d063e789d0bb0fcf2d15a59962515e2b14acb1"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_declared_missense/bonamame_varpb_uncertainty.tsv.gz",
+      "group": "varpb_2023_declared_missense",
+      "size_bytes": 29101813,
+      "sha256": "3062e39ef4a06daaddff4f95f035a63d74c80b7c0aec35bb5247646c405d3f8d"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_declared_missense/bonamame_wide_dense_bbb_varpb.tsv",
+      "group": "varpb_2023_declared_missense",
+      "size_bytes": 35635659,
+      "sha256": "5def867df04df4b52564a4a0773f63a6cbc320e9d0b2f63d02162ce2b632dfa4"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_declared_missense/bonamame_wide_rank50_sbnn_varpb.tsv",
+      "group": "varpb_2023_declared_missense",
+      "size_bytes": 35408149,
+      "sha256": "cdba4a4416be2e807f3198976765a22fc241489bbd07310c92210b758722471e"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_declared_missense/evaluation/deep_ensemble_ranks.tsv.gz",
+      "group": "varpb_2023_declared_missense",
+      "size_bytes": 1620081,
+      "sha256": "92b53fa6da32b49f3e4e714fa3ddb5187c5c1afa56132249a822dc45e41c6fe0"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_declared_missense/evaluation/dense_bbb_ranks.tsv.gz",
+      "group": "varpb_2023_declared_missense",
+      "size_bytes": 1619074,
+      "sha256": "ed7bcb76e3a7e3e46b4d58712d57677d0b15e9c99e6450d5a495c236bf424c27"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_declared_missense/evaluation/dense_mlp_ranks.tsv.gz",
+      "group": "varpb_2023_declared_missense",
+      "size_bytes": 1618885,
+      "sha256": "9b2c42c1842e4a94f04e96b917461af2818ef1c57b09968a359dd9d204245849"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_declared_missense/evaluation/gradient_boost_ranks.tsv.gz",
+      "group": "varpb_2023_declared_missense",
+      "size_bytes": 1612372,
+      "sha256": "34531752ec3e9ecc1b3c6c4227f45ce8797fd6d2bbe03f9f4bb773025f7e151c"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_declared_missense/evaluation/small_sbnn_ranks.tsv.gz",
+      "group": "varpb_2023_declared_missense",
+      "size_bytes": 1619292,
+      "sha256": "57e87f73279d38f1de75844a0f693dd59f9b546740231f27e3016dd5e7c8584e"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_declared_missense/evaluation/summary.csv",
+      "group": "varpb_2023_declared_missense",
+      "size_bytes": 1038,
+      "sha256": "947a4911b19628764afe1d1e4ef0660fa592abf660568f32f60dd0e191fa44f2"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_declared_missense/evaluation/summary.json",
+      "group": "varpb_2023_declared_missense",
+      "size_bytes": 11124,
+      "sha256": "9b4be9cdd3bf91f86387e33ce94d11e521460d5e22e58d3e594d94adee81bd5e"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_declared_missense/evaluation/temporal_consensus_ranks.tsv.gz",
+      "group": "varpb_2023_declared_missense",
+      "size_bytes": 1619479,
+      "sha256": "11ffaa2e6f9d47f318c812fdef949116e98d957589d383559dad6ddb80e1cc71"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_declared_missense/evaluation/varpb_2023_model_comparison.png",
+      "group": "varpb_2023_declared_missense",
+      "size_bytes": 112952,
+      "sha256": "475e8486180d87bec7c18703d351e9b4ef354dd4c0e2a4858906d4bb77f8d969"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_declared_missense/evaluation/wide_dense_bbb_ranks.tsv.gz",
+      "group": "varpb_2023_declared_missense",
+      "size_bytes": 1619094,
+      "sha256": "d9638014a1580c2d8f72e37997bf22c6f4ff29c81d54241c1a83c79512aab874"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_declared_missense/evaluation/wide_rank50_sbnn_ranks.tsv.gz",
+      "group": "varpb_2023_declared_missense",
+      "size_bytes": 1618807,
+      "sha256": "0f7f9f03ea77598a70e37871e53cfeb6e98b68ee5b9c2404c61d6042f821ba49"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_external_predictors/bonamame_alphamissense_varpb.tsv",
+      "group": "varpb_2023_external_predictors",
+      "size_bytes": 21854014,
+      "sha256": "fd2190cf8cb301647de2ffd6c093fde505991f3f01212f8aefc26d24821eac60"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_external_predictors/bonamame_revel_varpb.tsv",
+      "group": "varpb_2023_external_predictors",
+      "size_bytes": 21793174,
+      "sha256": "2d8a1b32fe89919473f3f553d76bff5b8574db78e0946d28846989042bc8ac2f"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_external_predictors/evaluation/alphamissense_ranks.tsv.gz",
+      "group": "varpb_2023_external_predictors",
+      "size_bytes": 2897180,
+      "sha256": "8547ac250be271bcfb805e9b7ba600f265854cd40e488a210d87bfe2f14e741e"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_external_predictors/evaluation/revel_ranks.tsv.gz",
+      "group": "varpb_2023_external_predictors",
+      "size_bytes": 2641999,
+      "sha256": "aa8c6c15ef25e3d36771ada48ffc9d08edae0a63d3743b8be38762c7e770ba3c"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_external_predictors/evaluation/summary.csv",
+      "group": "varpb_2023_external_predictors",
+      "size_bytes": 441,
+      "sha256": "58ea3988aa68c328108218c50d73de57336361cae6f9d651194b6dd1d2d9a0cc"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_external_predictors/evaluation/summary.json",
+      "group": "varpb_2023_external_predictors",
+      "size_bytes": 3248,
+      "sha256": "ad2686e5e88c914509bb7c5301eceeca1362e14f1ac5c3b6ca74df3c2fdd8e22"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_external_predictors/evaluation/varpb_2023_model_comparison.png",
+      "group": "varpb_2023_external_predictors",
+      "size_bytes": 84566,
+      "sha256": "3f9699beecbe9695f0a1d7982abec86b7d0ae5d82d31920c2a074c13b8796502"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_opencravat_gnomad/bonamame_deep_ensemble_varpb.tsv",
+      "group": "varpb_2023_opencravat_gnomad",
+      "size_bytes": 37633450,
+      "sha256": "1e09ced75169f331b77b8cf5f4f32d5693f1cbdd8004005b1b9b0a6d5125c109"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_opencravat_gnomad/bonamame_dense_bbb_varpb.tsv",
+      "group": "varpb_2023_opencravat_gnomad",
+      "size_bytes": 37418072,
+      "sha256": "c0301668802fbbe54adf3eaa4924b3a6c3c763b61f6c7d56d619100e18456e15"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_opencravat_gnomad/bonamame_dense_mlp_varpb.tsv",
+      "group": "varpb_2023_opencravat_gnomad",
+      "size_bytes": 37607934,
+      "sha256": "c7d8073a5d5b776dc9ec0ac93cd48dde31342023756368cf552943ae249e2b74"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_opencravat_gnomad/bonamame_gradient_boost_varpb.tsv",
+      "group": "varpb_2023_opencravat_gnomad",
+      "size_bytes": 36328393,
+      "sha256": "3fb76f06b240e93ce58fa07c10e82c60f679ca64e5f45080d1513315c433fdc1"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_opencravat_gnomad/bonamame_small_sbnn_varpb.tsv",
+      "group": "varpb_2023_opencravat_gnomad",
+      "size_bytes": 37627146,
+      "sha256": "4854ddd488db6c1d43c9c5514801fe1fe6a83878705e1df8f038e03df33896e7"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_opencravat_gnomad/bonamame_temporal_consensus_varpb.tsv",
+      "group": "varpb_2023_opencravat_gnomad",
+      "size_bytes": 36799677,
+      "sha256": "356308d016797d409d861799e944435231dc08f6179ac010b6913b4b4e95d068"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_opencravat_gnomad/bonamame_varpb_uncertainty.tsv.gz",
+      "group": "varpb_2023_opencravat_gnomad",
+      "size_bytes": 77673041,
+      "sha256": "e32e8d0ae1c2e089e5506fafc830949c02736b6e81e8d53495aec7e72ec38c76"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_opencravat_gnomad/bonamame_wide_dense_bbb_varpb.tsv",
+      "group": "varpb_2023_opencravat_gnomad",
+      "size_bytes": 37356113,
+      "sha256": "6cd4de20747e8db1a68c792234888cda02070e4fa8aacf43bba1ad9180c3d7cd"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_opencravat_gnomad/bonamame_wide_rank50_sbnn_varpb.tsv",
+      "group": "varpb_2023_opencravat_gnomad",
+      "size_bytes": 37558895,
+      "sha256": "e89643809d3e99b84df2df979bf9a1b39fdeb9555d08d16c16953d903f09302c"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_opencravat_gnomad/evaluation/deep_ensemble_ranks.tsv.gz",
+      "group": "varpb_2023_opencravat_gnomad",
+      "size_bytes": 2320267,
+      "sha256": "b2b8fe7bd6d60766ad0f587fd2772af3e653d4a7626a6aa2236b27e0c05ba248"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_opencravat_gnomad/evaluation/dense_bbb_ranks.tsv.gz",
+      "group": "varpb_2023_opencravat_gnomad",
+      "size_bytes": 2351077,
+      "sha256": "936a44a26eab0446590cda59cd607d256a1089e84a19a9e46e441c3c568791ee"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_opencravat_gnomad/evaluation/dense_mlp_ranks.tsv.gz",
+      "group": "varpb_2023_opencravat_gnomad",
+      "size_bytes": 2284743,
+      "sha256": "9852e54c1dbe54cf2d1ca8708d4c5d9d83599b083a6b9131d28949ece99df3ae"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_opencravat_gnomad/evaluation/gradient_boost_ranks.tsv.gz",
+      "group": "varpb_2023_opencravat_gnomad",
+      "size_bytes": 1986453,
+      "sha256": "5ea047e84cf7790b2ac3fa5b8ab09e954b11bff2ec566c03a17db31c6c01227f"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_opencravat_gnomad/evaluation/small_sbnn_ranks.tsv.gz",
+      "group": "varpb_2023_opencravat_gnomad",
+      "size_bytes": 2203769,
+      "sha256": "831aeba066e569029a238ea882ab3d541164a7514da28ea5ec2ecb67666e5e52"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_opencravat_gnomad/evaluation/summary.csv",
+      "group": "varpb_2023_opencravat_gnomad",
+      "size_bytes": 1101,
+      "sha256": "04d676bde4ed8e7f4cfaaf73264c95ada50779c0ce37a530b9e8639b2800d8be"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_opencravat_gnomad/evaluation/summary.json",
+      "group": "varpb_2023_opencravat_gnomad",
+      "size_bytes": 11425,
+      "sha256": "33d603cd7baa7ef59896714e6265349b14f906539f111dc48a3bc19a65c1311b"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_opencravat_gnomad/evaluation/temporal_consensus_ranks.tsv.gz",
+      "group": "varpb_2023_opencravat_gnomad",
+      "size_bytes": 2145390,
+      "sha256": "88f3aed1561ae4091424d6f94576b5a5c82c502f0d86919a94d53c46a62b64ba"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_opencravat_gnomad/evaluation/varpb_2023_model_comparison.png",
+      "group": "varpb_2023_opencravat_gnomad",
+      "size_bytes": 115532,
+      "sha256": "042d6dd61000a6ec2d3e599f41c02abef57e0851a969a943b3fd8ddfe1a8beec"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_opencravat_gnomad/evaluation/wide_dense_bbb_ranks.tsv.gz",
+      "group": "varpb_2023_opencravat_gnomad",
+      "size_bytes": 2197242,
+      "sha256": "81b670ab20f8f2727cf114b0c377df153303135bd892a70f7d04aa50278a6cca"
+    },
+    {
+      "path": "artifacts/results/varpb_2023_opencravat_gnomad/evaluation/wide_rank50_sbnn_ranks.tsv.gz",
+      "group": "varpb_2023_opencravat_gnomad",
+      "size_bytes": 2181047,
+      "sha256": "004ddd8e8f6de92c2d003927f5c97b72f5c7c8207b8f02143b81a6181168c495"
+    },
+    {
+      "path": "artifacts/results/varpb_augmentation_20260908/clinvar_training_filter.json",
+      "group": "varpb_augmentation_20260908",
+      "size_bytes": 449,
+      "sha256": "a365dd17e549f5afa61955bcdc83a5113e1c33db59773244a3ba4f9ae31a08a8"
+    },
+    {
+      "path": "artifacts/results/varpb_augmentation_20260908/evaluation/augmented_pairwise_sbnn_ranks.tsv.gz",
+      "group": "varpb_augmentation_20260908",
+      "size_bytes": 2460640,
+      "sha256": "3e3728022f21c9e529792130e2e3631632c340bd64716c37fd37593c80ffd344"
+    },
+    {
+      "path": "artifacts/results/varpb_augmentation_20260908/evaluation/summary.csv",
+      "group": "varpb_augmentation_20260908",
+      "size_bytes": 272,
+      "sha256": "7376cd48b0dc56b54787bdd536b5dd2cade05834064cf526fa90a86264864da1"
+    },
+    {
+      "path": "artifacts/results/varpb_augmentation_20260908/evaluation/summary.json",
+      "group": "varpb_augmentation_20260908",
+      "size_bytes": 1640,
+      "sha256": "06802a4e30707bcc209319c4819f33089f587bf14536a68af20694f1606b4f50"
+    },
+    {
+      "path": "artifacts/results/varpb_augmentation_20260908/evaluation/varpb_2023_model_comparison.png",
+      "group": "varpb_augmentation_20260908",
+      "size_bytes": 93010,
+      "sha256": "9467129f25c7421c34254110950bf417dafd30b7bb4ecb8029bceebb3525100e"
+    },
+    {
+      "path": "artifacts/results/varpb_augmentation_20260908/screen.json",
+      "group": "varpb_augmentation_20260908",
+      "size_bytes": 25331,
+      "sha256": "0cc32ef90888cd6ba7a1e70e2976d1a8d66ea2c44ee89a3e1e449d9506296a75"
+    },
+    {
+      "path": "artifacts/results/varpb_augmentation_20260908/training_report.json",
+      "group": "varpb_augmentation_20260908",
+      "size_bytes": 2577,
+      "sha256": "24afc4a9e608aef9dcdbf037632195935e859fc36c0985810d407ba16afb31e9"
+    },
+    {
+      "path": "artifacts/results/varpb_augmentation_20260908/varpb_scores/bonamame_augmented_pairwise_sbnn_varpb.tsv",
+      "group": "varpb_augmentation_20260908",
+      "size_bytes": 37295907,
+      "sha256": "d39aea5c83286dcd73594456d873fa12d821b8cd7f1035219b14fdd84d0a2076"
+    }
+  ]
+}

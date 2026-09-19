@@ -1,0 +1,28 @@
+{
+  "python": "3.12.7 | packaged by Anaconda, Inc. | (main, Oct  4 2024, 08:22:19) [Clang 14.0.6 ]",
+  "executable": "/opt/anaconda3/bin/python",
+  "platform": "macOS-15.2-arm64-arm-64bit",
+  "machine": "arm64",
+  "hardware": {
+    "Model Name": "MacBook Pro",
+    "Model Identifier": "Mac14,7",
+    "Chip": "Apple M2",
+    "Total Number of Cores": "8 (4 performance and 4 efficiency)",
+    "Memory": "8 GB"
+  },
+  "accelerator_used": "none; NumPy/SciPy/scikit-learn CPU execution",
+  "linear_algebra": "NumPy linked against OpenBLAS 0.3.21",
+  "packages": {
+    "numpy": "1.26.4",
+    "scipy": "1.13.1",
+    "scikit-learn": "1.5.1",
+    "matplotlib": "3.9.2",
+    "pandas": "2.2.2",
+    "joblib": "1.4.2",
+    "threadpoolctl": "3.5.0",
+    "pytest": "7.4.4",
+    "pillow": "10.4.0",
+    "huggingface-hub": "0.36.0"
+  },
+  "public_input_sha256": {}
+}
