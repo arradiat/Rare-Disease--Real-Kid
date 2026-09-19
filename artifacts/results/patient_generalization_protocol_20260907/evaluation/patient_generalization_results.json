@@ -1,0 +1,3227 @@
+{
+  "claim": "Patient-level generalization is measured without giving a ranker credit when candidate generation loses the causal hypothesis.",
+  "metric_contract": {
+    "candidate_generation_recall": "Fraction of cases whose exact causal hypothesis reaches the ranker.",
+    "end_to_end_top_k": "Missing causal hypotheses count as failures.",
+    "conditional_top1": "Ranking accuracy only among cases whose causal hypothesis survived candidate generation.",
+    "calibration": "Per-case non-negative scores are normalized across retained hypotheses before NLL and Brier calculation.",
+    "ood": "AUROC of top-ranked-hypothesis uncertainty for distinguishing unseen from seen causal genes."
+  },
+  "bootstrap": {
+    "unit": "patient case",
+    "draws": 2000,
+    "seed": 20260907
+  },
+  "results": {
+    "hpo_drop20": {
+      "deep_ensemble": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.5090403337969402,
+        "top5_end_to_end": 0.8539638386648123,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.6502734604717708,
+        "top1_conditional_on_truth_retained": 0.5090403337969402,
+        "top1_bootstrap_95": [
+          0.4728789986091794,
+          0.545201668984701
+        ],
+        "mrr_bootstrap_95": [
+          0.6238033673037732,
+          0.6775982620605839
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.0461542698419177,
+        "candidate_distribution_brier": 0.08335260840831811,
+        "unseen_gene_ood_auroc": 0.5256769773331055,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.7388724035608308,
+            "top5_end_to_end": 0.9584569732937686,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8264660166737319
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.306282722513089,
+            "top5_end_to_end": 0.7617801047120419,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.4948365718852242
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.7446808510638298,
+            "top5_end_to_end": 0.9696048632218845,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8335516476093984
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.31025641025641026,
+            "top5_end_to_end": 0.7564102564102564,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.4956618615787466
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.640625,
+            "top5_end_to_end": 0.984375,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7716517857142857
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.4961832061068702,
+            "top5_end_to_end": 0.8412213740458016,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.6384135935778458
+          }
+        },
+        "top1_at_80pct_coverage": 0.4930555555555556,
+        "risk_coverage_auc": 0.44561097189186283
+      },
+      "dense_bbb": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.5744089012517385,
+        "top5_end_to_end": 0.8789986091794159,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.7022580682005106,
+        "top1_conditional_on_truth_retained": 0.5744089012517385,
+        "top1_bootstrap_95": [
+          0.5382475660639777,
+          0.6105702364394993
+        ],
+        "mrr_bootstrap_95": [
+          0.6746737660091153,
+          0.7283033997502405
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.1932268981730956,
+        "candidate_distribution_brier": 0.08744490576295257,
+        "unseen_gene_ood_auroc": 0.510024546739789,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8605341246290801,
+            "top5_end_to_end": 0.9673590504451038,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.9074266402901419
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3219895287958115,
+            "top5_end_to_end": 0.8010471204188482,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5212585687392391
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8693009118541033,
+            "top5_end_to_end": 0.9726443768996961,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.9154038211029091
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.32564102564102565,
+            "top5_end_to_end": 0.8,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5224504971623333
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.65625,
+            "top5_end_to_end": 1.0,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7768229166666667
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.566412213740458,
+            "top5_end_to_end": 0.867175572519084,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.6949723425488556
+          }
+        },
+        "top1_at_80pct_coverage": 0.5711805555555556,
+        "risk_coverage_auc": 0.37288472881972795
+      },
+      "dense_mlp": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.5632823365785814,
+        "top5_end_to_end": 0.8400556328233658,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.6824649837432039,
+        "top1_conditional_on_truth_retained": 0.5632823365785814,
+        "top1_bootstrap_95": [
+          0.5271210013908206,
+          0.6008344923504868
+        ],
+        "mrr_bootstrap_95": [
+          0.6541472570674421,
+          0.7104266015570577
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.1987655620313187,
+        "candidate_distribution_brier": 0.08758677991063044,
+        "unseen_gene_ood_auroc": null,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8635014836795252,
+            "top5_end_to_end": 0.9614243323442137,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.9009055155197588
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.29842931937172773,
+            "top5_end_to_end": 0.7329842931937173,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.4897569753434681
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8693009118541033,
+            "top5_end_to_end": 0.9756838905775076,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.9088857528827133
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.30512820512820515,
+            "top5_end_to_end": 0.7256410256410256,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.49145874516141247
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.703125,
+            "top5_end_to_end": 0.921875,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7967385912698413
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.549618320610687,
+            "top5_end_to_end": 0.8320610687022901,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.6712993182749523
+          }
+        },
+        "top1_at_80pct_coverage": null,
+        "risk_coverage_auc": null
+      },
+      "gradient_boost": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.5632823365785814,
+        "top5_end_to_end": 0.8567454798331016,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.6890223529996693,
+        "top1_conditional_on_truth_retained": 0.5632823365785814,
+        "top1_bootstrap_95": [
+          0.5257301808066759,
+          0.5994436717663422
+        ],
+        "mrr_bootstrap_95": [
+          0.6613815644681528,
+          0.71575346561518
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.200209254240059,
+        "candidate_distribution_brier": 0.08800682035783258,
+        "unseen_gene_ood_auroc": null,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8486646884272997,
+            "top5_end_to_end": 0.9643916913946587,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8960423437426405
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.31151832460732987,
+            "top5_end_to_end": 0.7617801047120419,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5063895339410796
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8662613981762918,
+            "top5_end_to_end": 0.9787234042553191,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.9109241568968013
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3076923076923077,
+            "top5_end_to_end": 0.7538461538461538,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5018282671479861
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.703125,
+            "top5_end_to_end": 0.984375,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8143229166666667
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.549618320610687,
+            "top5_end_to_end": 0.8442748091603054,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.6767792444886955
+          }
+        },
+        "top1_at_80pct_coverage": null,
+        "risk_coverage_auc": null
+      },
+      "small_sbnn": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.5465924895688457,
+        "top5_end_to_end": 0.8484005563282336,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.6748253584934433,
+        "top1_conditional_on_truth_retained": 0.5465924895688457,
+        "top1_bootstrap_95": [
+          0.5104311543810849,
+          0.5841446453407511
+        ],
+        "mrr_bootstrap_95": [
+          0.6468884699277198,
+          0.7020463337466119
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.139282611078463,
+        "candidate_distribution_brier": 0.08629417690185949,
+        "unseen_gene_ood_auroc": 0.5069057125545698,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8130563798219584,
+            "top5_end_to_end": 0.9465875370919882,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8719419716452357
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.31151832460732987,
+            "top5_end_to_end": 0.7617801047120419,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5009292887757625
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8206686930091185,
+            "top5_end_to_end": 0.9513677811550152,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8796111352342355
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3153846153846154,
+            "top5_end_to_end": 0.7615384615384615,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5020701776018518
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.640625,
+            "top5_end_to_end": 0.9375,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7557291666666667
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.5374045801526718,
+            "top5_end_to_end": 0.8396946564885496,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.6669202535727007
+          }
+        },
+        "top1_at_80pct_coverage": 0.5486111111111112,
+        "risk_coverage_auc": 0.4096793607115599
+      },
+      "temporal_consensus": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.588317107093185,
+        "top5_end_to_end": 0.885952712100139,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.7076838072963797,
+        "top1_conditional_on_truth_retained": 0.588317107093185,
+        "top1_bootstrap_95": [
+          0.5521557719054242,
+          0.6244784422809457
+        ],
+        "mrr_bootstrap_95": [
+          0.6816027053398898,
+          0.7337618054721246
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.199333256915547,
+        "candidate_distribution_brier": 0.08783579893075773,
+        "unseen_gene_ood_auroc": 0.5089137290847795,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8724035608308606,
+            "top5_end_to_end": 0.9614243323442137,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.9120166266308699
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.337696335078534,
+            "top5_end_to_end": 0.819371727748691,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5274216080405599
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8814589665653495,
+            "top5_end_to_end": 0.9665653495440729,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.9207567424132772
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.34102564102564104,
+            "top5_end_to_end": 0.8179487179487179,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5279376645952021
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.65625,
+            "top5_end_to_end": 0.984375,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7822916666666666
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.5816793893129771,
+            "top5_end_to_end": 0.8763358778625954,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7003938790525654
+          }
+        },
+        "top1_at_80pct_coverage": 0.5694444444444444,
+        "risk_coverage_auc": 0.3527014750850616
+      },
+      "wide_dense_bbb": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.5605006954102921,
+        "top5_end_to_end": 0.8636995827538247,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.6856255851129622,
+        "top1_conditional_on_truth_retained": 0.5605006954102921,
+        "top1_bootstrap_95": [
+          0.5243393602225312,
+          0.5952712100139083
+        ],
+        "mrr_bootstrap_95": [
+          0.6579244843417353,
+          0.7125093984911622
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.1938854483729497,
+        "candidate_distribution_brier": 0.08755657027856227,
+        "unseen_gene_ood_auroc": 0.5181770161728836,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8219584569732937,
+            "top5_end_to_end": 0.9643916913946587,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8846604022420047
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3298429319371728,
+            "top5_end_to_end": 0.774869109947644,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5100372778551421
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8328267477203647,
+            "top5_end_to_end": 0.9696048632218845,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8943853427895981
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.33076923076923076,
+            "top5_end_to_end": 0.7743589743589744,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.509517994662672
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.65625,
+            "top5_end_to_end": 0.984375,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7809895833333333
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.5511450381679389,
+            "top5_end_to_end": 0.8519083969465648,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.6763075761265444
+          }
+        },
+        "top1_at_80pct_coverage": 0.5711805555555556,
+        "risk_coverage_auc": 0.3734563272402279
+      },
+      "wide_rank50_sbnn": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.5716272600834492,
+        "top5_end_to_end": 0.8650904033379694,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.6944776717082595,
+        "top1_conditional_on_truth_retained": 0.5716272600834492,
+        "top1_bootstrap_95": [
+          0.5340751043115438,
+          0.60778859527121
+        ],
+        "mrr_bootstrap_95": [
+          0.6675199617875796,
+          0.721284346608754
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.195186161829287,
+        "candidate_distribution_brier": 0.08743021711024948,
+        "unseen_gene_ood_auroc": 0.5025090496683082,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8605341246290801,
+            "top5_end_to_end": 0.9703264094955489,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.9063091705524942
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.31675392670157065,
+            "top5_end_to_end": 0.7722513089005235,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5076001452409635
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8723404255319149,
+            "top5_end_to_end": 0.9726443768996961,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.9157415448448882
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.31794871794871793,
+            "top5_end_to_end": 0.7743589743589744,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5078217377032571
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.65625,
+            "top5_end_to_end": 1.0,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7859375
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.5633587786259542,
+            "top5_end_to_end": 0.8519083969465648,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.6855411388675398
+          }
+        },
+        "top1_at_80pct_coverage": 0.5885416666666666,
+        "risk_coverage_auc": 0.3279927073288889
+      }
+    },
+    "hpo_drop40": {
+      "deep_ensemble": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.49791376912378305,
+        "top5_end_to_end": 0.8525730180806675,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.6425581692724741,
+        "top1_conditional_on_truth_retained": 0.49791376912378305,
+        "top1_bootstrap_95": [
+          0.4617524339360223,
+          0.5340751043115438
+        ],
+        "mrr_bootstrap_95": [
+          0.6153379830902577,
+          0.6702421403354447
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.0514603352912273,
+        "candidate_distribution_brier": 0.08347999905121485,
+        "unseen_gene_ood_auroc": 0.5322486677956095,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.7151335311572701,
+            "top5_end_to_end": 0.9525222551928784,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8093412933917384
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.306282722513089,
+            "top5_end_to_end": 0.7643979057591623,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.49542227181647375
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.7173252279635258,
+            "top5_end_to_end": 0.9604863221884499,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8129710040044386
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3128205128205128,
+            "top5_end_to_end": 0.7615384615384615,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.4987996497165347
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.640625,
+            "top5_end_to_end": 0.984375,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7716517857142857
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.48396946564885496,
+            "top5_end_to_end": 0.8396946564885496,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.6299444418644192
+          }
+        },
+        "top1_at_80pct_coverage": 0.4826388888888889,
+        "risk_coverage_auc": 0.45249983626956075
+      },
+      "dense_bbb": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.564673157162726,
+        "top5_end_to_end": 0.874826147426982,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.6980055790731953,
+        "top1_conditional_on_truth_retained": 0.564673157162726,
+        "top1_bootstrap_95": [
+          0.5299026425591099,
+          0.6022253129346314
+        ],
+        "mrr_bootstrap_95": [
+          0.670572757886324,
+          0.7243293481815498
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.1958669695660276,
+        "candidate_distribution_brier": 0.08753227849027306,
+        "unseen_gene_ood_auroc": 0.5108984417481007,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8456973293768546,
+            "top5_end_to_end": 0.9584569732937686,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8992487400499269
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.31675392670157065,
+            "top5_end_to_end": 0.8010471204188482,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5204690731853457
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8541033434650456,
+            "top5_end_to_end": 0.9665653495440729,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.9057099435518887
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.32051282051282054,
+            "top5_end_to_end": 0.7974358974358975,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5227883075001436
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.65625,
+            "top5_end_to_end": 0.984375,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7763020833333334
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.5557251908396946,
+            "top5_end_to_end": 0.8641221374045801,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.6903552336187697
+          }
+        },
+        "top1_at_80pct_coverage": 0.5607638888888888,
+        "risk_coverage_auc": 0.3841455291217385
+      },
+      "dense_mlp": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.5577190542420027,
+        "top5_end_to_end": 0.8331015299026425,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.678323429114862,
+        "top1_conditional_on_truth_retained": 0.5577190542420027,
+        "top1_bootstrap_95": [
+          0.5229485396383866,
+          0.5938803894297635
+        ],
+        "mrr_bootstrap_95": [
+          0.6494297402587317,
+          0.7058924202057132
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.2054152543659327,
+        "candidate_distribution_brier": 0.08769225261163771,
+        "unseen_gene_ood_auroc": null,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8486646884272997,
+            "top5_end_to_end": 0.9436201780415431,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8902972069144176
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3010471204188482,
+            "top5_end_to_end": 0.7356020942408377,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.49132038430216507
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.851063829787234,
+            "top5_end_to_end": 0.9544072948328267,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.895414194046413
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.31025641025641026,
+            "top5_end_to_end": 0.7307692307692307,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.4951878863905537
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.703125,
+            "top5_end_to_end": 0.921875,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7962425595238096
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.5435114503816794,
+            "top5_end_to_end": 0.8244274809160306,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.6668015598840641
+          }
+        },
+        "top1_at_80pct_coverage": null,
+        "risk_coverage_auc": null
+      },
+      "gradient_boost": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.5660639777468707,
+        "top5_end_to_end": 0.8497913769123783,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.6872875903121946,
+        "top1_conditional_on_truth_retained": 0.5660639777468707,
+        "top1_bootstrap_95": [
+          0.5285118219749653,
+          0.6036161335187761
+        ],
+        "mrr_bootstrap_95": [
+          0.6599967198156871,
+          0.7153073079033655
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.2024469812449032,
+        "candidate_distribution_brier": 0.088059031582695,
+        "unseen_gene_ood_auroc": null,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8516320474777448,
+            "top5_end_to_end": 0.9495548961424333,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8909354246149497
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.31413612565445026,
+            "top5_end_to_end": 0.7617801047120419,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5076296841341092
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8632218844984803,
+            "top5_end_to_end": 0.9635258358662614,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.9013798427172288
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3153846153846154,
+            "top5_end_to_end": 0.7538461538461538,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5066815620012809
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.703125,
+            "top5_end_to_end": 0.96875,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8134300595238095
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.5526717557251909,
+            "top5_end_to_end": 0.8381679389312977,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.6749622192747238
+          }
+        },
+        "top1_at_80pct_coverage": null,
+        "risk_coverage_auc": null
+      },
+      "small_sbnn": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.5257301808066759,
+        "top5_end_to_end": 0.8511821974965229,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.6630045877018798,
+        "top1_conditional_on_truth_retained": 0.5257301808066759,
+        "top1_bootstrap_95": [
+          0.48956884561891517,
+          0.5618915159944368
+        ],
+        "mrr_bootstrap_95": [
+          0.6348897297263083,
+          0.6909008703464852
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.1428977393828315,
+        "candidate_distribution_brier": 0.08640286564867397,
+        "unseen_gene_ood_auroc": 0.5116247455994531,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.7655786350148368,
+            "top5_end_to_end": 0.9495548961424333,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8445139183269748
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.31413612565445026,
+            "top5_end_to_end": 0.7643979057591623,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5028772462865472
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.7720364741641338,
+            "top5_end_to_end": 0.9513677811550152,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.85082862932407
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.31794871794871793,
+            "top5_end_to_end": 0.7666666666666667,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5045581525898267
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.640625,
+            "top5_end_to_end": 0.9375,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7557291666666667
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.5145038167938931,
+            "top5_end_to_end": 0.8427480916030534,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.6539444761694424
+          }
+        },
+        "top1_at_80pct_coverage": 0.5295138888888888,
+        "risk_coverage_auc": 0.42394533341368523
+      },
+      "temporal_consensus": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.5855354659248957,
+        "top5_end_to_end": 0.8817802503477051,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.7041028958573321,
+        "top1_conditional_on_truth_retained": 0.5855354659248957,
+        "top1_bootstrap_95": [
+          0.5493393602225313,
+          0.6203059805285118
+        ],
+        "mrr_bootstrap_95": [
+          0.67745057225512,
+          0.731694071407691
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.201905324944593,
+        "candidate_distribution_brier": 0.08790313766523591,
+        "unseen_gene_ood_auroc": 0.5123937732067674,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8694362017804155,
+            "top5_end_to_end": 0.9495548961424333,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.905727473976732
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.33507853403141363,
+            "top5_end_to_end": 0.8219895287958116,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.52622990416561
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8723404255319149,
+            "top5_end_to_end": 0.9513677811550152,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.909683022145028
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3435897435897436,
+            "top5_end_to_end": 0.823076923076923,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5306776098351473
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.65625,
+            "top5_end_to_end": 0.984375,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7822916666666666
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.5786259541984733,
+            "top5_end_to_end": 0.8717557251908397,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.6964630770301604
+          }
+        },
+        "top1_at_80pct_coverage": 0.5711805555555556,
+        "risk_coverage_auc": 0.3590966865072788
+      },
+      "wide_dense_bbb": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.5507649513212796,
+        "top5_end_to_end": 0.8595271210013908,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.6785741756971578,
+        "top1_conditional_on_truth_retained": 0.5507649513212796,
+        "top1_bootstrap_95": [
+          0.5159944367176634,
+          0.5869262865090403
+        ],
+        "mrr_bootstrap_95": [
+          0.6504514183851753,
+          0.7051507264972846
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.197209727879911,
+        "candidate_distribution_brier": 0.08765663181362557,
+        "unseen_gene_ood_auroc": 0.5232067674429444,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.798219584569733,
+            "top5_end_to_end": 0.9554896142433235,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8676098629362724
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3324607329842932,
+            "top5_end_to_end": 0.774869109947644,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5118070903579389
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8085106382978723,
+            "top5_end_to_end": 0.9604863221884499,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8760083466010518
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3333333333333333,
+            "top5_end_to_end": 0.7743589743589744,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5120207340884884
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.65625,
+            "top5_end_to_end": 0.984375,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7809895833333333
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.5404580152671755,
+            "top5_end_to_end": 0.8473282442748091,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.6685671740349972
+          }
+        },
+        "top1_at_80pct_coverage": 0.5607638888888888,
+        "risk_coverage_auc": 0.38353593283351683
+      },
+      "wide_rank50_sbnn": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.5632823365785814,
+        "top5_end_to_end": 0.8609179415855355,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.6876841754502291,
+        "top1_conditional_on_truth_retained": 0.5632823365785814,
+        "top1_bootstrap_95": [
+          0.5257301808066759,
+          0.6008344923504868
+        ],
+        "mrr_bootstrap_95": [
+          0.6599968900565516,
+          0.7149682135863279
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.1985969762979742,
+        "candidate_distribution_brier": 0.08752228173795495,
+        "unseen_gene_ood_auroc": 0.5045481380210357,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8456973293768546,
+            "top5_end_to_end": 0.9614243323442137,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8932575008242664
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.31413612565445026,
+            "top5_end_to_end": 0.7722513089005235,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5063276030652799
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8541033434650456,
+            "top5_end_to_end": 0.9665653495440729,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8994343127321851
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.31794871794871793,
+            "top5_end_to_end": 0.7717948717948718,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5090539314354509
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.65625,
+            "top5_end_to_end": 0.984375,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7854166666666667
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.5541984732824428,
+            "top5_end_to_end": 0.8488549618320611,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.6781347411939664
+          }
+        },
+        "top1_at_80pct_coverage": 0.5763888888888888,
+        "risk_coverage_auc": 0.34013463927187376
+      }
+    },
+    "hpo_noise20": {
+      "deep_ensemble": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.4993045897079277,
+        "top5_end_to_end": 0.8553546592489569,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.6448050068113839,
+        "top1_conditional_on_truth_retained": 0.4993045897079277,
+        "top1_bootstrap_95": [
+          0.4631432545201669,
+          0.5368567454798331
+        ],
+        "mrr_bootstrap_95": [
+          0.6185533005987702,
+          0.6716444164000647
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.048081983314113,
+        "candidate_distribution_brier": 0.08342231281801187,
+        "unseen_gene_ood_auroc": 0.5257973806453617,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.7181008902077152,
+            "top5_end_to_end": 0.9614243323442137,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.81561042814752
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.306282722513089,
+            "top5_end_to_end": 0.7617801047120419,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.49412064296248887
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.7203647416413373,
+            "top5_end_to_end": 0.9696048632218845,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8202622183625223
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3128205128205128,
+            "top5_end_to_end": 0.7589743589743589,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.4967911027079877
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.640625,
+            "top5_end_to_end": 0.984375,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7729538690476191
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.4854961832061069,
+            "top5_end_to_end": 0.8427480916030534,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.6322835912646373
+          }
+        },
+        "top1_at_80pct_coverage": 0.4826388888888889,
+        "risk_coverage_auc": 0.4557203709303391
+      },
+      "dense_bbb": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.5660639777468707,
+        "top5_end_to_end": 0.8831710709318498,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.6988698422564473,
+        "top1_conditional_on_truth_retained": 0.5660639777468707,
+        "top1_bootstrap_95": [
+          0.5299026425591099,
+          0.6036161335187761
+        ],
+        "mrr_bootstrap_95": [
+          0.6723297466962262,
+          0.7246253807806097
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.1934088632189606,
+        "candidate_distribution_brier": 0.08747328454249846,
+        "unseen_gene_ood_auroc": 0.5121762704491433,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8486646884272997,
+            "top5_end_to_end": 0.9762611275964391,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.9030285902689463
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.31675392670157065,
+            "top5_end_to_end": 0.8010471204188482,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5187612085386144
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8571428571428571,
+            "top5_end_to_end": 0.9787234042553191,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.9098856563902156
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.32051282051282054,
+            "top5_end_to_end": 0.8025641025641026,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5208590657179607
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.65625,
+            "top5_end_to_end": 1.0,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.77890625
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.5572519083969466,
+            "top5_end_to_end": 0.8717557251908397,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.6910494909654743
+          }
+        },
+        "top1_at_80pct_coverage": 0.5659722222222222,
+        "risk_coverage_auc": 0.3767211668239534
+      },
+      "dense_mlp": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.5591098748261474,
+        "top5_end_to_end": 0.8400556328233658,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.6818621803399207,
+        "top1_conditional_on_truth_retained": 0.5591098748261474,
+        "top1_bootstrap_95": [
+          0.5243045897079276,
+          0.5953059805285117
+        ],
+        "mrr_bootstrap_95": [
+          0.6549678220464691,
+          0.7089973603582653
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.1991914002700685,
+        "candidate_distribution_brier": 0.0876132416700828,
+        "unseen_gene_ood_auroc": null,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8605341246290801,
+            "top5_end_to_end": 0.9643916913946587,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.9027942631058359
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.2931937172774869,
+            "top5_end_to_end": 0.7303664921465969,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.4869561282663256
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8662613981762918,
+            "top5_end_to_end": 0.9726443768996961,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.9091100979398852
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3,
+            "top5_end_to_end": 0.7282051282051282,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.4901581678004636
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.703125,
+            "top5_end_to_end": 0.9375,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7997147817460317
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.5450381679389313,
+            "top5_end_to_end": 0.8305343511450382,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.6703468116529114
+          }
+        },
+        "top1_at_80pct_coverage": null,
+        "risk_coverage_auc": null
+      },
+      "gradient_boost": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.5591098748261474,
+        "top5_end_to_end": 0.8581363004172462,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.685139422817958,
+        "top1_conditional_on_truth_retained": 0.5591098748261474,
+        "top1_bootstrap_95": [
+          0.5229485396383866,
+          0.5952712100139083
+        ],
+        "mrr_bootstrap_95": [
+          0.6582649579688139,
+          0.7126118050756324
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.200700692296115,
+        "candidate_distribution_brier": 0.08802382733256224,
+        "unseen_gene_ood_auroc": null,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8397626112759644,
+            "top5_end_to_end": 0.9643916913946587,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8892550986764637
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.31151832460732987,
+            "top5_end_to_end": 0.7643979057591623,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5050687873092765
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.851063829787234,
+            "top5_end_to_end": 0.9726443768996961,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8994126019202007
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3128205128205128,
+            "top5_end_to_end": 0.7615384615384615,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5043807666009381
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.703125,
+            "top5_end_to_end": 0.984375,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.81640625
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.5450381679389313,
+            "top5_end_to_end": 0.8458015267175573,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.6723133511543693
+          }
+        },
+        "top1_at_80pct_coverage": null,
+        "risk_coverage_auc": null
+      },
+      "small_sbnn": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.5396383866481224,
+        "top5_end_to_end": 0.8497913769123783,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.672422159775919,
+        "top1_conditional_on_truth_retained": 0.5396383866481224,
+        "top1_bootstrap_95": [
+          0.5034770514603616,
+          0.5771905424200278
+        ],
+        "mrr_bootstrap_95": [
+          0.6447931625811443,
+          0.699873351840647
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.1398673806796267,
+        "candidate_distribution_brier": 0.08633928086970613,
+        "unseen_gene_ood_auroc": 0.5095817732689111,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.7952522255192879,
+            "top5_end_to_end": 0.9495548961424333,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8653678583203805
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.31413612565445026,
+            "top5_end_to_end": 0.7617801047120419,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5022056665573759
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.7993920972644377,
+            "top5_end_to_end": 0.9513677811550152,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8698123220919574
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.32051282051282054,
+            "top5_end_to_end": 0.764102564102564,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5059058433605945
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.640625,
+            "top5_end_to_end": 0.9375,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7578125
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.5297709923664122,
+            "top5_end_to_end": 0.8412213740458016,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.6640786761509707
+          }
+        },
+        "top1_at_80pct_coverage": 0.546875,
+        "risk_coverage_auc": 0.40925485507849957
+      },
+      "temporal_consensus": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.5938803894297635,
+        "top5_end_to_end": 0.8873435326842837,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.709996391945543,
+        "top1_conditional_on_truth_retained": 0.5938803894297635,
+        "top1_bootstrap_95": [
+          0.5576842837273991,
+          0.6300417246175244
+        ],
+        "mrr_bootstrap_95": [
+          0.684189004468447,
+          0.7358339729920431
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.1998214238425833,
+        "candidate_distribution_brier": 0.08785814247169402,
+        "unseen_gene_ood_auroc": 0.5078417512079171,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.884272997032641,
+            "top5_end_to_end": 0.9614243323442137,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.9186225330884086
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.337696335078534,
+            "top5_end_to_end": 0.8219895287958116,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5259466286859995
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8905775075987842,
+            "top5_end_to_end": 0.9635258358662614,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.924512712886573
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3435897435897436,
+            "top5_end_to_end": 0.823076923076923,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5290326237670844
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.65625,
+            "top5_end_to_end": 0.984375,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.784375
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.5877862595419847,
+            "top5_end_to_end": 0.8778625954198473,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7027288638302984
+          }
+        },
+        "top1_at_80pct_coverage": 0.5763888888888888,
+        "risk_coverage_auc": 0.35123145236448694
+      },
+      "wide_dense_bbb": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.5563282336578581,
+        "top5_end_to_end": 0.8650904033379694,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.6852832846127411,
+        "top1_conditional_on_truth_retained": 0.5563282336578581,
+        "top1_bootstrap_95": [
+          0.521557719054242,
+          0.5924895688456189
+        ],
+        "mrr_bootstrap_95": [
+          0.658465301322022,
+          0.7124977207975934
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.194300630449144,
+        "candidate_distribution_brier": 0.0875850581095579,
+        "unseen_gene_ood_auroc": 0.5186081377103174,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8160237388724035,
+            "top5_end_to_end": 0.9703264094955489,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8856530544957845
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.32722513089005234,
+            "top5_end_to_end": 0.7722513089005235,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5085172834331977
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8237082066869301,
+            "top5_end_to_end": 0.9726443768996961,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8923879480870364
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.33076923076923076,
+            "top5_end_to_end": 0.7743589743589744,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5105719146562204
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.65625,
+            "top5_end_to_end": 0.984375,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7830729166666667
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.5465648854961832,
+            "top5_end_to_end": 0.8534351145038168,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.6757282671296095
+          }
+        },
+        "top1_at_80pct_coverage": 0.5694444444444444,
+        "risk_coverage_auc": 0.3786909665857183
+      },
+      "wide_rank50_sbnn": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.56884561891516,
+        "top5_end_to_end": 0.8650904033379694,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.6942106011859108,
+        "top1_conditional_on_truth_retained": 0.56884561891516,
+        "top1_bootstrap_95": [
+          0.5326842837273992,
+          0.6050417246175241
+        ],
+        "mrr_bootstrap_95": [
+          0.6669559011039885,
+          0.7210308543107122
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.19554163678384,
+        "candidate_distribution_brier": 0.0874573650580474,
+        "unseen_gene_ood_auroc": 0.5043655910637439,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.857566765578635,
+            "top5_end_to_end": 0.973293768545994,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.9072900475719468
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.31413612565445026,
+            "top5_end_to_end": 0.7696335078534031,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5062321367039893
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8662613981762918,
+            "top5_end_to_end": 0.9726443768996961,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.9140444830414435
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.31794871794871793,
+            "top5_end_to_end": 0.7743589743589744,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5087609931590642
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.65625,
+            "top5_end_to_end": 1.0,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7880208333333334
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.5603053435114503,
+            "top5_end_to_end": 0.8519083969465648,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.6850444105638728
+          }
+        },
+        "top1_at_80pct_coverage": 0.5850694444444444,
+        "risk_coverage_auc": 0.32786032465249504
+      }
+    },
+    "hpo_original": {
+      "deep_ensemble": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.5187760778859527,
+        "top5_end_to_end": 0.8581363004172462,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.6570309820415317,
+        "top1_conditional_on_truth_retained": 0.5187760778859527,
+        "top1_bootstrap_95": [
+          0.48397079276773297,
+          0.5549374130737135
+        ],
+        "mrr_bootstrap_95": [
+          0.6304165476804929,
+          0.684428489145462
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.0422582758265646,
+        "candidate_distribution_brier": 0.083255358680036,
+        "unseen_gene_ood_auroc": 0.5233465906442742,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.7596439169139466,
+            "top5_end_to_end": 0.9643916913946587,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8407635061937732
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.306282722513089,
+            "top5_end_to_end": 0.7643979057591623,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.4949423416245017
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.7659574468085106,
+            "top5_end_to_end": 0.9726443768996961,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8474369180296231
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.31025641025641026,
+            "top5_end_to_end": 0.7615384615384615,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.49640648732337234
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.640625,
+            "top5_end_to_end": 0.984375,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7716517857142857
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.5068702290076336,
+            "top5_end_to_end": 0.8458015267175573,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.6458313920643465
+          }
+        },
+        "top1_at_80pct_coverage": 0.5,
+        "risk_coverage_auc": 0.43584659976882245
+      },
+      "dense_bbb": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.5744089012517385,
+        "top5_end_to_end": 0.8831710709318498,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.7049387093025703,
+        "top1_conditional_on_truth_retained": 0.5744089012517385,
+        "top1_bootstrap_95": [
+          0.5368567454798331,
+          0.6106050069541027
+        ],
+        "mrr_bootstrap_95": [
+          0.6782703685741988,
+          0.7302707311679935
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.1928845825207404,
+        "candidate_distribution_brier": 0.08744427419690262,
+        "unseen_gene_ood_auroc": 0.5103935246321872,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8635014836795252,
+            "top5_end_to_end": 0.9762611275964391,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.9134967735857943
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3193717277486911,
+            "top5_end_to_end": 0.8010471204188482,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5209490033773179
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8753799392097265,
+            "top5_end_to_end": 0.9787234042553191,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.9221281420369566
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.32051282051282054,
+            "top5_end_to_end": 0.8025641025641026,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5217199314317675
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.65625,
+            "top5_end_to_end": 1.0,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7768229166666667
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.566412213740458,
+            "top5_end_to_end": 0.8717557251908397,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.6979149088883686
+          }
+        },
+        "top1_at_80pct_coverage": 0.5711805555555556,
+        "risk_coverage_auc": 0.37451902826025524
+      },
+      "dense_mlp": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.5660639777468707,
+        "top5_end_to_end": 0.8414464534075105,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.6866976040050313,
+        "top1_conditional_on_truth_retained": 0.5660639777468707,
+        "top1_bootstrap_95": [
+          0.5312586926286509,
+          0.6050069541029207
+        ],
+        "mrr_bootstrap_95": [
+          0.6593224900044038,
+          0.71410417747882
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.19742307535084,
+        "candidate_distribution_brier": 0.0875609229309163,
+        "unseen_gene_ood_auroc": null,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8753709198813057,
+            "top5_end_to_end": 0.9673590504451038,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.9127019452687107
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.2931937172774869,
+            "top5_end_to_end": 0.7303664921465969,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.4873168107959738
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8814589665653495,
+            "top5_end_to_end": 0.9787234042553191,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.9195457615670382
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3,
+            "top5_end_to_end": 0.7256410256410256,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.4902692864719538
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.703125,
+            "top5_end_to_end": 0.921875,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7971106150793651
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.5526717557251909,
+            "top5_end_to_end": 0.833587786259542,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.6759091571214322
+          }
+        },
+        "top1_at_80pct_coverage": null,
+        "risk_coverage_auc": null
+      },
+      "gradient_boost": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.5674547983310153,
+        "top5_end_to_end": 0.8623087621696801,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.6926422495611514,
+        "top1_conditional_on_truth_retained": 0.5674547983310153,
+        "top1_bootstrap_95": [
+          0.5299026425591099,
+          0.6036161335187761
+        ],
+        "mrr_bootstrap_95": [
+          0.6652993710829025,
+          0.7196986835100513
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.200184263272664,
+        "candidate_distribution_brier": 0.08800736420054321,
+        "unseen_gene_ood_auroc": null,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8635014836795252,
+            "top5_end_to_end": 0.973293768545994,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.9070015543309312
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.306282722513089,
+            "top5_end_to_end": 0.7643979057591623,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5035346953532566
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.878419452887538,
+            "top5_end_to_end": 0.9817629179331308,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.9200221932744729
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.30512820512820515,
+            "top5_end_to_end": 0.7615384615384615,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.50082686114658
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.703125,
+            "top5_end_to_end": 0.984375,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8143229166666667
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.5541984732824428,
+            "top5_end_to_end": 0.850381679389313,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.680752840866872
+          }
+        },
+        "top1_at_80pct_coverage": null,
+        "risk_coverage_auc": null
+      },
+      "small_sbnn": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.5507649513212796,
+        "top5_end_to_end": 0.8567454798331016,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.6799614602220345,
+        "top1_conditional_on_truth_retained": 0.5507649513212796,
+        "top1_bootstrap_95": [
+          0.5132127955493742,
+          0.5869262865090403
+        ],
+        "mrr_bootstrap_95": [
+          0.652669120112618,
+          0.7067449038491848
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.1382135447302564,
+        "candidate_distribution_brier": 0.08627860554673362,
+        "unseen_gene_ood_auroc": 0.5040471048829369,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8219584569732937,
+            "top5_end_to_end": 0.9643916913946587,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8825997362347512
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.31151832460732987,
+            "top5_end_to_end": 0.7617801047120419,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5011941853102926
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8297872340425532,
+            "top5_end_to_end": 0.9665653495440729,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8898948231774979
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3153846153846154,
+            "top5_end_to_end": 0.764102564102564,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5028638283955027
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.640625,
+            "top5_end_to_end": 0.9375,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7557291666666667
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.5419847328244275,
+            "top5_end_to_end": 0.8488549618320611,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.6725582034091239
+          }
+        },
+        "top1_at_80pct_coverage": 0.5555555555555556,
+        "risk_coverage_auc": 0.4028154157605329
+      },
+      "temporal_consensus": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.5980528511821975,
+        "top5_end_to_end": 0.8901251738525731,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.7137713065688581,
+        "top1_conditional_on_truth_retained": 0.5980528511821975,
+        "top1_bootstrap_95": [
+          0.5618915159944368,
+          0.6328233657858137
+        ],
+        "mrr_bootstrap_95": [
+          0.6876016412346971,
+          0.7397898787383425
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.1990688410769432,
+        "candidate_distribution_brier": 0.08783345016562033,
+        "unseen_gene_ood_auroc": 0.5073057622694859,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8931750741839762,
+            "top5_end_to_end": 0.9673590504451038,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.9253085111393716
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.337696335078534,
+            "top5_end_to_end": 0.8219895287958116,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5271534062016775
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8996960486322189,
+            "top5_end_to_end": 0.9696048632218845,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.9317665364017947
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3435897435897436,
+            "top5_end_to_end": 0.823076923076923,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5298727665303041
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.65625,
+            "top5_end_to_end": 0.984375,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7822916666666666
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.5923664122137404,
+            "top5_end_to_end": 0.8809160305343512,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7070761874142631
+          }
+        },
+        "top1_at_80pct_coverage": 0.5798611111111112,
+        "risk_coverage_auc": 0.34429112888651625
+      },
+      "wide_dense_bbb": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.5674547983310153,
+        "top5_end_to_end": 0.8692628650904033,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.6916563377014339,
+        "top1_conditional_on_truth_retained": 0.5674547983310153,
+        "top1_bootstrap_95": [
+          0.5340751043115438,
+          0.6036161335187761
+        ],
+        "mrr_bootstrap_95": [
+          0.6643727686671291,
+          0.7189612710234049
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.193555995919422,
+        "candidate_distribution_brier": 0.08755375968849226,
+        "unseen_gene_ood_auroc": 0.5127666350769804,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8367952522255193,
+            "top5_end_to_end": 0.9762611275964391,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8975272007912959
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3298429319371728,
+            "top5_end_to_end": 0.774869109947644,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5100372778551421
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8480243161094225,
+            "top5_end_to_end": 0.9817629179331308,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.9073117190138468
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.33076923076923076,
+            "top5_end_to_end": 0.7743589743589744,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5097316698763472
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.65625,
+            "top5_end_to_end": 0.984375,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7809895833333333
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.5587786259541985,
+            "top5_end_to_end": 0.8580152671755725,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.6829275930900728
+          }
+        },
+        "top1_at_80pct_coverage": 0.578125,
+        "risk_coverage_auc": 0.36733983522018687
+      },
+      "wide_rank50_sbnn": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.5744089012517385,
+        "top5_end_to_end": 0.8692628650904033,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.697995564725457,
+        "top1_conditional_on_truth_retained": 0.5744089012517385,
+        "top1_bootstrap_95": [
+          0.5382475660639777,
+          0.6119610570236439
+        ],
+        "mrr_bootstrap_95": [
+          0.6712749946147832,
+          0.7247564957155671
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.1947078329958543,
+        "candidate_distribution_brier": 0.08742432417775382,
+        "unseen_gene_ood_auroc": 0.5023303866888312,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8664688427299704,
+            "top5_end_to_end": 0.9792284866468842,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.914485893269276
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.31675392670157065,
+            "top5_end_to_end": 0.7722513089005235,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5070080235755434
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.8753799392097265,
+            "top5_end_to_end": 0.9787234042553191,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.9216094948617746
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.32051282051282054,
+            "top5_end_to_end": 0.7769230769230769,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5093571467386662
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.65625,
+            "top5_end_to_end": 1.0,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7859375
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.566412213740458,
+            "top5_end_to_end": 0.8564885496183207,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.6894027649429063
+          }
+        },
+        "top1_at_80pct_coverage": 0.5920138888888888,
+        "risk_coverage_auc": 0.3248094187727166
+      }
+    },
+    "molecular_only": {
+      "deep_ensemble": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.30737134909596664,
+        "top5_end_to_end": 0.7524339360222532,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.49855424169282425,
+        "top1_conditional_on_truth_retained": 0.30737134909596664,
+        "top1_bootstrap_95": [
+          0.27399165507649514,
+          0.34075104311543813
+        ],
+        "mrr_bootstrap_95": [
+          0.47278015604914697,
+          0.5242133336325773
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.116000251578965,
+        "candidate_distribution_brier": 0.08392019857693392,
+        "unseen_gene_ood_auroc": 0.5873661969642829,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3086053412462908,
+            "top5_end_to_end": 0.7537091988130564,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5020804484723053
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.306282722513089,
+            "top5_end_to_end": 0.7513089005235603,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.49544342576432926
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3069908814589666,
+            "top5_end_to_end": 0.7598784194528876,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5030577359879965
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3076923076923077,
+            "top5_end_to_end": 0.7461538461538462,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.49475514009510196
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.625,
+            "top5_end_to_end": 0.984375,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7625372023809525
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.27633587786259545,
+            "top5_end_to_end": 0.7297709923664122,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.4727604867553583
+          }
+        },
+        "top1_at_80pct_coverage": 0.296875,
+        "risk_coverage_auc": 0.6192276717861049
+      },
+      "dense_bbb": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.33936022253129344,
+        "top5_end_to_end": 0.8150208623087621,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.5321515356268648,
+        "top1_conditional_on_truth_retained": 0.33936022253129344,
+        "top1_bootstrap_95": [
+          0.30594575799721835,
+          0.37552155771905427
+        ],
+        "mrr_bootstrap_95": [
+          0.5068925324001281,
+          0.5578924826534624
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.04282764449453,
+        "candidate_distribution_brier": 0.082657408231791,
+        "unseen_gene_ood_auroc": 0.5713952801901596,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.34718100890207715,
+            "top5_end_to_end": 0.8338278931750742,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.539650799933434
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3324607329842932,
+            "top5_end_to_end": 0.7984293193717278,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5255356925082421
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3495440729483283,
+            "top5_end_to_end": 0.8419452887537994,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5417942564982567
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.33076923076923076,
+            "top5_end_to_end": 0.7923076923076923,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5240170351994596
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.65625,
+            "top5_end_to_end": 1.0,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7815104166666667
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3083969465648855,
+            "top5_end_to_end": 0.7969465648854962,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5077866983954947
+          }
+        },
+        "top1_at_80pct_coverage": 0.3559027777777778,
+        "risk_coverage_auc": 0.583089252856269
+      },
+      "dense_mlp": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.3031988873435327,
+        "top5_end_to_end": 0.741307371349096,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.491473247884694,
+        "top1_conditional_on_truth_retained": 0.3031988873435327,
+        "top1_bootstrap_95": [
+          0.2712100139082058,
+          0.33657858136300417
+        ],
+        "mrr_bootstrap_95": [
+          0.46613529249971497,
+          0.5178570874385198
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.1961100888470106,
+        "candidate_distribution_brier": 0.08556780252005433,
+        "unseen_gene_ood_auroc": null,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.29673590504451036,
+            "top5_end_to_end": 0.7566765578635015,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.48820342817527046
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3089005235602094,
+            "top5_end_to_end": 0.7277486910994765,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.49435787940845244
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.2948328267477204,
+            "top5_end_to_end": 0.7629179331306991,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.4890784810101249
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.31025641025641026,
+            "top5_end_to_end": 0.7230769230769231,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.49349344865836897
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.703125,
+            "top5_end_to_end": 0.9375,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8023189484126985
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.2641221374045801,
+            "top5_end_to_end": 0.7221374045801526,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.46110053821478214
+          }
+        },
+        "top1_at_80pct_coverage": null,
+        "risk_coverage_auc": null
+      },
+      "gradient_boost": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.3157162726008345,
+        "top5_end_to_end": 0.7719054242002782,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.5064329293863131,
+        "top1_conditional_on_truth_retained": 0.3157162726008345,
+        "top1_bootstrap_95": [
+          0.28372739916550765,
+          0.3491307371349094
+        ],
+        "mrr_bootstrap_95": [
+          0.4822568732287791,
+          0.5317287587682217
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.0061870775593786,
+        "candidate_distribution_brier": 0.08317623368380282,
+        "unseen_gene_ood_auroc": null,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.31750741839762614,
+            "top5_end_to_end": 0.7863501483679525,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5044928243033909
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.31413612565445026,
+            "top5_end_to_end": 0.7591623036649214,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5081444880589435
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3221884498480243,
+            "top5_end_to_end": 0.7963525835866262,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5102728512606461
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.31025641025641026,
+            "top5_end_to_end": 0.7512820512820513,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.50319361067694
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.6875,
+            "top5_end_to_end": 0.984375,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.8059895833333334
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.27938931297709924,
+            "top5_end_to_end": 0.751145038167939,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.4771632715960701
+          }
+        },
+        "top1_at_80pct_coverage": null,
+        "risk_coverage_auc": null
+      },
+      "small_sbnn": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.34492350486787204,
+        "top5_end_to_end": 0.7593880389429764,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.5284772978967918,
+        "top1_conditional_on_truth_retained": 0.34492350486787204,
+        "top1_bootstrap_95": [
+          0.3101529902642559,
+          0.3797287899860916
+        ],
+        "mrr_bootstrap_95": [
+          0.5028439467117654,
+          0.5550885244812461
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.0554844739396745,
+        "candidate_distribution_brier": 0.08375597768537124,
+        "unseen_gene_ood_auroc": 0.5702456227570029,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.37388724035608306,
+            "top5_end_to_end": 0.7655786350148368,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.552847445641035
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3193717277486911,
+            "top5_end_to_end": 0.7539267015706806,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5069779790752997
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3708206686930091,
+            "top5_end_to_end": 0.7689969604863222,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5521683536961093
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3230769230769231,
+            "top5_end_to_end": 0.7512820512820513,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5084917662096753
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.640625,
+            "top5_end_to_end": 0.9375,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7604166666666667
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.31603053435114503,
+            "top5_end_to_end": 0.7419847328244275,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5058145198795826
+          }
+        },
+        "top1_at_80pct_coverage": 0.3663194444444444,
+        "risk_coverage_auc": 0.5843327997648392
+      },
+      "temporal_consensus": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.34492350486787204,
+        "top5_end_to_end": 0.808066759388039,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.5338043583208005,
+        "top1_conditional_on_truth_retained": 0.34492350486787204,
+        "top1_bootstrap_95": [
+          0.31154381084840055,
+          0.3810848400556328
+        ],
+        "mrr_bootstrap_95": [
+          0.5082026577387647,
+          0.5589018203507982
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.0089033112864616,
+        "candidate_distribution_brier": 0.08273239538199967,
+        "unseen_gene_ood_auroc": 0.5709369708080227,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.34421364985163205,
+            "top5_end_to_end": 0.798219584569733,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5361697386692563
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.34554973821989526,
+            "top5_end_to_end": 0.8167539267015707,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5317176222542309
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3434650455927052,
+            "top5_end_to_end": 0.8054711246200608,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5379261925158111
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.34615384615384615,
+            "top5_end_to_end": 0.8102564102564103,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5303272212691122
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.65625,
+            "top5_end_to_end": 0.984375,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7869791666666668
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3145038167938931,
+            "top5_end_to_end": 0.7908396946564885,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5090666671236472
+          }
+        },
+        "top1_at_80pct_coverage": 0.3333333333333333,
+        "risk_coverage_auc": 0.5667164712661243
+      },
+      "wide_dense_bbb": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.3477051460361613,
+        "top5_end_to_end": 0.7649513212795549,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.5204151946684359,
+        "top1_conditional_on_truth_retained": 0.3477051460361613,
+        "top1_bootstrap_95": [
+          0.3157162726008345,
+          0.38386648122392214
+        ],
+        "mrr_bootstrap_95": [
+          0.4936415166801906,
+          0.5476957122909318
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.0427744041618343,
+        "candidate_distribution_brier": 0.08278569263359743,
+        "unseen_gene_ood_auroc": 0.5826549318750291,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3649851632047478,
+            "top5_end_to_end": 0.7596439169139466,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5289436510222264
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3324607329842932,
+            "top5_end_to_end": 0.7696335078534031,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5128913994034429
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.364741641337386,
+            "top5_end_to_end": 0.7629179331306991,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5299206778668889
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3333333333333333,
+            "top5_end_to_end": 0.7666666666666667,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5123964665343566
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.65625,
+            "top5_end_to_end": 0.984375,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7830729166666667
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.31755725190839695,
+            "top5_end_to_end": 0.7435114503816794,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.49475092870219667
+          }
+        },
+        "top1_at_80pct_coverage": 0.3697916666666667,
+        "risk_coverage_auc": 0.5342972363974876
+      },
+      "wide_rank50_sbnn": {
+        "cases": 719,
+        "candidate_generation_recall": 1.0,
+        "top1_end_to_end": 0.3240611961057024,
+        "top5_end_to_end": 0.7872044506258693,
+        "top10_end_to_end": 1.0,
+        "mrr_end_to_end": 0.5106790875086841,
+        "top1_conditional_on_truth_retained": 0.3240611961057024,
+        "top1_bootstrap_95": [
+          0.2906815020862309,
+          0.3588317107093185
+        ],
+        "mrr_bootstrap_95": [
+          0.48436623544128216,
+          0.535562330843598
+        ],
+        "candidate_count_median": 10.0,
+        "candidate_reduction_rate_mean": 0.0,
+        "candidate_distribution_nll": 2.07438688905871,
+        "candidate_distribution_brier": 0.08333420918740708,
+        "unseen_gene_ood_auroc": 0.5774154458029735,
+        "runtime_seconds_median": null,
+        "runtime_seconds_p95": null,
+        "by_gene_novelty": {
+          "seen": {
+            "cases": 337,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3323442136498516,
+            "top5_end_to_end": 0.8100890207715133,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5161960916278745
+          },
+          "unseen": {
+            "cases": 382,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.31675392670157065,
+            "top5_end_to_end": 0.7670157068062827,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5058119922517018
+          }
+        },
+        "by_disease_novelty": {
+          "seen": {
+            "cases": 329,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3343465045592705,
+            "top5_end_to_end": 0.8145896656534954,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5180051099367539
+          },
+          "unseen": {
+            "cases": 390,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.3153846153846154,
+            "top5_end_to_end": 0.764102564102564,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.5044989301270558
+          }
+        },
+        "by_inheritance": {
+          "compound_heterozygous": {
+            "cases": 64,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.640625,
+            "top5_end_to_end": 1.0,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.7802083333333334
+          },
+          "single_variant": {
+            "cases": 655,
+            "candidate_recall": 1.0,
+            "top1_end_to_end": 0.2931297709923664,
+            "top5_end_to_end": 0.766412213740458,
+            "top10_end_to_end": 1.0,
+            "mrr_end_to_end": 0.48434340547390914
+          }
+        },
+        "top1_at_80pct_coverage": 0.3489583333333333,
+        "risk_coverage_auc": 0.5116989187118346
+      }
+    }
+  }
+}

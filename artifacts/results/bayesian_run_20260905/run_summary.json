@@ -1,0 +1,35 @@
+{
+  "model_sha256": "0610a608b3545f96b1ddfcbb9301c51d5dcd99e631c6ca9f4a19744a6f8b6d3a",
+  "source": "ranking.zip",
+  "seed": 20260905,
+  "draws": 2048,
+  "tiers": {
+    "strict": {
+      "input_pairs": 7,
+      "eligible_pairs": 6,
+      "excluded_cis": 1,
+      "top_gene": "BUB1B",
+      "top_pair": "15:40209701:T:G|15:40220612:T:G",
+      "baseline_top_gene": "BUB1B",
+      "mutual_information": 2.8807794891043013e-05,
+      "top_conditional_probability": 0.9997995231403478,
+      "confirmed_reference_top_pair": "15:40209701:T:G|15:40220612:T:G",
+      "reference_pair_bayesian_rank": 1,
+      "exact_top_pair_match": true
+    },
+    "broad": {
+      "input_pairs": 131,
+      "eligible_pairs": 26,
+      "excluded_cis": 105,
+      "top_gene": "BUB1B",
+      "top_pair": "15:40209701:T:G|15:40220612:T:G",
+      "baseline_top_gene": "BUB1B",
+      "mutual_information": 3.6334873392276316e-05,
+      "top_conditional_probability": 0.9997756591203487,
+      "confirmed_reference_top_pair": "15:40209701:T:G|15:40220612:T:G",
+      "reference_pair_bayesian_rank": 1,
+      "exact_top_pair_match": true
+    }
+  },
+  "caveat": "Probabilities conditional on supplied candidate sets; clinical calibration and HF scores not established."
+}

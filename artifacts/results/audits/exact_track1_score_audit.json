@@ -1,0 +1,153 @@
+{
+  "scoring_rule": "Public SageBio Track 1 evaluation.py logic, checked 2026-09-06",
+  "scoring_source": "https://huggingface.co/spaces/SageBio/rare-disease-real-kid-mva-hackathon-2026/blob/main/evaluation.py",
+  "scope_note": "Local exact re-scoring against the accepted pair. The selected wide rank-50 SBNN CSV is confirmed by the live Hugging Face evaluator; the remaining model adapters are local official-equivalent scores.",
+  "leaderboard_confirmation": {
+    "source": "Hugging Face submission receipt supplied by the team",
+    "team": "bonamame",
+    "account": "mametoure",
+    "submission_number": 2,
+    "proband_id": "PROBAND01",
+    "full_match_rank": 1,
+    "rank_points": 100.0,
+    "f_max": 1.0,
+    "f_max_threshold": 0.3724070924857989
+  },
+  "accepted_pair": [
+    [
+      "chr15",
+      40209701,
+      "T",
+      "G"
+    ],
+    [
+      "chr15",
+      40220612,
+      "T",
+      "G"
+    ]
+  ],
+  "results": {
+    "selected_wide_rank50_sbnn": {
+      "path": "submission/model1_bonamame_wide-rank50-sbnn.csv",
+      "rows": 6,
+      "full_match_rank": 1,
+      "rank_points": 100.0,
+      "f_max": 1.0,
+      "f_max_threshold": 0.3724070924857989,
+      "rows_at_f_max": 1,
+      "exact_perfect_score": true
+    },
+    "linear_bayesian_strict": {
+      "path": "artifacts/results/bayesian_run_20260905/strict_bayesian_candidates.csv",
+      "rows": 6,
+      "full_match_rank": 1,
+      "rank_points": 100.0,
+      "f_max": 1.0,
+      "f_max_threshold": 0.9997995231403478,
+      "rows_at_f_max": 1,
+      "exact_perfect_score": true
+    },
+    "linear_bayesian_broad": {
+      "path": "artifacts/results/bayesian_run_20260905/broad_bayesian_candidates.csv",
+      "rows": 10,
+      "full_match_rank": 1,
+      "rank_points": 100.0,
+      "f_max": 1.0,
+      "f_max_threshold": 0.9997756591203487,
+      "rows_at_f_max": 1,
+      "exact_perfect_score": true
+    },
+    "temporal_gradient_boost": {
+      "path": "artifacts/results/track1_temporal_transfer_20260906/strict_gradient_boost.csv",
+      "rows": 6,
+      "full_match_rank": 1,
+      "rank_points": 100.0,
+      "f_max": 1.0,
+      "f_max_threshold": 0.4595381634742914,
+      "rows_at_f_max": 1,
+      "exact_perfect_score": true
+    },
+    "temporal_dense_mlp": {
+      "path": "artifacts/results/track1_temporal_transfer_20260906/strict_dense_mlp.csv",
+      "rows": 6,
+      "full_match_rank": 1,
+      "rank_points": 100.0,
+      "f_max": 1.0,
+      "f_max_threshold": 0.4356833835518995,
+      "rows_at_f_max": 1,
+      "exact_perfect_score": true
+    },
+    "temporal_deep_ensemble": {
+      "path": "artifacts/results/track1_temporal_transfer_20260906/strict_deep_ensemble.csv",
+      "rows": 6,
+      "full_match_rank": 1,
+      "rank_points": 100.0,
+      "f_max": 1.0,
+      "f_max_threshold": 0.3920750168951636,
+      "rows_at_f_max": 1,
+      "exact_perfect_score": true
+    },
+    "temporal_small_sbnn": {
+      "path": "artifacts/results/track1_temporal_transfer_20260906/strict_small_sbnn.csv",
+      "rows": 6,
+      "full_match_rank": 1,
+      "rank_points": 100.0,
+      "f_max": 1.0,
+      "f_max_threshold": 0.3480718064626136,
+      "rows_at_f_max": 1,
+      "exact_perfect_score": true
+    },
+    "temporal_dense_bbb": {
+      "path": "artifacts/results/track1_temporal_transfer_20260906/strict_dense_bbb.csv",
+      "rows": 6,
+      "full_match_rank": 1,
+      "rank_points": 100.0,
+      "f_max": 1.0,
+      "f_max_threshold": 0.5000342600559343,
+      "rows_at_f_max": 1,
+      "exact_perfect_score": true
+    },
+    "temporal_wide_rank50_sbnn": {
+      "path": "artifacts/results/track1_temporal_transfer_20260906/strict_wide_rank50_sbnn.csv",
+      "rows": 6,
+      "full_match_rank": 1,
+      "rank_points": 100.0,
+      "f_max": 1.0,
+      "f_max_threshold": 0.3724070924857989,
+      "rows_at_f_max": 1,
+      "exact_perfect_score": true
+    },
+    "temporal_wide_dense_bbb": {
+      "path": "artifacts/results/track1_temporal_transfer_20260906/strict_wide_dense_bbb.csv",
+      "rows": 6,
+      "full_match_rank": 1,
+      "rank_points": 100.0,
+      "f_max": 1.0,
+      "f_max_threshold": 0.4655097179388454,
+      "rows_at_f_max": 1,
+      "exact_perfect_score": true
+    },
+    "temporal_consensus": {
+      "path": "artifacts/results/track1_temporal_transfer_20260906/strict_temporal_consensus.csv",
+      "rows": 6,
+      "full_match_rank": 1,
+      "rank_points": 100.0,
+      "f_max": 1.0,
+      "f_max_threshold": 0.39032284042234583,
+      "rows_at_f_max": 1,
+      "exact_perfect_score": true
+    },
+    "augmented_pairwise_sbnn": {
+      "path": "artifacts/results/track1_augmented_sbnn_20260908/strict_augmented_pairwise_sbnn.csv",
+      "rows": 6,
+      "full_match_rank": 1,
+      "rank_points": 100.0,
+      "f_max": 1.0,
+      "f_max_threshold": 0.43322835398975396,
+      "rows_at_f_max": 1,
+      "exact_perfect_score": true
+    }
+  },
+  "missing_predictions": {}
+}
