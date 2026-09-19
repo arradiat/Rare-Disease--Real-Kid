@@ -1,0 +1,12 @@
+{
+  "source": "data/open/clinvar_temporal/clinvar_20231226.vcf.gz",
+  "output": "data/open/clinvar_temporal/clinvar_20231226_labeled_missense.vcf.gz",
+  "selection": "unambiguous ClinVar label AND biallelic SNV AND MC contains missense_variant",
+  "varpb_used_for_selection": false,
+  "input_records": 2340600,
+  "unambiguous_labeled": 1084930,
+  "biallelic_snv": 938300,
+  "labeled_missense_snv": 146810,
+  "positive": 54548,
+  "negative": 92262
+}

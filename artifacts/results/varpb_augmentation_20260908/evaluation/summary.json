@@ -1,0 +1,53 @@
+[
+  {
+    "model": "bonamame_augmented_pairwise_sbnn_score",
+    "score_rows": 894327,
+    "causal_variants_in_score_file": 2577,
+    "coverage": {
+      "background_rows": 17872513,
+      "non_reference_rows": 17872513,
+      "scored_non_reference_rows": 17872513,
+      "background_score_coverage": 1.0,
+      "samples": 107
+    },
+    "overall": {
+      "spike_in_trials": 275739,
+      "top1": 0.0725795045314591,
+      "top5": 0.18040973529315765,
+      "top10": 0.33252097091815086,
+      "top20": 0.6569908500429754,
+      "top100": 0.8663228632873841,
+      "mrr": 0.15958097229136287,
+      "median_rank": 14.0,
+      "mean_rank": 504.48589245627204,
+      "auc_top20": 0.3526169674946235,
+      "fraction_within_normalized_0_003": 0.8978526795266538
+    },
+    "dominant": {
+      "spike_in_trials": 141026,
+      "top1": 0.1073631812573568,
+      "top5": 0.2634833293151617,
+      "top10": 0.4594046487881667,
+      "top20": 0.8106519365223434,
+      "top100": 0.9416774211847461,
+      "mrr": 0.21687006486848973,
+      "median_rank": 11.0,
+      "mean_rank": 194.4445492320565,
+      "auc_top20": 0.46669497114007347,
+      "fraction_within_normalized_0_003": 0.9604753733354133
+    },
+    "recessive": {
+      "spike_in_trials": 134713,
+      "top1": 0.03616577464684181,
+      "top5": 0.09344309754812082,
+      "top10": 0.19969119535605323,
+      "top20": 0.49612880716783087,
+      "top100": 0.7874369956871274,
+      "mrr": 0.09960716449418003,
+      "median_rank": 21.0,
+      "mean_rank": 829.0565758315827,
+      "auc_top20": 0.2331929732097125,
+      "fraction_within_normalized_0_003": 0.8322953241335284
+    }
+  }
+]

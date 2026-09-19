@@ -1,0 +1,99 @@
+{
+  "experiment": "post-submission predictor-augmented pairwise SBNN",
+  "historical_source": "data/open/clinvar_temporal/clinvar_20231226.vcf.gz",
+  "varpb_used_for_training_or_selection": false,
+  "split": "gene-disjoint 80/20 GroupShuffleSplit",
+  "training_records": 117700,
+  "validation_records": 29110,
+  "training_positive": 44145,
+  "validation_positive": 10403,
+  "input_features": 54,
+  "parameter_counts": {
+    "augmented_sbnn_variational_scalars": 56204,
+    "matched_dense_bbb_variational_scalars": 62402,
+    "matched_single_deterministic_network_scalars": 31201,
+    "matched_five_network_ensemble_scalars": 156005,
+    "sbnn_reduction_vs_dense_bbb_percent": 9.932373962372997,
+    "sbnn_reduction_vs_five_network_ensemble_percent": 63.9729495849492,
+    "adam_training_scalars_sbnn": 168612,
+    "adam_training_scalars_dense_bbb": 187206,
+    "counting_note": "Model plus two Adam state arrays; excludes activations and fixed external annotation resources."
+  },
+  "winner": {
+    "ranks": [
+      50,
+      50,
+      1
+    ],
+    "kl_weight": 0.001,
+    "posterior_scale": 0.1,
+    "prior_scale": 1.0
+  },
+  "validation": {
+    "ranking": {
+      "cases": 2000,
+      "candidates_per_case": 100,
+      "top1": 0.6215,
+      "top5": 0.9015,
+      "top10": 0.9615,
+      "mrr": 0.7449427487090422,
+      "mean_rank": 2.684
+    },
+    "mean_mutual_information": 0.00011841019027003996,
+    "mean_predictive_std": 0.0033655379781590616
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "validation_pairwise_nll": 0.06432808198826369
+    },
+    {
+      "epoch": 2,
+      "validation_pairwise_nll": 0.049457689499941795
+    },
+    {
+      "epoch": 3,
+      "validation_pairwise_nll": 0.04490351215406479
+    },
+    {
+      "epoch": 4,
+      "validation_pairwise_nll": 0.04989945401891649
+    },
+    {
+      "epoch": 5,
+      "validation_pairwise_nll": 0.044462211569667606
+    },
+    {
+      "epoch": 6,
+      "validation_pairwise_nll": 0.045738655079178146
+    },
+    {
+      "epoch": 7,
+      "validation_pairwise_nll": 0.04227339047530279
+    },
+    {
+      "epoch": 8,
+      "validation_pairwise_nll": 0.043184584358284435
+    },
+    {
+      "epoch": 9,
+      "validation_pairwise_nll": 0.04538481738306915
+    },
+    {
+      "epoch": 10,
+      "validation_pairwise_nll": 0.04345287727871814
+    },
+    {
+      "epoch": 11,
+      "validation_pairwise_nll": 0.04889065316482675
+    },
+    {
+      "epoch": 12,
+      "validation_pairwise_nll": 0.046971441592326586
+    },
+    {
+      "epoch": 13,
+      "validation_pairwise_nll": 0.05623090545544965
+    }
+  ]
+}

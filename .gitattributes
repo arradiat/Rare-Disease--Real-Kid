@@ -1,0 +1,4 @@
+artifacts/results/varpb_2023_declared_missense/*.tsv* filter=lfs diff=lfs merge=lfs -text
+artifacts/results/varpb_2023_external_predictors/*.tsv* filter=lfs diff=lfs merge=lfs -text
+artifacts/results/varpb_2023_opencravat_gnomad/*.tsv* filter=lfs diff=lfs merge=lfs -text
+artifacts/results/varpb_augmentation_20260908/varpb_scores/*.tsv* filter=lfs diff=lfs merge=lfs -text
