@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rare-disease-real-kid"
+version = "1.0.0"
+description = "Auditable rare-disease variant prioritization and Bayesian generalization benchmarks"
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+authors = [
+  {name = "Mame Diarra Toure"},
+  {name = "Bonaventure F. P. Dossou"},
+]
+dependencies = [
+  "numpy>=1.24,<3",
+  "scipy>=1.10,<2",
+  "scikit-learn>=1.5,<2",
+  "pandas>=2.2,<3",
+]
+
+[project.optional-dependencies]
+report = [
+  "matplotlib==3.9.2",
+  "pillow==10.4.0",
+  "joblib==1.4.2",
+  "threadpoolctl==3.5.0",
+]
+wgs = [
+  "pysam==0.24.0",
+  "pybwa",
+  "whatshap",
+  "open-cravat==3.1.1",
+  "python-docx",
+  "openpyxl",
+  "certifi",
+  "huggingface-hub==0.36.0",
+  "tqdm",
+]
+test = ["pytest==7.4.4"]
+
+[project.scripts]
+rdkid = "rare_disease_real_kid.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-ra"
+filterwarnings = [
+  "ignore:Could not find the number of physical cores.*:UserWarning",
+]

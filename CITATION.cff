@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software or its results, please cite this repository and the accompanying methods report."
+title: "Rare Disease, Real Kid"
+type: software
+version: 1.0.0
+date-released: 2026-09-08
+authors:
+  - family-names: Toure
+    given-names: Mame Diarra
+  - family-names: Dossou
+    given-names: Bonaventure F. P.
+repository-code: "https://github.com/arradiat/Rare-Disease--Real-Kid"
+abstract: >-
+  An auditable genome-to-submission rare-disease variant-prioritization pipeline
+  with deterministic, ensemble, dense Bayesian, low-rank SBNN, temporal,
+  Phenopacket/HPO, and VarPB evaluations.
+
