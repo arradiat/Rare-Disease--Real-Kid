@@ -1,15 +1,12 @@
-# Post-submission generalization extension: 8 September 2026
+# Post-submission generalization extension.
 
 ## Boundary and purpose
 
 The Track 1 report and the live Hugging Face submission were complete on 7
 September 2026. At that point the child result was stable, every retained model
 ranked the accepted `BUB1B` pair first, and the selected wide rank-50 SBNN had
-received 100 Rank Points and F-max 1.000. The report explicitly named a
-full-background VarPB evaluation as remaining work. Everything below was added
-after that stopping point and must be described as a post-submission extension.
-
-The extension tests a harder claim: can a model trained without the challenge
+received 100 Rank Points and F-max 1.000. 
+This extension tests a harder claim: can a model trained without the challenge
 child or VarPB causal answers prioritize later pathogenic variants inside real
 107-genome exonic backgrounds? The failure criterion was fixed in advance: a
 perfect child score or strong ten-candidate result would not compensate for poor
