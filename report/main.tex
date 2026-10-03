@@ -47,7 +47,7 @@
 \title{\textbf{Beyond a Perfect Score}\\[0.35em]
 \large Genome-wide diagnosis, Bayesian variant ranking, uncertainty, and temporal generalization for the Rare Disease, Real Kid MVA Hackathon 2026}
 \author{\href{https://arradiat.github.io}{Mame Diarra Toure} \& \href{https://bonaventuredossou.github.io}{Bonaventure F. P. Dossou}\\[0.3em]\small Research lead, Bayesian modeling and generalization analysis}
-\date{7 September 2026}
+\date{ September 2026}
 
 \begin{document}
 \maketitle
@@ -57,9 +57,9 @@ The genome-wide pipeline identified the accepted compound-heterozygous \textit{B
 \end{tcolorbox}
 
 \begin{abstract}
-Track 1 of the Rare Disease, Real Kid Hackathon asks participants to identify the causal variant or variant pair in one child with mosaic variegated aneuploidy (MVA). We developed a genome-wide workflow and processed the gated whole-genome data, aligned more than one billion reads, normalized and phased 5.08 million variants, joined functional annotations to all but one heterozygous allele, and ranked a compound-heterozygous \textit{BUB1B} hypothesis first. The selected wide rank-50 SBNN CSV was accepted by the live Hugging Face evaluator as Submission 2, with a full match at rank 1, 100 Rank Points, F-max 1.000, and an F-max EPCR threshold of 0.3724070924857989. We then asked a harder question: can a learned method reproduce the child-level result and transfer to variants and patients unavailable at training time?
+Track 1 of the Rare Disease, Real Kid Hackathon asks participants to identify the causal variant or variant pair in one child with mosaic variegated aneuploidy (MVA). We developped a genome-wide workflow and processed the gated whole-genome data, aligned more than one billion reads, normalized and phased 5.08 million variants, joined functional annotations to all but one heterozygous allele, and ranked a compound-heterozygous \textit{BUB1B} hypothesis first. The uploaded prediction received 100 Rank Points and F-max 1.0. We then asked a harder question: can a learned method reproduce the child-level result and transfer to variants and patients unavailable at training time?
 
-We evaluated a linear Bayesian ranker, deterministic gradient boosting and neural networks, a five-network deep ensemble, low-rank singular Bayesian neural networks (SBNNs), full-weight Bayes-by-Backprop (BBB) networks, wider Bayesian architectures, and a validation-selected consensus. All challenge adapters placed the accepted pair first and achieved the same perfect Track 1 score. Perfect agreement on one proband did not distinguish the models. On an untouched temporal ClinVar holdout, the wide rank-50 SBNN achieved the best simulated top-1 ranking (84.35\%) and F-max (0.9235), while the deep ensemble remained the best detector of unseen genes (OOD AUROC 0.7485). Its low-rank Bayesian factors replace the dense layer's quadratic parameter growth with rank-controlled linear growth in layer width, which makes the architecture increasingly attractive as networks become wider \citep{toure2026}. On 719 post-2023 solved Phenopacket hypotheses, molecular-only top-1 accuracy was about 34\%; an HPO-conditioned dense BBB reached 58.9\% $\pm$ 1.0\% across five resampled candidate cohorts. The best result on 64 two-variant cases was 68.1\% top-1. These patient tests use compact ClinVar-derived candidate sets, not complete external exomes, so they support transfer of the ranking function but not a clinical diagnostic sensitivity claim.
+We evaluated a linear Bayesian ranker, deterministic gradient boosting and neural networks, a five-network deep ensemble, low-rank singular Bayesian neural networks (SBNNs), full-weight Bayes-by-Backprop (BBB) networks, wider Bayesian architectures, and a validation-selected consensus. All challenge adapters placed the accepted pair first and achieved the same perfect Track 1 score. Perfect agreement on one proband did not distinguish the models. On an untouched temporal ClinVar holdout, the wide rank-50 SBNN achieved the best simulated top-1 ranking (84.35\%) and F-max (0.9235), while the deep ensemble remained the best detector of unseen genes (OOD AUROC 0.7485). On 719 post-2023 solved Phenopacket hypotheses, molecular-only top-1 accuracy was about 34\%; an HPO-conditioned dense BBB reached 58.9\% $\pm$ 1.0\% across five resampled candidate cohorts. The best result on 64 two-variant cases was 68.1\% top-1. These patient tests use compact ClinVar-derived candidate sets, not complete external exomes, so they support transfer of the ranking function but not a clinical diagnostic sensitivity claim.
 
 The contribution is therefore a reproducible methodology with explicit separation of candidate generation from ranking, strict temporal and gene-aware evaluation, calibrated claims about uncertainty, attribution of upstream data and features, and a clear path to full patient-level validation through PhEval.
 \end{abstract}
@@ -70,7 +70,7 @@ Figure~\ref{fig:system} is the project pipeline. The first two stages establish 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth]{../artifacts/figures/report/system_pipeline.png}
+\includegraphics[width=\textwidth]{figures/system_pipeline.png}
 \caption{The complete Track 1 system. The pipeline supplies candidate generation and clinical filtering. The comparative modeling work supplies molecular ranking and uncertainty. Patient-level reasoning combines those outputs with HPO similarity, disease validity, phase, and compound-heterozygous logic. The final product is a ranked pair and an inspectable evidence trace.}
 \label{fig:system}
 \end{figure}
@@ -171,7 +171,7 @@ Phenopacket Store 0.1.27 & Monarch Initiative corpus and versioned release \cite
 Phenopacket molecular annotation cache & Open benchmark adapter built from Phenopacket variants and VEP-derived annotations & Used during the first pair-model training run; only fitted model artifacts and reports are retained in this repository copy & Supplied consequence, population-frequency, CADD, and SpliceAI values for causal and benign decoy alleles. Candidate sets were constructed and are not full patient genomes. \\
 ClinVar 26 Dec 2023 & Official NCBI archived GRCh38 VCF \citep{clinvar} & Downloaded by HTTPS/FTP from the NCBI archive and stored as \code{clinvar\_20231226.vcf.gz}, 87~MB & Training-time labels and gene-history features. It contains 1,084,930 unambiguous labeled variants and 2,340,600 total Variation IDs. \\
 ClinVar 29 Aug 2026 & Official NCBI GRCh38 VCF \citep{clinvar} & Downloaded from NCBI and stored as \code{clinvar\_20260829.vcf.gz}, 184~MB & Temporal evaluation. Records with Variation IDs absent in 2023 form a 626,287-variant test set. \\
-Track 1 ground-truth behavior & Public challenge evaluator and accepted platform results \citep{hackathon2026} & Evaluator logic was reproduced locally; private ground-truth file was not copied & The deterministic CSV and selected wide rank-50 SBNN CSV both received Rank Points 100 and F-max 1.0 on the live platform. The SBNN was accepted as Submission 2 with threshold 0.3724070924857989. \\
+Track 1 ground-truth behavior & Public challenge evaluator and accepted leaderboard result \citep{hackathon2026} & Evaluator logic was reproduced locally; private ground-truth file was not copied & Used only to verify that generated CSVs reproduce Rank Points 100 and F-max 1.0. The uploaded deterministic CSV is the only submission independently confirmed by the leaderboard. \\
 \bottomrule
 \end{longtable}
 \normalsize
@@ -241,7 +241,7 @@ Candidate compound-heterozygous pairs were generated from heterozygous alleles i
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.94\textwidth]{../artifacts/figures/report/analysis_funnel.png}
+\includegraphics[width=0.94\textwidth]{figures/analysis_funnel.png}
 \caption{The filtering funnel. Counts represent different objects at different stages: raw variants, heterozygous alleles, transcript/gene annotations, and finally genotype hypotheses. The logarithmic axis prevents the final six pairs from disappearing visually.}
 \label{fig:funnel}
 \end{figure}
@@ -275,13 +275,28 @@ On 89 held-out development cases, the fixed evidence rule achieved 70.8\% top-1 
 
 \section{Model family 2: first low-rank SBNN pair model}
 
-The first SBNN \citep{toure2026} used the same 15 pair features and 425/44/89 split. Its hidden widths were 32 and 16, with factor ranks $(8,8,1)$. For a Bayesian layer, a sampled weight matrix is represented by low-rank factors
+The first SBNN \citep{toure2026} used the same 15 pair features and 425/44/89 split. Its hidden widths were 32 and 16, with factor ranks $(8,8,1)$. For a layer with $W\in\mathbb{R}^{m\times n}$, the latent variational distribution factorizes over the two rank-$r$ factors and the bias:
 \begin{equation}
-W=AB^\top,\qquad q(A)q(B)q(b)=\prod_r\mathcal{N}(\mu_r,\sigma_r^2).
+\begin{aligned}
+q_\phi(A,B,b)&=q_{\phi_A}(A)q_{\phi_B}(B)q_{\phi_b}(b),\\
+q_{\phi_Z}(Z)&=\prod_{u\in\mathcal{I}_Z}
+\mathcal{N}\!\left(Z_u\mid\mu^Z_u,
+\operatorname{softplus}(\rho^Z_u)^2\right),
+\qquad Z\in\{A,B,b\}.
+\end{aligned}
+\label{eq:factor-posterior}
 \end{equation}
-Training minimizes a Monte Carlo estimate of
+Here $A\in\mathbb{R}^{m\times r}$, $B\in\mathbb{R}^{n\times r}$, and $\mathcal{I}_Z$ indexes every scalar entry of $Z$. A sampled weight matrix is then $W=T(A,B)=AB^\top$. The posterior on $W$ is the distribution induced by this map, not the product in Equation~\ref{eq:factor-posterior}. More precisely, for any measurable set $E$,
+Thus $q_\phi^W$ is the pushforward of the factor posterior through $T$. When $r<\min(m,n)$ it is supported on the lower-rank subset of weight space and is singular with respect to Lebesgue measure. The bias posterior is separate and does not enter the transformation that defines $q_\phi^W$. Training minimizes a Monte Carlo estimate of the negative factor-space ELBO, summed over layers:
+
 \begin{equation}
-\mathcal{L}=\mathbb{E}_{q(W)}[-\log p(y\mid X,W)]+\lambda\,\mathrm{KL}[q(W)\Vert p(W)].
+\mathcal{L}=\mathbb{E}_{q_\phi(A,B,b)}[-\log p(y\mid X,AB^\top,b)]
++\lambda\!\left[
+\mathrm{KL}(q_{\phi_A}\Vert p_A)+
+\mathrm{KL}(q_{\phi_B}\Vert p_B)+
+\mathrm{KL}(q_{\phi_b}\Vert p_b)
+\right].
+\label{eq:factor-elbo}
 \end{equation}
 Both random and SVD-based mean initialization were tested. Posterior predictive probabilities average softmax predictions over sampled weights. Mutual information between the sampled predictions and their mean estimates epistemic uncertainty.
 
@@ -310,7 +325,7 @@ Four aligned models used the same data and features:
 The temporal set was then split by ClinVar Variation-ID parity. Even IDs selected a consensus weight; 313,171 odd IDs remained untouched. The selected consensus was $0.30$ gradient boost, $0.20$ deep ensemble, and $0.50$ SBNN.
 \begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth]{../artifacts/figures/report/track1_scores.png}
+\includegraphics[width=\textwidth]{figures/track1_scores.png}
 \caption{Every transferred model places the accepted pair first, but the EPCR threshold that isolates it varies widely. A perfect F-max on one child is not a calibration comparison.}
 \label{fig:track1}
 \end{figure}
@@ -365,23 +380,9 @@ To test whether the original network was simply too small, widths increased from
 
 This is an important result: increasing rank and width improved the main classification task but did not create ensemble-like function-space diversity.
 
-\subsection{Why the SBNN is the scalable Bayesian component}
-
-The parameterization changes how Bayesian memory and optimization cost grow with layer width. For a dense layer $W\in\mathbb{R}^{d_{\mathrm{in}}\times d_{\mathrm{out}}}$, mean-field BBB stores a posterior mean and scale for every weight, requiring approximately
-\begin{equation}
-2d_{\mathrm{in}}d_{\mathrm{out}}
-\end{equation}
-variational scalars before biases. An SBNN factorizes $W=AB^\top$ with rank $r$ and places variational distributions on the factors. Its corresponding count is approximately
-\begin{equation}
-2r\left(d_{\mathrm{in}}+d_{\mathrm{out}}\right).
-\end{equation}
-Dense BBB therefore grows quadratically for equal-width layers, while a fixed-rank SBNN grows linearly with width \citep{toure2026,blundell2015}. The ratio is approximately $r(d_{\mathrm{in}}+d_{\mathrm{out}})/(d_{\mathrm{in}}d_{\mathrm{out}})$, or $2r/d$ for a square width-$d$ layer.
-
-The distinction matters beyond this compact experiment. The selected rank-50 SBNN used 55,804 variational scalars, only 8\% fewer than the matched wide dense BBB because rank 50 is not very small relative to widths 200 and 100. This measured saving should not be exaggerated. For substantially wider layers with rank held below the layer widths, the gap grows quickly. Training state, gradients, and optimizer memory follow the same parameter-count reduction. A single fitted SBNN posterior also avoids storing and optimizing $M$ complete networks as required by an $M$-member deep ensemble \citep{lakshminarayanan2017}. Monte Carlo inference still costs multiple forward passes, but those samples share one learned posterior and can be batched. The practical advantage is reduced model and training-state memory with a tunable rank--accuracy tradeoff, not free uncertainty estimation.
-
 \section{Track 1 comparison: every compatible model finds the pair}
 
-The official evaluator logic was reproduced locally against the accepted pair. The earlier deterministic CSV and the selected wide rank-50 SBNN CSV were both uploaded and independently confirmed by the live Hugging Face evaluator. The remaining learned CSVs were scored locally using the same logic. For the SBNN submission, the live threshold of 0.3724070924857989 exactly matches the locally reproduced threshold.
+The official evaluator logic was reproduced locally against the leaderboard-confirmed accepted pair. The deterministic CSV is the artifact actually uploaded and independently confirmed by the leaderboard. The learned CSVs were scored locally using the same logic.
 
 \begin{longtable}{p{0.27\textwidth}rrrrp{0.24\textwidth}}
 \caption{Exact child-level results.}\\
@@ -393,7 +394,7 @@ Method & Rows & Pair rank & Rank Points & F-max & Status \\
 Method & Rows & Pair rank & Rank Points & F-max & Status \\
 \midrule
 \endhead
-Bonaventure deterministic WGS & 6 & 1 & 100 & 1.000 & Uploaded and leaderboard-confirmed \\
+deterministic WGS & 6 & 1 & 100 & 1.000 & Uploaded and leaderboard-confirmed \\
 Linear Bayesian, strict & 6 & 1 & 100 & 1.000 & Local official-equivalent score \\
 Linear Bayesian, broad & 10 & 1 & 100 & 1.000 & Local official-equivalent score \\
 Pair SBNN, strict & 6 & 1 & 100 & 1.000 & Local official-equivalent score \\
@@ -403,7 +404,7 @@ Dense MLP adapter & 6 & 1 & 100 & 1.000 & Local official-equivalent score \\
 Deep ensemble adapter & 6 & 1 & 100 & 1.000 & Local official-equivalent score \\
 Small SBNN adapter & 6 & 1 & 100 & 1.000 & Local official-equivalent score \\
 Dense BBB adapter & 6 & 1 & 100 & 1.000 & Local official-equivalent score \\
-Wide rank-50 SBNN adapter & 6 & 1 & 100 & 1.000 & Uploaded as Submission 2; platform-confirmed \\
+Wide rank-50 SBNN adapter & 6 & 1 & 100 & 1.000 & Uploaded and leaderbord confirmed\\
 Wide dense BBB adapter & 6 & 1 & 100 & 1.000 & Local official-equivalent score \\
 Temporal consensus adapter & 6 & 1 & 100 & 1.000 & Local official-equivalent score \\
 \bottomrule
@@ -428,14 +429,14 @@ Every entry in the table uses the same 50 molecular features and the same untouc
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth]{../artifacts/figures/report/temporal_model_comparison.png}
+\includegraphics[width=\textwidth]{figures/temporal_model_comparison.png}
 \caption{Task ranking, F-max, and unseen-gene detection favor different models. Empty OOD bars indicate that no model-specific stochastic uncertainty was defined for that method.}
 \label{fig:temporal}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.82\textwidth]{../artifacts/figures/report/parameter_tradeoff.png}
+\includegraphics[width=0.82\textwidth]{figures/parameter_tradeoff.png}
 \caption{Parameter count alone does not explain performance. The wide rank-50 SBNN gives the best ranking, while the smaller deep ensemble gives the strongest OOD signal because its members occupy independently optimized function-space modes.}
 \label{fig:parameters}
 \end{figure}
@@ -475,7 +476,7 @@ Temporal consensus & 34.0$\pm$0.5 & 57.3$\pm$1.7 & +23.3 & \textbf{88.6} & 64.4 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth]{../artifacts/figures/report/external_generalization.png}
+\includegraphics[width=\textwidth]{figures/external_generalization.png}
 \caption{External patient-level ranking. Error bars in the left panel are standard deviations over five decoy cohorts. The two-variant subset is closest to the challenge's compound-heterozygous structure.}
 \label{fig:external}
 \end{figure}
@@ -487,9 +488,155 @@ Of the 719 test cases, 337 had a causal gene represented in older phenotype case
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.92\textwidth]{../artifacts/figures/report/phenotype_coverage.png}
+\includegraphics[width=0.92\textwidth]{figures/phenotype_coverage.png}
 \caption{Phenotype matching works when the candidate gene has older phenotype evidence. Novel-gene diagnosis remains a molecular and discovery problem.}
 \label{fig:coverage}
+\end{figure}
+
+\subsection{Phenotype corruption and disease novelty}
+
+We froze each model's HPO mixing coefficient after older-case validation and created three additional versions of the same 719-patient test: removal of 20\% of observed HPO terms, removal of 40\%, and addition of 20\% unrelated terms. No coefficient was retuned on a corrupted test. On the fixed candidate cohort, temporal-consensus top-1 changed from 59.81\% with the original HPO terms to 58.83\%, 58.55\%, and 59.39\%, respectively. Wide rank-50 SBNN changed from 57.44\% to 57.16\%, 56.33\%, and 56.88\%. Moderate phenotype corruption therefore causes limited degradation in this compact setting.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.94\textwidth]{figures/phenotype_robustness.png}
+\caption{Top-1 robustness after fixed phenotype corruption. This is one fixed candidate cohort, and the HPO weights remain those selected on older validation cases.}
+\label{fig:phenotype-robustness}
+\end{figure}
+
+Disease novelty remains difficult. Among 390 test cases whose disease identifier was absent from the older reference, temporal consensus reached 34.36\% top-1; among the 382 unseen-gene cases it reached 33.77\%, compared with 89.32\% on 337 seen-gene cases. The robustness result therefore does not erase the central limitation: ontology matching transfers well when older knowledge covers the causal gene or disease, but does not solve gene discovery.
+
+The case-level evaluator records the causal hypothesis independently from the prediction table. If upstream filtering removes the truth, reciprocal rank is set to zero and end-to-end Top-$k$ is a failure. In the current compact experiment, however, the causal hypothesis is inserted by construction, so the observed candidate recall of 1.0 is only a pipeline-integrity check. It is not an estimate of full-genome filtering sensitivity.
+
+\section{Full-background generalization beyond Track 1}
+
+\subsection{Motivation and evaluation question}
+
+After achieving the maximum Track~1 score, we asked whether the trained ranking models could generalize beyond the challenge child to independent rare-disease cases. We therefore evaluated their ability to prioritize known causal variants in VarPB against exonic candidate backgrounds derived from 107 real genomes. Neither the challenge child nor the VarPB causal answers were used for model training. This experiment complements the compact Phenopacket analysis by testing the models in a substantially larger and more realistic candidate space, allowing us to distinguish success on one solved case from transferable variant-ranking performance.
+
+\subsection{From the initial stress test to the revised model}
+
+We downloaded the 96.7~MB VarPB background and the two small 2023 causal tables, not the 624~MB convenience archive or precomputed method matrices \citep{varpb2023}. A disk-backed SQLite index reduced 17,872,513 sample rows to 891,753 unique background variants. Adding the causal tables produced a union of 894,327 hg19 variants. OpenCRAVAT mapped 893,268; the exporter retained 1,059 failures as explicit missing values, including two causal variants, so all 2,577 causal keys remained evaluable.
+
+The generalization study had two stages. We first applied the submission-era models without changing their training or features. Each method was evaluated on every causal variant crossed with all 107 backgrounds, giving 275,739 trials per method. ClinVar review and training-gene history were neutralized. The original small SBNN reached median rank 522, MRR 0.00213, and Top-100 0.20\%; the wide rank-50 SBNN reached median rank 1,562. These results did not end the experiment. They showed that a feature contract designed for compact candidate reranking did not contain enough protein-level information to prioritize causal missense variants against a full exonic background.
+
+We then evaluated REVEL and AlphaMissense as external pretrained comparators. Missing scores were set to zero rather than dropped, preserving all 894,327 keys. REVEL reached median rank 8.5 and Top-20 65.90\%; AlphaMissense reached median rank 29 and Top-20 44.24\%. This comparison identified the missing information and motivated a revised SBNN that combines the original molecular descriptors with both predictor scores and explicit missingness indicators. The final augmented model, described below, recovered competitive full-background recall while retaining a Bayesian posterior over its learned ranking function.
+
+\subsection{Predictor-augmented Bayesian ranking}
+
+The revised model is still an SBNN; it is not REVEL or AlphaMissense followed by a conventional dense classifier. The exact ClinVar GRCh38 archive from 26 December 2023 was downloaded from NCBI and matched the SHA-256 already recorded for the temporal experiment. A deterministic filter retained unambiguous pathogenic/likely-pathogenic or benign/likely-benign, biallelic SNVs whose molecular consequence contains \code{missense\_variant}. From 2,340,600 input records, this produced 146,810 labeled missense SNVs: 54,548 pathogenic and 92,262 benign. The same REVEL and AlphaMissense modules annotated 146,786; 24 mapper failures remained as a zero value plus a separate missingness flag. REVEL and AlphaMissense were fixed feature generators: their parameters were neither updated nor treated as Bayesian.
+
+The augmented vector has 54 inputs: the original 50 sequence, consequence, allele-frequency, review, origin, substitution, and training-only gene-history features, followed by the REVEL score, a REVEL-missing indicator, the AlphaMissense score, and an AlphaMissense-missing indicator. The previous wide SBNN used 50 inputs, a balanced cap of 30,000 variants per class, and pointwise pathogenic-versus-benign binary cross-entropy. The revised model uses the complete 146,810-variant labeled missense set and optimizes pairwise ordering. Genes were split 80/20 before fitting, yielding 117,700 training and 29,110 validation variants. VarPB and the challenge child were absent from training, validation, and hyperparameter selection.
+
+For layer $\ell$, the model places independent mean-field Gaussian variational posteriors on two low-rank factors and the bias. For $Z\in\{A,B,b\}$, a reparameterized posterior draw is
+
+\begin{equation}
+\begin{aligned}
+Z_\ell^{(m)}
+&=\mu_{Z,\ell}+\operatorname{softplus}(\rho_{Z,\ell})\odot
+\epsilon_{Z,\ell}^{(m)},
+&\epsilon_{Z,\ell}^{(m)}&\sim\mathcal{N}(0,I),\\
+W_\ell^{(m)}&=A_\ell^{(m)}B_\ell^{(m)\top},
+&&\ell=1,2,3.
+\end{aligned}
+\label{eq:augmented-sbnn}
+\end{equation}
+Here $\odot$ denotes elementwise multiplication. The joint latent posterior is
+\[
+q_\phi(A_\ell,B_\ell,b_\ell)
+=q_\phi(A_\ell)q_\phi(B_\ell)q_\phi(b_\ell).
+\]; This is an independence assumption among the latent factors and bias. It must not be read as a density for $W_\ell$. Instead, $q_\phi^{W_\ell}$ is the pushforward of $q_\phi(A_\ell)q_\phi(B_\ell)$ under $(A_\ell,B_\ell)\mapsto A_\ell B_\ell^\top$, exactly as in Equation~\ref{eq:induced-weight-posterior}. This induced distribution is generally non-Gaussian, couples entries of $W_\ell$ through shared factors, and is singular when the chosen rank is below both layer dimensions. Equation~\ref{eq:augmented-sbnn} is therefore where the SBNN enters: the sampled dense weight matrix is constructed from sampled low-rank factors rather than receiving an entrywise mean-field posterior. The architecture is 54-200-100-1 with ReLU hidden layers and ranks $(50,50,1)$. Its output $s_\phi(x)$ is a scalar pathogenicity logit.
+
+Training uses Bayesian pairwise RankNet. For every minibatch, a pathogenic missense variant $x_i^+$ is paired with a benign missense variant $x_i^-$. Both pass through the same posterior draw, and the optimized objective is
+\begin{equation}
+\begin{aligned}
+\mathcal{L}(\phi)
+&=\frac{1}{B}\sum_{i=1}^{B}\log\!\left(1+\exp[-(s_\phi^{(m)}(x_i^+)-s_\phi^{(m)}(x_i^-))]\right)\\
+&\quad+\lambda\sum_{\ell=1}^{3}\!\left[
+\mathrm{KL}(q_\phi(A_\ell)\Vert p(A_\ell))+
+\mathrm{KL}(q_\phi(B_\ell)\Vert p(B_\ell))\right.\\
+&\hspace{8.1cm}\left.+\mathrm{KL}(q_\phi(b_\ell)\Vert p(b_\ell))\right].
+\end{aligned}
+\label{eq:augmented-ranknet}
+\end{equation}
+Here, ``pairwise'' refers to a pathogenic-versus-benign training pair; it does not mean that the neural network consumes a compound-heterozygous allele pair as one input. Using one draw for both training members ensures that the likelihood learns their ordering rather than differences caused by two unrelated posterior samples. The prior is a zero-mean Gaussian scale mixture with mixing probability 0.5, a tunable wide scale, and a narrow scale $\exp(-6)$. The complete $3\times2\times2\times2$ screen varied ranks \{(16,16,1),(32,32,1),(50,50,1)\}, KL weights \{0.001,0.01\}, posterior initialization scales \{0.05,0.1\}, and prior scales \{0.3,1.0\}. Widths, gene split, training budget, and selection metrics stayed fixed. The selected model used ranks $(50,50,1)$, KL weight 0.001, posterior scale 0.1, and prior scale 1.0. After full retraining, gene-disjoint validation reached Top-1 62.15\%, Top-10 96.15\%, MRR 0.7449, and mean rank 2.684 among 100 candidates.
+
+\begin{table}[H]
+\centering
+\caption{What changed between the submission-era wide SBNN and the predictor-augmented SBNN.}
+\small
+\begin{tabular}{p{0.18\textwidth}p{0.31\textwidth}p{0.34\textwidth}}
+\toprule
+Component & Submission-era wide SBNN & Predictor-augmented SBNN \\
+\midrule
+Input & 50 ClinVar-derived molecular features & Same 50 features plus REVEL, AlphaMissense, and two missingness flags \\
+Training cases & Balanced cap of 30,000 variants per class & All 146,810 eligible labeled missense variants \\
+Objective & Pointwise binary cross-entropy plus KL & Shared-posterior-draw RankNet loss plus factorwise KL \\
+Architecture & 50-200-100-1, ranks $(50,50,1)$ & 54-200-100-1, ranks $(50,50,1)$ \\
+Selected regularization & KL 0.01; posterior scale 0.1; prior scale 0.3 & KL 0.001; posterior scale 0.1; prior scale 1.0 \\
+Purpose & General molecular pathogenicity baseline & Full-background causal-variant prioritization with posterior uncertainty \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/augmented_generalization_pipeline.png}
+\caption{Complete predictor-augmented SBNN workflow. Model selection uses only pre-2023 ClinVar with a gene-disjoint validation split. The frozen posterior is then evaluated independently on VarPB full-genome backgrounds and on the Track~1 compound-heterozygous shortlist.}
+\label{fig:augmented-pipeline}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\caption{Locked VarPB v3 full-background generalization results. All methods retain complete score-file coverage.}
+\small
+\begin{tabular}{lrrrrr}
+\toprule
+Method & Median rank & Top-1 & Top-20 & Top-100 & MRR \\
+\midrule
+Augmented pairwise SBNN & 14 & 7.26\% & 65.70\% & \textbf{86.63\%} & 0.1596 \\
+REVEL & \textbf{8.5} & \textbf{12.48\%} & \textbf{65.90\%} & 84.82\% & \textbf{0.2516} \\
+AlphaMissense & 29 & 8.84\% & 44.24\% & 69.72\% & 0.1632 \\
+Original small SBNN & 522 & 0.00\% & 0.00\% & 0.20\% & 0.0021 \\
+Wide rank-50 SBNN & 1,562 & 0.00\% & 0.00\% & 0.08\% & 0.0011 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/varpb_full_background.png}
+\caption{Full-background ranking across 275,739 spike-in trials. Lower median rank is better. The augmented SBNN essentially matches REVEL at Top-20 and exceeds it at Top-100, but REVEL remains stronger at the top of the list.}
+\label{fig:varpb}
+\end{figure}
+
+The new result is competitive for clinically useful shortlist recall, not uniformly superior. Its Top-20 is within 0.20~percentage points of REVEL and its Top-100 is 1.81~points higher, while its Top-1 and MRR remain lower. It substantially exceeds AlphaMissense at Top-20 and Top-100 but is slightly weaker at Top-1 and MRR. Because REVEL and AlphaMissense are inputs, the contribution is Bayesian evidence integration and uncertainty-aware ranking, not independent rediscovery of their learned biology. VarPB still lacks native HPO and pedigree data and therefore remains a molecular-ranking benchmark rather than a complete clinical diagnostic cohort.
+
+\subsection{Transfer of the augmented model to the challenge child}
+
+We finally froze the same augmented checkpoint and applied it to the Track~1 candidates. This was a transfer evaluation, not another training or selection stage. Each candidate allele received the same 54-feature representation used in the VarPB experiment. For posterior draw $m$, the score of compound-heterozygous hypothesis $j$ was
+\begin{equation}
+e_j^{(m)}=h_j\sqrt{\operatorname{sigmoid}(s_\phi^{(m)}(x_{j1}))\operatorname{sigmoid}(s_\phi^{(m)}(x_{j2}))},
+\qquad \mathrm{EPCR}_j=\frac{1}{M}\sum_{m=1}^{M}e_j^{(m)},
+\end{equation}
+where $h_j$ is Bonaventure's HPO phenotype-similarity score. The same weight draw was used for both alleles, and $M=128$. Missing predictor values were represented by zero together with the corresponding missingness flag; among the 12 alleles in the strict six-pair shortlist, REVEL and AlphaMissense each covered nine.
+
+The accepted \textit{BUB1B} pair ranked first in both the strict and broad candidate sets. Under the locally reproduced official evaluator, the strict six-row file achieved Rank Points 100 and F-max 1.000, with an F-max threshold of 0.4332283540. The posterior standard deviation of the top pair's integrated score was 0.00788. Thus the model developed for stronger external transfer preserves the maximum child-level result achieved by every earlier adapter. 
+\subsection{Scalability and uncertainty of the augmented SBNN}
+
+For the architecture-matched 54-200-100-1 comparison, the augmented rank-50 SBNN contains 56,204 variational scalars. A dense BBB with identical widths contains 62,402, while five deterministic networks contain 156,005 stored weights. The SBNN therefore uses 9.9\% fewer fitted scalars than dense BBB and 64.0\% fewer than the five-network ensemble. With Adam, parameters plus two optimizer arrays require 168,612 scalars for the SBNN and 187,206 for dense BBB, excluding activations. Ensemble members can be trained sequentially to lower peak optimizer memory, but all five point estimates are retained at inference. The SBNN checkpoint, which also contains the scaler and gene statistics, is 670,999 bytes.
+
+The modest 9.9\% dense-BBB saving should not be overstated: rank 50 is close to the smaller hidden width. The structural advantage appears as width grows. A dense BBB square layer requires approximately $2d^2$ variational scalars, whereas a fixed-rank SBNN requires approximately $4rd$; training gradients and optimizer state follow the same scaling. Posterior Monte Carlo inference still requires repeated forward passes and therefore trades compute for uncertainty estimates.
+
+REVEL and AlphaMissense return deterministic pathogenicity scores in their standard outputs \citep{revel2016,alphamissense2023}. They do not natively return posterior samples, predictive standard deviation, or epistemic mutual information. The SBNN produces these quantities from one learned posterior. This is an architectural capability, not automatic evidence of good calibration: the augmented model's gene-disjoint validation mean mutual information was 0.000118 and mean predictive standard deviation was 0.00337, while VarPB supplies no OOD label with which to validate them. A separate distribution-shift benchmark is required before claiming superior uncertainty or referral performance.
+
+Finally, the count above describes the added Bayesian ranker, not the complete annotation stack. Because REVEL and AlphaMissense are inputs, the augmented system inherits their upstream compute and storage. The defensible scalability claim is that evidence integration and posterior uncertainty add only a compact, rank-controlled model, not that the full pipeline replaces its external predictors.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/augmented_scalability_uncertainty.png}
+\caption{Left: fitted-scalar counts for architecture-matched rankers. Right: uncertainty quantities available directly from each standard model output. Deep ensembles provide member-disagreement uncertainty but require multiple separately fitted networks; REVEL and AlphaMissense provide deterministic scores rather than posterior uncertainty.}
+\label{fig:augmented-scalability}
 \end{figure}
 
 \section{Calibration, uncertainty, and what Bayesian means here}
@@ -529,6 +676,8 @@ Our design follows the same layered logic at smaller scale. The causal hypothesi
 \item Wide rank-50 SBNN gives the best temporal simulated ranking and F-max among tested models.
 \item Deep-ensemble disagreement is the best tested unseen-gene detector.
 \item HPO conditioning selected only on older cases materially improves compact post-2023 patient ranking.
+\item With frozen HPO weights, moderate term removal or unrelated-term addition changes top-1 by only a few percentage points on the fixed compact cohort.
+\item Case-level outputs now support end-to-end Top-$k$, MRR, calibration, selective prediction, and seen/unseen gene and disease audits without relying on aggregate summaries.
 \item Tests, seeds, model artifacts, and metric JSON files are retained.
 \end{itemize}
 
@@ -577,7 +726,7 @@ Pillow & 10.4.0 & huggingface-hub & 0.36.0 \\
 \end{tabular}
 \end{table}
 
-The pinned local environment is stored in \path{requirements/report.txt}. Running \texttt{python -m rare\_disease\_real\_kid.reporting.environment} regenerates \path{artifacts/manifests/environment_manifest.json}, including hardware, Python, package versions, and SHA-256 hashes for the compact public inputs.
+The pinned local environment is stored in \path{requirements-report.txt}. Running \texttt{python} \path{capture_environment.py} regenerates \path{report/environment_manifest.json}, including hardware, Python, package versions, and SHA-256 hashes for the compact public inputs.
 
 \subsection{Randomness and numerical execution}
 
@@ -592,18 +741,27 @@ The code map combines the imported genome-wide workflow with the Bayesian modeli
 \toprule
 File & Role \\
 \midrule
-\path{pipeline/wgs.py} & Bonaventure's genome-wide processing, annotation, phenotype scoring, filtering, pair construction, and export. \\
-\path{features/pair.py} & Fifteen features shared by pair training and Track 1 inference. \\
-\path{models/pair_ranker.py} & Conditional-logit MAP fit and Laplace posterior. \\
-\path{models/bayesian_layers.py} & Low-rank SBNN and dense BBB layers, posterior sampling, and KL terms. \\
-\path{experiments/clinvar_temporal.py} & Temporal dataset parsing, 50-feature construction, baselines, ranking, calibration, and uncertainty. \\
-\path{experiments/tune_sbnn_temporal.py} & Factorial SBNN hyperparameter sweep. \\
-\path{experiments/full_bbb_temporal.py} & Dense Bayes-by-Backprop comparison. \\
-\path{experiments/wide_rank_temporal.py} & Width and rank experiment. \\
-\path{evaluation/track1_transfer.py} & Common Track 1 adapter and exact scoring audit for temporal models. \\
-\path{experiments/phenopacket_hpo.py} & Leakage-controlled post-2023 patient benchmark with HPO conditioning. \\
-\path{experiments/aggregate_hpo.py} & Five-seed aggregation and uncertainty summaries. \\
-\path{reporting/figures.py} & Rebuilds report figures when their source artifacts are present. \\
+\path{mva_track1_pipeline.py} & Bonaventure's genome-wide processing, annotation, phenotype scoring, filtering, pair construction, and export. \\
+\path{shared_pair_features.py} & Fifteen features shared by pair training and Track 1 inference. \\
+\path{bayesian_pair_ranker.py} & Conditional-logit MAP fit and Laplace posterior. \\
+\path{sbnn_pair_ranker.py} & Low-rank SBNN and dense BBB layers, posterior sampling, and KL terms. \\
+\path{clinvar_temporal_experiment.py} & Temporal dataset parsing, 50-feature construction, baselines, ranking, calibration, and uncertainty. \\
+\path{tune_sbnn_temporal.py} & Factorial SBNN hyperparameter sweep. \\
+\path{full_bbb_temporal_experiment.py} & Dense Bayes-by-Backprop comparison. \\
+\path{wide_rank_temporal_experiment.py} & Width and rank experiment. \\
+\path{verify_temporal_models_track1.py} & Common Track 1 adapter and exact scoring audit for temporal models. \\
+\path{phenopacket_hpo_generalization.py} & Leakage-controlled post-2023 patient benchmark with HPO conditioning. \\
+\path{patient_generalization_benchmark.py} & Case-level candidate recall, ranking, calibration, OOD, selective prediction, and novelty strata. \\
+\path{score_varpb_models.py} & Bounded-memory export of all fitted models in the public VarPB new-tool format. \\
+\path{prepare_varpb_opencravat.py} & Disk-backed VarPB union construction, original-coordinate recovery, and coverage-preserving exports. \\
+\path{prepare_clinvar_predictor_training.py} & Deterministic leakage-controlled filter for the pre-2023 labeled-missense training set. \\
+\path{augmented_sbnn_varpb_experiment.py} & Joint factorial screen, shared-draw pairwise SBNN training, and locked VarPB inference. \\
+\path{models/augmented_pairwise_sbnn.py} & Fixed architecture and selected hyperparameters for the augmented SBNN. \\
+\path{evaluate_augmented_sbnn_track1.py} & Frozen augmented-SBNN transfer to the Track 1 pairs, posterior pair integration, and exact score audit. \\
+\path{evaluate_varpb_2023.py} & Exact causal-by-background rank evaluator for the 2023 VarPB protocol. \\
+\path{evaluate_varpb_suite.py} & Multi-model VarPB aggregation and plotting. \\
+\path{aggregate_hpo_generalization.py} & Five-seed aggregation and uncertainty summaries. \\
+\path{report_visualizations.py} & Rebuilds every report-specific figure from JSON artifacts. \\
 \bottomrule
 \end{longtable}
 \normalsize
@@ -611,31 +769,43 @@ File & Role \\
 \subsection{Rebuilding figures and PDF}
 From the repository root:
 \begin{lstlisting}[language=bash]
-rdkid report build
+./build_report.sh
 \end{lstlisting}
-This one command captures the local environment, rebuilds available figures, runs the complete test suite, re-scores the stored Track 1 outputs, and compiles the cited PDF. It uses the retained model checkpoint and committed candidate predictions; it neither downloads the 85~GB challenge bundle nor retrains the expensive models. The individual report commands are:
+This one command captures the local environment, rebuilds the eleven figures, runs the unit suite, re-scores the stored Track 1 outputs, and compiles the cited PDF. It uses retained checkpoints and compact result artifacts; it neither downloads the 85~GB challenge bundle nor retrains the expensive models. The individual report commands are:
 \begin{lstlisting}[language=bash]
-python -m rare_disease_real_kid.reporting.figures
-bash scripts/build_report.sh
+python report_visualizations.py --output-dir report/figures
+cd report
+pdflatex main.tex
+bibtex main
+pdflatex main.tex
+pdflatex main.tex
 \end{lstlisting}
 
 The unit suite is:
 \begin{lstlisting}[language=bash]
-python -m pytest -q
+python -m pytest test_sbnn_pair_ranker.py \
+  test_bayesian_integration.py test_audit_submission.py \
+  test_clinvar_temporal_experiment.py -q
 \end{lstlisting}
 \subsection{AI assistance disclosure}
 
-Coding agent were used ot help with code implementaiton. All analyses, research decisions and results were completed by the team.
+Coding agents helped with implementation, documentation, and reproducibility checks. The team reviewed the code, experimental design, outputs, and scientific claims.
 
-\section{Final interpretation}
+\section{Conclusions}
 
-The child's result is stable. A pathogenic \textit{BUB1B} stop-gain and an ultra-rare missense partner explain the MVA phenotype better than the retained alternatives, and the pair remains first under deterministic, linear Bayesian, ensemble, low-rank Bayesian, full-weight Bayesian, wide, consensus, and phenotype-conditioned scoring.
+\subsection{Track 1 result and comparative evidence}
+
+The child's result is stable. A pathogenic \textit{BUB1B} stop-gain and an ultra-rare missense partner explain the MVA phenotype better than the retained alternatives, and the pair remains first under deterministic, linear Bayesian, ensemble, low-rank Bayesian, full-weight Bayesian, wide, consensus, phenotype-conditioned, and predictor-augmented scoring.
 
 The perfect leaderboard score is the beginning of the argument, not the end. The evidence that distinguishes the submission is the genome-wide discovery without a manual disease-gene bonus, the nearly complete annotation join, conservative handling of phase and the uncertain second allele, exact attribution of upstream features, temporal training and holdout design, factorial Bayesian experiments, honest negative OOD results, and patient-level transfer across hundreds of later solved cases.
 
 No one model wins every metric. The wide rank-50 SBNN is the strongest tested temporal ranker and the Bayesian architecture with the clearest path to larger networks because its parameter and optimizer-state costs are controlled by rank rather than the full weight-matrix size. Dense BBB is the strongest overall HPO-conditioned external model. Wide dense BBB is strongest on the challenge-like two-variant subset. The deep ensemble is the strongest OOD detector. The correct final system is modular: deterministic biological validity, learned molecular evidence, ontology-aware phenotype matching, explicit inheritance logic, and uncertainty used to decide when evidence is insufficient.
 
-The next empirical milestone is a full patient-specific PhEval run \citep{pheval2025}. It should measure candidate-generation recall separately from ranking, preserve complete VCF backgrounds, and test seen versus unseen genes, phenotype corruption, and inheritance modes. That experiment would convert the current strong compact-benchmark evidence into a defensible end-to-end diagnostic generalization claim.
+To test whether the learned ranking functions transferred beyond the challenge child, we next used PhEval-style evaluation structure and VarPB's 107 genome backgrounds \citep{pheval2025,varpb2023}.
+
+\subsection{Generalization beyond the challenge child}
+
+The first full-background test showed that the original 50-feature models did not transfer from compact candidate sets to exome-scale missense ranking. Treating that result as a model-design diagnosis led to the predictor-augmented pairwise SBNN. The revised model is competitive with REVEL for Top-20 recall, exceeds it at Top-100, and retains complete coverage across 275,739 trials. When the same frozen checkpoint is transferred back to Track~1, it ranks the accepted \textit{BUB1B} pair first and reproduces Rank Points 100 and F-max 1.000 under the local official-equivalent evaluator. The combined evidence supports transfer of the learned ranking function beyond one child, but not universal superiority: REVEL remains better at Top-1, median rank, and MRR, and an independent clinical cohort with native HPO, pedigree, and VCF data remains necessary.
 
 \appendix
 \section{Feature definitions for the first pair models}
@@ -673,13 +843,7 @@ Feature & Meaning \\
 \item[Selective accuracy] Accuracy after retaining only the least-uncertain fraction of predictions.
 \end{description}
 
-\section{Public input checksums}
-\begin{lstlisting}
-510c54e3fd04b0786f0a110bab63853e9e8fc3e9dde9e07ce7bc83f10cb63786  clinvar_20231226.vcf.gz
-e72f5619f003c80cb3051afcb0c1f11c4409741054b48bbfd0ced03046ec91f9  clinvar_20260829.vcf.gz
-d0c70005bb09b87035087516252b6b539fbc0415be7c664b73c9cde7eedf205a  all_phenopackets_v0.1.27.zip
-d3c1280f2780628cc2adc41d43ad92eab8fa4c2bab0f421e6334c7b1e6cd4e52  hp_2023-10-09.obo
-\end{lstlisting}
+
 \bibliographystyle{unsrtnat}
 \bibliography{references}
 \end{document}
